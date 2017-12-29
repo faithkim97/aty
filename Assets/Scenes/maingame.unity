@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  jumpPower: 1000
+  jumpPower: 2000
 --- !u!61 &158143074
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 922144561}
   - component: {fileID: 922144560}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

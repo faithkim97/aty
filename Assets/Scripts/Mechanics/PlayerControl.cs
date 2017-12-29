@@ -23,6 +23,13 @@ public class PlayerControl : MonoBehaviour {
         //player direction 
         //player movement 
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
-
+        //jump
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            jump();
+        }//end of if
     }//end of movePlayer
+
+    void jump() {
+        gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
+    }//end of jump
 }
