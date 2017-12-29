@@ -184,7 +184,7 @@ Transform:
   m_LocalScale: {x: 1.0002434, y: 1.0002434, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &158143070
 GameObject:
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 215401977}
   - component: {fileID: 215401976}
   m_Layer: 0
-  m_Name: scene_01_floor
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,8 +387,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 215401975}
   m_LocalRotation: {x: -0, y: -0, z: -0.9999972, w: 0.002396325}
-  m_LocalPosition: {x: 0.05, y: 0.01, z: 0}
-  m_LocalScale: {x: 66.610664, y: 5.3406305, z: 1}
+  m_LocalPosition: {x: 0.05000019, y: 0.00999999, z: 0}
+  m_LocalScale: {x: 66.61088, y: 5.340645, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 1282486736}
   - component: {fileID: 1282486735}
   - component: {fileID: 1282486734}
+  - component: {fileID: 1282486738}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -553,7 +554,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.2968354
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -575,13 +576,27 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1282486733}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282486738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1282486733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc4b3b1c54476541b63c036dd1cee33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 158143070}
+  offset: 5
+  offsetSmoothing: 5
 --- !u!1 &1675869567
 GameObject:
   m_ObjectHideFlags: 0

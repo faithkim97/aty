@@ -32,4 +32,6 @@ public class PlayerControl : MonoBehaviour {
     void jump() {
         gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
     }//end of jump
+    //add flip player code
+    //add ontrigger enter script 
 }
