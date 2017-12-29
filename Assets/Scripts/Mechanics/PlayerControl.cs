@@ -12,7 +12,11 @@ public class PlayerControl : MonoBehaviour {
     private int jumpPower = 1000;
     private float moveX;
     private bool facingRight = false;
-  
+
+    private void Start() {
+        gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+    }
+
     private void Update() {
         movePlayer();
     }
