@@ -5,7 +5,7 @@ using UnityEngine;
 ///<summary>
 ///Manages all global variables that must be tracked and computed throughout gameplay
 ///</summary>
-public class GameManager : MonoBehaviour {
+public static class GameManager : MonoBehaviour {
 	/// <summary>
 	/// The death count.
 	/// </summary>
@@ -68,6 +68,26 @@ public class GameManager : MonoBehaviour {
     public static int getCoinCount() {
         return coinCount;
     }
-    
+
+	///<summary>
+	/// increment coinCount 
+	/// </summary>
+	public static void incCointCount() {
+		coinCount++;
+	}
+
+	///<summary>
+	/// set coin count to however amount
+	/// </summary>
+	public static void setCoinCount(int amount) {
+		cointCount = amount;
+	}
+
+	///<summary>
+	/// decrement coinCount
+	/// </summary>
+	public static void decCoinCount() {
+		coinCount--;
+	}
 
 }//end of GameManager

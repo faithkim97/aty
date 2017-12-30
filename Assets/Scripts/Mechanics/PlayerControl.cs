@@ -44,11 +44,13 @@ public class PlayerControl : MonoBehaviour {
         Debug.Log("inside collision");
         if (other.gameObject.CompareTag("coin")) {
             //other.gameObject.SetActive(false);
-            Debug.Log("coin");
+			GameManager.incCoinCount();
             GameObject.Destroy(other.gameObject);
         } 
         else if ( other.gameObject.CompareTag("obstacle")) {
-            Debug.Log("you ran into an obstacle");
+            //Debug.Log("you ran into an obstacle");
+			GameObject.destroy (other.gameObject);
+			GameManager.decCoinCount ();
         }
     }
 }
