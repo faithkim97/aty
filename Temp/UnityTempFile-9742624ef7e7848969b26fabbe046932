@@ -181,6 +181,7 @@
 'Assets/Scripts/Manager/CameraMovement.cs'
 'Assets/Scripts/Manager/GameManager.cs'
 'Assets/Scripts/Mechanics/PlayerControl.cs'
+'Assets/Scripts/UIManager.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.dll'

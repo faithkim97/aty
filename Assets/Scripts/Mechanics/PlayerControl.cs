@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour {
         } 
         else if ( other.gameObject.CompareTag("obstacle")) {
             //Debug.Log("you ran into an obstacle");
-			GameObject.destroy (other.gameObject);
+			GameObject.Destroy (other.gameObject);
 			GameManager.decCoinCount ();
         }
     }
