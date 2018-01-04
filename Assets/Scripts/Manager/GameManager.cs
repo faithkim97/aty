@@ -11,7 +11,16 @@ public class GameManager : MonoBehaviour {
     private static GameManager instance;
 
     public static GameManager Instance {
-        get; private set;
+        get {
+            if (instance == null) {
+                Instance = FindObjectOfType<GameManager>();
+            }
+            
+            return instance;
+        }
+        private set {
+            instance = value;
+        }
     }
 
 	/// <summary>
@@ -94,7 +103,7 @@ public class GameManager : MonoBehaviour {
 	/// decrement coinCount
 	/// </summary>
 	public static void decCoinCount() {
-        if (coinCount > 1) {
+        if (coinCount >= 1) {
             coinCount--;
         }
 	}
