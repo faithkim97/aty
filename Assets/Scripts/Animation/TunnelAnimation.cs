@@ -17,12 +17,18 @@ public class TunnelAnimation : MonoBehaviour {
         }
     }
 
-    public void StartTunnel( float height ) {
-        StartCoroutine(AnimateTunnel(height));
+    public void StartTunnel( float height, GameObject tunnel ) {
+        StartCoroutine(AnimateTunnel(height, tunnel));
     }
 
-    private IEnumerator AnimateTunnel(float height) {
+    private IEnumerator AnimateTunnel(float height, GameObject tunnel) {
         Debug.Log("working");
-        yield return null;
+        RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
+        for (float currHeight = tunnelRect.sizeDelta.y; currHeight <= height; currHeight += .5f) {
+            tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
+            yield return null;
+
+        }
+       
     }
 }

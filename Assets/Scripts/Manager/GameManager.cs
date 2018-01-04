@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour {
             height = tunnelRect.sizeDelta.y * 2;
         }
 
-        TunnelAnimation.Instance.StartTunnel(height);
+        TunnelAnimation.Instance.StartTunnel(height, tunnel);
         return height;
     }
 
