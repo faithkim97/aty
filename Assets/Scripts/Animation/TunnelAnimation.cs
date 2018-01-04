@@ -38,8 +38,21 @@ public class TunnelAnimation : MonoBehaviour {
         StartCoroutine(AnimateIncreaseTunnel( tunnel));
     }
 
+    public void StartDecreaseTunnel(float height, GameObject tunnel) {
+        tunnelHeight = height;
+        StartCoroutine(AnimateDecreaseTunnel(tunnel));
+    }
+
+    private IEnumerator AnimateDecreaseTunnel(GameObject tunnel) {
+        Debug.Log("animate decrease");
+        RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
+        for (float currHeight = tunnelRect.sizeDelta.y; currHeight > tunnelHeight; currHeight -= .5f) {
+            tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
+            yield return null;
+        }
+    }
+
     private IEnumerator AnimateIncreaseTunnel( GameObject tunnel) {
-        Debug.Log("working");
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight <= tunnelHeight; currHeight += .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
@@ -47,5 +60,5 @@ public class TunnelAnimation : MonoBehaviour {
         }
     }
 
-    //create AnimateDecreaseTunnel function
+    
 }

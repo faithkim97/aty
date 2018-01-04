@@ -128,10 +128,15 @@ public class GameManager : MonoBehaviour {
         return height;
     }
 
-   /* public static float decreaseTunnelHeight(GameObject tunnel) {
+   public static float decreaseTunnelHeight(GameObject tunnel) {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
+        float height = tunnelRect.sizeDelta.y;
+        if (coinCount > 0) {
+            height = (tunnelRect.sizeDelta.y / (coinCount + 0.5f));
+        }
+        TunnelAnimation.Instance.StartDecreaseTunnel(height, tunnel);
         return 0.0f;
-    } */
+    } 
 
     public void LoadScene(int i) {
         SceneManager.LoadScene(i);

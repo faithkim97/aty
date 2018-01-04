@@ -42,6 +42,8 @@ public class PlayerControl : MonoBehaviour {
         if (other.gameObject.CompareTag("coin")) {
             //other.gameObject.SetActive(false);
 			GameManager.incCoinCount();
+            GameManager.decreaseTunnelHeight(GameObject.Find("Top"));
+            GameManager.decreaseTunnelHeight(GameObject.Find("Bottom"));
             GameObject.Destroy(other.gameObject);
         } 
         else if ( other.gameObject.CompareTag("obstacle")) {
