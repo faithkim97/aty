@@ -284,7 +284,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\UI\UICounter.cs" />
+    <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
+    <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mechanics\PlayerControl.cs" />
   </ItemGroup>
   <ItemGroup>
