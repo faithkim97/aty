@@ -180,6 +180,9 @@
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 'Assets/Scripts/Manager/CameraMovement.cs'
 'Assets/Scripts/Manager/GameManager.cs'
+'Assets/Scripts/Manager/UI/UICounter.cs'
+'Assets/Scripts/Manager/UI/UIGameOver.cs'
+'Assets/Scripts/Manager/UI/UIManager.cs'
 'Assets/Scripts/Mechanics/PlayerControl.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'

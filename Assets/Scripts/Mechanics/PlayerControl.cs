@@ -51,6 +51,7 @@ public class PlayerControl : MonoBehaviour {
             //Debug.Log("you ran into an obstacle");
 			GameObject.Destroy (other.gameObject);
 			GameManager.decCoinCount ();
+			GameManager.incDeathCount ();
         }
     }
 }
