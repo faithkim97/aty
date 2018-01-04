@@ -48,10 +48,12 @@ public class PlayerControl : MonoBehaviour {
 			GameObject.Destroy (other.gameObject);
             GameManager.increaseTunnelHeight(GameObject.Find("Top"));
             GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
+            if (GameManager.getCoinCount() == 0) {
+                //game over scene 
+                GameManager.Instance.LoadScene(1);
+            }
             GameManager.decCoinCount ();
 			GameManager.incDeathCount ();
-            //game over scene 
-            //SceneManager.LoadScene(1);
         }
     }
 

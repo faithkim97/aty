@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 ///<summary>
 ///Manages all global variables that must be tracked and computed throughout gameplay
 ///</summary>
 public class GameManager : MonoBehaviour {
+    private static GameManager instance;
+
+    public static GameManager Instance {
+        get; private set;
+    }
+
 	/// <summary>
 	/// The death count.
 	/// </summary>
@@ -22,9 +29,6 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
     [SerializeField][HideInInspector]
 	private static LinkedList<GameObject> NPCs = new LinkedList<GameObject> ();
-
-    //compute tunnel width fxn 
-
 
     ///<summary>
     /// Add NPCs to the list to keep track of them
@@ -90,7 +94,9 @@ public class GameManager : MonoBehaviour {
 	/// decrement coinCount
 	/// </summary>
 	public static void decCoinCount() {
-		coinCount--;
+        if (coinCount > 1) {
+            coinCount--;
+        }
 	}
 
     /// <summary>
@@ -107,6 +113,10 @@ public class GameManager : MonoBehaviour {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, tunnelRect.sizeDelta.y * 2);
         }
         return tunnelRect.sizeDelta.y;
+    }
+
+    public void LoadScene(int i) {
+        SceneManager.LoadScene(i);
     }
  
 }//end of GameManager
