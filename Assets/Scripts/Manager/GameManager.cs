@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
             if (instance == null) {
                 Instance = FindObjectOfType<GameManager>();
             }
-            
             return instance;
         }
         private set {
@@ -115,17 +114,23 @@ public class GameManager : MonoBehaviour {
     /// <returns></returns>
     public static float increaseTunnelHeight(GameObject tunnel) {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
+        float height = tunnelRect.sizeDelta.y;
         if (coinCount >= 1) {
-            tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, tunnelRect.sizeDelta.y * (coinCount + 1));
+            // tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, tunnelRect.sizeDelta.y * (coinCount + 1));
+            height = tunnelRect.sizeDelta.y * (coinCount + 1);
         }
         else {
-            tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, tunnelRect.sizeDelta.y * 2);
+            //tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, tunnelRect.sizeDelta.y * 2);
+            height = tunnelRect.sizeDelta.y * 2;
         }
-        return tunnelRect.sizeDelta.y;
+
+        TunnelAnimation.Instance.StartTunnel(height);
+        return height;
     }
 
     public void LoadScene(int i) {
         SceneManager.LoadScene(i);
     }
+
  
 }//end of GameManager
