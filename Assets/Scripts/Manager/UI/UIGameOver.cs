@@ -9,6 +9,6 @@ public class UIGameOver : UIManager {
 	public Text gameOver;	
 	// Update is called once per frame
 	void Update () {
-		GameOver (gameOver);
+        SetDeathText(gameOver);
 	}
 }

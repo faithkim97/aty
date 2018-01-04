@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 351024918}
   - component: {fileID: 351024919}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: UI Coin/Death Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -524,11 +524,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 351024917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1030ebd6169dd427fb34e129628f4147, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c0f7fdac59d342f7935687e9a96fd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 1679217844}
-  deathText: {fileID: 0}
+  deathText: {fileID: 2002260600}
 --- !u!1001 &412384266
 Prefab:
   m_ObjectHideFlags: 0

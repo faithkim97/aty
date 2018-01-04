@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// prototype 
 /// script for player controls 
@@ -52,6 +53,7 @@ public class PlayerControl : MonoBehaviour {
 			GameObject.Destroy (other.gameObject);
 			GameManager.decCoinCount ();
 			GameManager.incDeathCount ();
+            SceneManager.LoadScene(1);
         }
     }
 }
