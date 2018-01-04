@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 ///<summary>
 ///Manages all global variables that must be tracked and computed throughout gameplay
@@ -9,24 +10,26 @@ public class GameManager : MonoBehaviour {
 	/// <summary>
 	/// The death count.
 	/// </summary>
+    [SerializeField][HideInInspector]
     private static int deathCount = 0; 
 	/// <summary>
 	/// The coin count.
 	/// </summary>
+    [SerializeField][HideInInspector]
     private static int coinCount = 0;
 	/// <summary>
 	/// All the NPCs in the game 
 	/// </summary>
+    [SerializeField][HideInInspector]
 	private static LinkedList<GameObject> NPCs = new LinkedList<GameObject> ();
-    
-    
+
     //compute tunnel width fxn 
 
 
-	///<summary>
-	/// Add NPCs to the list to keep track of them
-	/// </summary>
-	public static void addNPC( GameObject character ) {
+    ///<summary>
+    /// Add NPCs to the list to keep track of them
+    /// </summary>
+    public static void addNPC( GameObject character ) {
 		NPCs.AddLast (character);
 	}
 
@@ -90,4 +93,20 @@ public class GameManager : MonoBehaviour {
 		coinCount--;
 	}
 
+    /// <summary>
+    /// when player hits an obstacle, tunnel height increases 
+    /// </summary>
+    /// <param name="tunnel"> tunnel game object found in unity scene </param>
+    /// <returns></returns>
+    public static float increaseTunnelHeight(GameObject tunnel) {
+        RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
+        if (coinCount >= 1) {
+            tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, tunnelRect.sizeDelta.y * (coinCount + 1));
+        }
+        else {
+            tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, tunnelRect.sizeDelta.y * 2);
+        }
+        return tunnelRect.sizeDelta.y;
+    }
+ 
 }//end of GameManager

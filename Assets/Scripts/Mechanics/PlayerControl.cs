@@ -38,22 +38,24 @@ public class PlayerControl : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
     }//end of jump
 
-    //add flip player code
-
-    //add ontrigger enter script 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("inside collision");
         if (other.gameObject.CompareTag("coin")) {
             //other.gameObject.SetActive(false);
 			GameManager.incCoinCount();
             GameObject.Destroy(other.gameObject);
         } 
         else if ( other.gameObject.CompareTag("obstacle")) {
-            //Debug.Log("you ran into an obstacle");
 			GameObject.Destroy (other.gameObject);
-			GameManager.decCoinCount ();
+            GameManager.increaseTunnelHeight(GameObject.Find("Top"));
+            GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
+            GameManager.decCoinCount ();
 			GameManager.incDeathCount ();
-            SceneManager.LoadScene(1);
+            //game over scene 
+            //SceneManager.LoadScene(1);
         }
     }
-}
+
+
+    //add flip player code
+
+}//end of PlayerControl
