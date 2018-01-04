@@ -49,11 +49,11 @@ public class PlayerControl : MonoBehaviour {
             GameManager.increaseTunnelHeight(GameObject.Find("Top"));
             GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
             if (GameManager.getCoinCount() == 0) {
+                GameManager.incDeathCount();
                 //game over scene 
                 GameManager.Instance.LoadScene(1);
             }
             GameManager.decCoinCount ();
-			GameManager.incDeathCount ();
         }
     }
 
