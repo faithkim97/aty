@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//possibly create boolean value of isSaved = true/false in one of the dialogue scripts
 /// <summary>
 /// Keeps track of all dialogues in the style of a binary tree
 /// </summary>
@@ -28,8 +29,49 @@ public class DialogueTree : MonoBehaviour {
         }
     }
 
+    public bool hasLeft() {
+        return left != null;
+    }
+
+    public bool hasRight() {
+        return right != null;
+    }
+
+    public bool isLeaf() {
+        return ((left == null) && (right == null));
+    }
+
+    public DialogueNode getLeft() {
+        return left;
+    }
+
+    public DialogueNode getRight() {
+        return right;
+    }
+
+    public DialogueNode getCurrNode() {
+        return currNode;
+    }
+
+    public DialogueNode setCurrNode(DialogueNode newNode) {
+        currNode = newNode;
+    }
+
+    public void setLeft(DialogueNode node) {
+        left = node;
+    }
+
+    public void setRight(DialogueNode node) {
+        right = node;
+    }
+
+
+
 
     //[Serializable]
+    /// <summary>
+    /// Each node holds dialogue data
+    /// </summary>
     public class DialogueNode {
         /// <summary>
         /// holds dialogue string in data
