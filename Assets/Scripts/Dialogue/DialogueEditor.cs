@@ -4,26 +4,45 @@ using UnityEngine;
 using UnityEditor;
 
 public class DialogueEditor : EditorWindow {
-
-    private int indentLevel;
-    [SerializeField]
-    private DialogueTree savedTree, lastSavedTree;
-
+    Rect window1;
+    Rect window2;
 
     [MenuItem("Window/Dialogue Editor")]
-    public static void ShowWindow() {
-        GetWindow<DialogueEditor>();
+    static void ShowEditor() {
+        DialogueEditor editor = EditorWindow.GetWindow<DialogueEditor>();
+        editor.Init();
     }
+
+     public void Init() {
+        window1 = new Rect(10, 10, 100, 100);
+        window2 = new Rect(210, 210, 100, 100);
+    } s
 
     private void OnGUI() {
-        GUILayout.BeginVertical();
-        EditorGUIUtility.hierarchyMode = true;
-        indentLevel = 1;
-        GUI.SetNextControlName("Dummy Contorl");
-        GUI.Button(new Rect(0, 0, 0, 0), "", GUIStyle.none);
 
-
+       // if (windowsToAttach.Count )
+        DrawNodeCurve(window1, window2); //curve drawn
+        BeginWindows();
+        window1 = GUI.Window(1, window1, DrawNodeWindow, "Window 1");
+        window2 = GUI.Window(2, window2, DrawNodeWindow, "Window 2");
+        EndWindows(); 
 
     }
+
+    void DrawNodeWindow(int id) {
+        GUI.DragWindow();
+    }
+
+    void DrawNodeCurve(Rect start, Rect end) {
+        Vector3 startPos = new Vector3(start.x + start.width, start.y + start.height / 2, 0);
+        Vector3 endPos = new Vector3(end.x, end.y + end.height / 2, 0);
+        Vector3 startTan = startPos + Vector3.right * 50;
+        Vector3 endTan = endPos + Vector3.left * 50;
+        Color shadowCol = new Color(0, 0, 0, 0.06f);
+        for (int i = 0; i < 3; i++) //draw shadow
+            Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 5);
+        
+    }
+
 
 }
