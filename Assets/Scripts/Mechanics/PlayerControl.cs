@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// prototype 
 /// script for player controls 
@@ -37,21 +38,27 @@ public class PlayerControl : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
     }//end of jump
 
-    //add flip player code
-
-    //add ontrigger enter script 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("inside collision");
         if (other.gameObject.CompareTag("coin")) {
-            //other.gameObject.SetActive(false);
 			GameManager.incCoinCount();
+            GameManager.decreaseTunnelHeight(GameObject.Find("Top"));
+            GameManager.decreaseTunnelHeight(GameObject.Find("Bottom"));
             GameObject.Destroy(other.gameObject);
         } 
         else if ( other.gameObject.CompareTag("obstacle")) {
-            //Debug.Log("you ran into an obstacle");
 			GameObject.Destroy (other.gameObject);
-			GameManager.decCoinCount ();
-			GameManager.incDeathCount ();
+            GameManager.increaseTunnelHeight(GameObject.Find("Top"));
+            GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
+            if (GameManager.getCoinCount() == 0) {
+                GameManager.incDeathCount();
+                //game over scene 
+                GameManager.Instance.LoadScene(1);
+            }
+            GameManager.decCoinCount ();
         }
     }
-}
+
+
+    //add flip player code
+
+}//end of PlayerControl
