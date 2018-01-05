@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Animates the tunnel's height
+/// </summary>
 public class TunnelAnimation : MonoBehaviour {
+    /// <summary>
+    /// keeps track and saves height of the tunnel
+    /// </summary>
     [SerializeField]
     [HideInInspector]
     private static float tunnelHeight = 0.0f; 
+    /// <summary>
+    /// Creates an instance of TunnelAnimation
+    /// </summary>
     private static TunnelAnimation instance; 
     public static TunnelAnimation Instance {
         get {
@@ -19,7 +27,7 @@ public class TunnelAnimation : MonoBehaviour {
             instance = value;
         }
     }
-
+    //fix this to be cleaner--a little repetitive
     private void Start() {
         //if player dies at least once, then save the tunnel heights from last gameplay
         if (GameManager.getDeathCount() > 0 && tunnelHeight != 0.0f) {
@@ -32,12 +40,20 @@ public class TunnelAnimation : MonoBehaviour {
         }     
     }
 
-
+    /// <summary>
+    /// starts coroutine for increase animation
+    /// </summary>
+    /// <param name="height">height of the tunnel it must be</param>
+    /// <param name="tunnel"> gameobject tunnel that is being passed</param>
     public void StartIncreaseTunnel( float height, GameObject tunnel ) {
         tunnelHeight = height;
         StartCoroutine(AnimateIncreaseTunnel( tunnel));
     }
-
+    /// <summary>
+    /// starts decrease animation coroutine
+    /// </summary>
+    /// <param name="height">height the tunnel must be at the end of animation</param>
+    /// <param name="tunnel">tunnel gameobject being passed in</param>
     public void StartDecreaseTunnel(float height, GameObject tunnel) {
         tunnelHeight = height;
         StartCoroutine(AnimateDecreaseTunnel(tunnel));

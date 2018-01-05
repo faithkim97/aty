@@ -40,7 +40,6 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("coin")) {
-            //other.gameObject.SetActive(false);
 			GameManager.incCoinCount();
             GameManager.decreaseTunnelHeight(GameObject.Find("Top"));
             GameManager.decreaseTunnelHeight(GameObject.Find("Bottom"));
