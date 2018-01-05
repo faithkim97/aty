@@ -4,29 +4,17 @@ using UnityEngine;
 using UnityEditor;
 
 public class DialogueEditor : EditorWindow {
-    /// <summary>
-    /// keep track of what to show in Dialogue Editor
-    /// </summary>
     List<Rect> windows = new List<Rect>();
-    /// <summary>
-    /// keep track of neighborless windows to attach
-    /// </summary>
     List<int> windowsToAttach = new List<int>();
-    /// <summary>
-    /// keep track of windows that have neighbors
-    /// </summary>
     List<int> attachedWindows = new List<int>();
-    [SerializeField]
-    [HideInInspector]
-    private DialogueTree tree;
-    public string dialogue = "ho there!";
 
-    [MenuItem("Window/Dialogue Editor")]
+    [MenuItem("Window/Dialogue editor")]
     static void ShowEditor() {
         DialogueEditor editor = EditorWindow.GetWindow<DialogueEditor>();
     }
 
-    private void OnGUI() {
+
+    void OnGUI() {
         if (windowsToAttach.Count == 2) {
             attachedWindows.Add(windowsToAttach[0]);
             attachedWindows.Add(windowsToAttach[1]);
@@ -40,29 +28,27 @@ public class DialogueEditor : EditorWindow {
         }
 
         BeginWindows();
+
         if (GUILayout.Button("Create Node")) {
-           
             windows.Add(new Rect(10, 10, 100, 100));
         }
 
         for (int i = 0; i < windows.Count; i++) {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
-           
         }
+
         EndWindows();
     }
+
 
     void DrawNodeWindow(int id) {
         if (GUILayout.Button("Attach")) {
             windowsToAttach.Add(id);
         }
 
-        if (GUILayout.Button("Add Dialogue")) {
-            dialogue = GUI.TextArea(new Rect(10, 10, 100, 100), dialogue, 25);
-            tree.getCurrNode().setDialogue(dialogue);
-        }
         GUI.DragWindow();
     }
+
 
     void DrawNodeCurve(Rect start, Rect end) {
         Vector3 startPos = new Vector3(start.x + start.width, start.y + start.height / 2, 0);
