@@ -8,6 +8,7 @@ TagManager:
   - obstacle
   - top
   - bottom
+  - diaTrigger
   layers:
   - Default
   - TransparentFX

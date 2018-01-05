@@ -19,7 +19,7 @@ public class DialogueTree : MonoBehaviour {
     public DialogueTree Instance {
         get {
             if (instance == null) {
-                Instance = FindObjectofType<DialogueTree>();
+                Instance = FindObjectOfType<DialogueTree>();
             }
             return instance;
         }
@@ -53,7 +53,7 @@ public class DialogueTree : MonoBehaviour {
         return currNode;
     }
 
-    public DialogueNode setCurrNode(DialogueNode newNode) {
+    public void setCurrNode(DialogueNode newNode) {
         currNode = newNode;
     }
 

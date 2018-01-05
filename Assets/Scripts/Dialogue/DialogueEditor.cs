@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class DialogueEditor : MonoBehaviour {
+public class DialogueEditor : EditorWindow {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [MenuItem("Window/Dialogue Editor")]
+    public static void ShowWindow() {
+        GetWindow<DialogueEditor>();
+    }
+
+    private void OnGUI() {
+        GUILayout.BeginVertical();
+        EditorGUIUtility.hierarchyMode = true;
+        indentLevel = 1;
+    }
+
 }

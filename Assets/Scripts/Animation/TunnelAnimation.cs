@@ -60,7 +60,6 @@ public class TunnelAnimation : MonoBehaviour {
     }
 
     private IEnumerator AnimateDecreaseTunnel(GameObject tunnel) {
-        Debug.Log("animate decrease");
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight > tunnelHeight; currHeight -= .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
