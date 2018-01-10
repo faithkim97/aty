@@ -77,6 +77,23 @@ public class DialogueTree {
 		diaData = newDia;
 	}
 
+	public void traverseTree() {
+		DialogueTree currNode = this;
+		traverseTree (currNode);
+
+	}
+	private void traverseTree( DialogueTree currNode ) {
+		if (currNode == null) {
+			return;
+		}
+		traverseTree (currNode.getLeft ());
+		Debug.Log (currNode.getDialogue ());
+		traverseTree( currNode.getRight());
+		
+	}//end of traverseTree
+
+
+
 
 	/*
     //[Serializable]

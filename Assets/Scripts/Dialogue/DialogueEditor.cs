@@ -45,8 +45,10 @@ public class DialogueEditor : EditorWindow {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
 		
         }
+			
 
         EndWindows();
+		
     }
 
 	
@@ -65,7 +67,7 @@ public class DialogueEditor : EditorWindow {
 				currNode = dTree.getRight ();
 			}
 
-			Debug.Log (dTree.getDialogue ());
+			dTree.traverseTree ();
 		}
         if (GUILayout.Button("Attach")) {
             windowsToAttach.Add(id);
