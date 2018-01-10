@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Keeps track of all dialogues in the style of a binary tree
 /// </summary>
-public class DialogueTree : MonoBehaviour {
+public class DialogueTree {
     //current node player dialogue is on
     private DialogueNode currNode;
     //left child of tree
@@ -15,11 +15,11 @@ public class DialogueTree : MonoBehaviour {
     private DialogueNode right;
 
     //instance of DialogueTree
-    private DialogueTree instance;
-    public DialogueTree Instance {
+ /*   private static DialogueTree instance;
+    public static DialogueTree Instance {
         get {
             if (instance == null) {
-                Instance = FindObjectOfType<DialogueTree>();
+                Instance = GameObject.FindObjectOfType<DialogueTree>();
             }
             return instance;
         }
@@ -27,7 +27,13 @@ public class DialogueTree : MonoBehaviour {
         set {
             instance = value;
         }
-    }
+    }*/
+
+	public DialogueTree() {
+		currNode = null;
+		left = null;
+		right = null;
+	}
 
     public bool hasLeft() {
         return left != null;
@@ -77,6 +83,10 @@ public class DialogueTree : MonoBehaviour {
         /// holds dialogue string in data
         /// </summary>
         private string diaData;
+
+		public DialogueNode( string data ) {
+			diaData = data;
+		}
 
         public string getDialogue() {
             return diaData;

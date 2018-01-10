@@ -178,6 +178,11 @@
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_OSX
 -define:ENABLE_NATIVE_ARRAY_CHECKS
+'Assets/Prefabs/NewBehaviourScript.cs'
+'Assets/Scripts/Animation/TunnelAnimation.cs'
+'Assets/Scripts/Dialogue/DialogueEditor.cs'
+'Assets/Scripts/Dialogue/DialogueManager.cs'
+'Assets/Scripts/Dialogue/DialogueTree.cs'
 'Assets/Scripts/Manager/CameraMovement.cs'
 'Assets/Scripts/Manager/GameManager.cs'
 'Assets/Scripts/Manager/UI/UICounter.cs'
