@@ -9,8 +9,9 @@ public class DialogueEditor : EditorWindow {
     List<int> attachedWindows = new List<int>();
 	DialogueTree dTree = new DialogueTree ();
 	//DialogueTree dTree = ScriptableObject.CreateInstance("DialogueTree");
-	public string stringToEdit = "Please add dialogue here";
-
+	//public string stringToEdit = "Please add dialogue here";
+	[SerializeField]
+	private List<string> dialogues = new List<string> ();
 
 	
 
@@ -21,7 +22,7 @@ public class DialogueEditor : EditorWindow {
     }
 
     void OnGUI() {
-		stringToEdit = GUILayout.TextArea(stringToEdit, 200);
+		//stringToEdit = GUILayout.TextArea(stringToEdit, 200);
 
         if (windowsToAttach.Count == 2) {
             attachedWindows.Add(windowsToAttach[0]);
@@ -39,6 +40,7 @@ public class DialogueEditor : EditorWindow {
 
         if (GUILayout.Button("Create Node")) {
             windows.Add(new Rect(10,10, 200, 200));
+			dialogues.Add ("Add new dialogue here");
         }
 
         for (int i = 0; i < windows.Count; i++) {
@@ -51,10 +53,10 @@ public class DialogueEditor : EditorWindow {
 
 	
     void DrawNodeWindow(int id) {
-		stringToEdit = GUILayout.TextArea(stringToEdit, 200);
+		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
 		if (GUILayout.Button ("Add dialogue")) {
 			//DialogueTree.Instance.setCurrNode ( new DialogueTree.DialogueNode (stringToEdit));
-			dTree.setCurrNode (new DialogueTree.DialogueNode (stringToEdit));
+			dTree.setCurrNode (new DialogueTree.DialogueNode (dialogues[id]));
 			Debug.Log (dTree.getCurrNode ().getDialogue ());
 		}
         if (GUILayout.Button("Attach")) {
