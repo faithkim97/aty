@@ -22,9 +22,7 @@ public class DialogueEditor : EditorWindow {
     }
 
     void OnGUI() {
-		//stringToEdit = GUILayout.TextArea(stringToEdit, 200);
-
-        if (windowsToAttach.Count == 2) {
+	        if (windowsToAttach.Count == 2) {
             attachedWindows.Add(windowsToAttach[0]);
             attachedWindows.Add(windowsToAttach[1]);
             windowsToAttach = new List<int>();
@@ -45,7 +43,7 @@ public class DialogueEditor : EditorWindow {
 
         for (int i = 0; i < windows.Count; i++) {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
-			//windows [i] = GUI.Window (i, windows [i], AddText, "Window " + i);
+		
         }
 
         EndWindows();
@@ -53,11 +51,21 @@ public class DialogueEditor : EditorWindow {
 
 	
     void DrawNodeWindow(int id) {
+		DialogueTree currNode = dTree;
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
 		if (GUILayout.Button ("Add dialogue")) {
-			//DialogueTree.Instance.setCurrNode ( new DialogueTree.DialogueNode (stringToEdit));
-			dTree.setCurrNode (new DialogueTree.DialogueNode (dialogues[id]));
-			Debug.Log (dTree.getCurrNode ().getDialogue ());
+			if (dTree.getDialogue () == null) {
+				currNode.setDialogue (dialogues [id]);
+			} else if (currNode.getLeft () == null) {
+				currNode.setLeft (new DialogueTree (dialogues [id]));
+				currNode = dTree.getLeft ();
+					
+			} else if (currNode.getRight () == null) {
+				currNode.setRight (new DialogueTree (dialogues [id]));
+				currNode = dTree.getRight ();
+			}
+
+			Debug.Log (dTree.getDialogue ());
 		}
         if (GUILayout.Button("Attach")) {
             windowsToAttach.Add(id);
@@ -65,6 +73,7 @@ public class DialogueEditor : EditorWindow {
 
         GUI.DragWindow();
     }
+		
 		
 
 

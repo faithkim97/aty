@@ -6,13 +6,14 @@ using UnityEngine;
 /// Keeps track of all dialogues in the style of a binary tree
 /// </summary>
 public class DialogueTree {
-    //current node player dialogue is on
-    private DialogueNode currNode;
+   
     //left child of tree
     //left == negative options
-    private DialogueNode left;
+    private DialogueTree left;
     //right == positive options
-    private DialogueNode right;
+    private DialogueTree right;
+
+	private string diaData;
 
     //instance of DialogueTree
  /*   private static DialogueTree instance;
@@ -30,9 +31,14 @@ public class DialogueTree {
     }*/
 
 	public DialogueTree() {
-		currNode = null;
+		diaData = null;
 		left = null;
 		right = null;
+	}
+	public DialogueTree(string data) {
+		left = null;
+		right = null;
+		diaData = data;
 	}
 
     public bool hasLeft() {
@@ -47,33 +53,32 @@ public class DialogueTree {
         return ((left == null) && (right == null));
     }
 
-    public DialogueNode getLeft() {
+	public DialogueTree getLeft() {
         return left;
     }
 
-    public DialogueNode getRight() {
+	public DialogueTree getRight() {
         return right;
     }
 
-    public DialogueNode getCurrNode() {
-        return currNode;
-    }
-
-    public void setCurrNode(DialogueNode newNode) {
-        currNode = newNode;
-    }
-
-    public void setLeft(DialogueNode node) {
+    public void setLeft(DialogueTree node) {
         left = node;
     }
 
-    public void setRight(DialogueNode node) {
+    public void setRight(DialogueTree node) {
         right = node;
     }
 
+	public string getDialogue() {
+		return diaData;
+	}
+
+	public void setDialogue(string newDia) {
+		diaData = newDia;
+	}
 
 
-
+	/*
     //[Serializable]
     /// <summary>
     /// Each node holds dialogue data
@@ -96,4 +101,5 @@ public class DialogueTree {
             diaData = data;
         } 
     }//end of DialogueNode
+	*/
 }
