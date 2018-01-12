@@ -40,6 +40,19 @@ public class DialogueTree {
 		left = null;
 		right = null;
 	}
+
+	public DialogueTree(int id) {
+		this.id = id;
+		diaData = null;
+		left = null;
+		right = null;
+	}
+	public DialogueTree(string data, int id, DialogueTree left, DialogueTree right) {
+		diaData = data;
+		this.id = id;
+		this.left = left;
+		this.right = right;
+	}
 	public DialogueTree(string data) {
 		left = null;
 		right = null;
