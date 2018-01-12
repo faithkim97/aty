@@ -7,11 +7,11 @@ public class DialogueEditor : EditorWindow {
     List<Rect> windows = new List<Rect>();
     List<int> windowsToAttach = new List<int>();
     List<int> attachedWindows = new List<int>();
-	DialogueTree dTree = new DialogueTree ();
+	DialogueTree dTree;
 	DialogueTree currNode;
 	//[SerializeField]
 	public List<string> dialogues = new List<string> ();
-
+	private List<DialogueTree> tree = new List<DialogueTree> ();
 
 
     [MenuItem("Window/Dialogue editor")]
@@ -21,7 +21,7 @@ public class DialogueEditor : EditorWindow {
     }
 
     void OnGUI() {
-		currNode = dTree;
+		//currNode = dTree;
 	        if (windowsToAttach.Count == 2) {
             attachedWindows.Add(windowsToAttach[0]);
             attachedWindows.Add(windowsToAttach[1]);
@@ -35,6 +35,8 @@ public class DialogueEditor : EditorWindow {
         }
 
         BeginWindows();
+		//if saved is clicked
+		//if load is clicked 
 
         if (GUILayout.Button("Create Node")) {
             windows.Add(new Rect(10,10, 200, 200));
@@ -43,7 +45,7 @@ public class DialogueEditor : EditorWindow {
 
         for (int i = 0; i < windows.Count; i++) {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
-		
+			tree.Add (new DialogueTree (i));
         }
 			
 

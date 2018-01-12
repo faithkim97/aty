@@ -59,6 +59,21 @@ public class DialogueTree {
 		diaData = data;
 	}
 
+	public DialogueTree findNode(int id) {
+		DialogueTree currNode = this;
+		findNode(id, currNode);
+	}
+
+	private DialogueTree findNode(int id, DialogueTree currNode) {
+		if (currNode.getLeft () == null && currNode.getRight () == null && currNode.getID () != id ) {
+			return null;
+		}
+
+		findNode (currNode.getLeft ());
+		findNode (currNode.getRight ());
+		return currNode;
+	}
+
 	public bool getBranch(string userResponse) {
 		return responseBranch [userResponse];
 	}
