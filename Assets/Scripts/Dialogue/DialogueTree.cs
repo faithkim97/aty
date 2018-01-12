@@ -61,7 +61,7 @@ public class DialogueTree {
 
 	public DialogueTree findNode(int id) {
 		DialogueTree currNode = this;
-		findNode(id, currNode);
+		return findNode(id, currNode);
 	}
 
 	private DialogueTree findNode(int id, DialogueTree currNode) {
@@ -69,8 +69,8 @@ public class DialogueTree {
 			return null;
 		}
 
-		findNode (currNode.getLeft ());
-		findNode (currNode.getRight ());
+		findNode (id, currNode.getLeft ());
+		findNode (id, currNode.getRight ());
 		return currNode;
 	}
 
