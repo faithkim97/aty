@@ -12,8 +12,14 @@ public class DialogueTree {
     private DialogueTree left;
     //right == positive options
     private DialogueTree right;
-
+	//dialogue of each node
 	private string diaData;
+	//id of node to keep track of node
+	private int id;
+	//keeps track of all user response's association to bool value
+	//for which branch to go to
+	private Dictionary<string, bool> responseBranch = new Dictionary<string, bool>();
+
 
     //instance of DialogueTree
  /*   private static DialogueTree instance;
@@ -29,7 +35,6 @@ public class DialogueTree {
             instance = value;
         }
     }*/
-
 	public DialogueTree() {
 		diaData = null;
 		left = null;
@@ -41,6 +46,21 @@ public class DialogueTree {
 		diaData = data;
 	}
 
+	public bool getBranch(string userResponse) {
+		return responseBranch [userResponse];
+	}
+
+	public void setBranch(string key, bool value) {
+		responseBranch.Add (key, value);
+	}
+
+	public int getID() {
+		return id;
+	}
+
+	public void setID(int i) {
+		id = i;
+	}
     public bool hasLeft() {
         return left != null;
     }
