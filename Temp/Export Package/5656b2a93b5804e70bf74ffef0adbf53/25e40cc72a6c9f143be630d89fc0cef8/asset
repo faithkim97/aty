@@ -1,0 +1,15 @@
+﻿using UnityEngine;
+using System.Collections;
+//stores a string that's used as a display text for a node, as well as the name of it's class
+//we use these since i don't want to have to type "Addition" every time i mean "+"
+[CreateAssetMenu(fileName = "New Type", menuName = "Node editor/Node type", order = 1)]
+public class NodeSearches : ScriptableObject
+{
+    public string DisplayName;
+    public string InstanceName;
+    public NodeSearches(string _dis, string _inst)
+    {
+        DisplayName = _dis;
+        InstanceName = _inst;
+    }
+}

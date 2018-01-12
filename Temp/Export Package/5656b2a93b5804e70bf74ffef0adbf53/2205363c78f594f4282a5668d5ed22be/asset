@@ -1,0 +1,152 @@
+﻿using UnityEngine;
+using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+public class If : Branch
+{
+    //one curve points towards the condition label, the other is the usual
+    public override Vector3 Left(Node node)
+    {
+        if (node == condition)
+        {
+            return new Vector3(pos.x, (2 * pos.y + 0.4f * pos.height) / 2, 0);
+        }
+        else
+        {
+            return base.Left(node);
+        }
+    }
+    //each curve starts from each possible answer
+    public override Vector3 Right(Node node)
+    {
+        if (node == connectedTo[0])
+        {
+            return new Vector3(pos.x + pos.width, (2 * pos.y + 0.6f * pos.height) / 2, 0);
+        }
+        else
+        {
+            return new Vector3(pos.x + pos.width, (2 * pos.y + 0.8f * pos.height) / 2, 0);
+        }
+    }
+    //the bool for the If()
+    public Bool condition;
+    public override Node GetResult()
+    {
+        if (condition != null && connectedTo.Count >= 1)
+        {
+            if (condition.GetResult() == true)
+            {
+                return connectedTo[0];
+            }
+            else
+            if (connectedTo.Count == 2)
+            {
+                return connectedTo[1];
+            }
+            else
+                return null;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public override string Type()
+    {
+        return "If";
+    }
+    public override void CopyTo(Node other)
+    {
+        If temp = other as If;
+        temp.condition = temp.parent.nodes[condition.ID] as Bool;
+        base.CopyTo(other);
+    }
+    //only attach bools and branches
+    public override void Attach()
+    {
+        if (attachNode.BaseType() == "Bool")
+        {
+            if (condition != null)
+            {
+                condition.connectedTo.Remove(this);
+                referencedBy.Remove(condition);
+            }
+            condition = attachNode as Bool;
+            base.Attach();
+        }
+        else
+        if (attachNode.BaseType() == "Branch" || attachNode.BaseType() == "Output")
+        {
+            base.Attach();
+        }
+        else
+            Debug.LogError("Wrong type (should be Float)");
+    }
+#if UNITY_EDITOR
+    public override void DrawNode(int id = 0)
+    {
+        value = GetResult();
+        if (condition != null)
+        {
+            GUILayout.Label("Condition node: " + condition.name);
+        }
+        else
+        {
+            GUILayout.Label("Condition node: null");
+        }
+        if (connectedTo.Count == 0)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Answer 1: null");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Answer 2: null");
+            GUILayout.EndHorizontal();
+        }
+        else
+        if (connectedTo.Count == 1)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Answer 1: " + connectedTo[0].name);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Answer 2: null");
+            GUILayout.EndHorizontal();
+        }
+        else
+        {
+            for (int i = 0; i < connectedTo.Count; i++)
+            {
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUILayout.Label("Answer " + (i + 1).ToString() + ": " + connectedTo[i].name);
+                ReorderConnectionsUpDown(i);
+                GUILayout.EndHorizontal();
+            }
+        }
+        if (condition != null && connectedTo.Count >= 1)
+        {
+            if (condition.GetResult() == true)
+            {
+                GUILayout.Label("Result: " + value.name);
+            }
+            else
+            if (connectedTo.Count == 2)
+            {
+                GUILayout.Label("Result: " + value.name);
+            }
+        }
+        else
+        {
+            GUILayout.Label("Result: null");
+        }
+
+        base.DrawNode(id);
+    }
+#endif
+}

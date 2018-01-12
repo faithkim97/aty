@@ -1,0 +1,62 @@
+﻿using UnityEngine;
+using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+public class Not : Bool
+{
+
+    public override bool GetResult()
+    {
+        if (referencedBy.Count >= 1)
+        {
+            Bool temp = referencedBy[0] as Bool;
+            return !temp.GetResult();
+        }
+        else
+            return false;
+    }
+    public override string Type()
+    {
+        return "Not";
+    }
+    //make sure we're only attaching bools
+    public override void Attach()
+    {
+        if (attachNode.BaseType() == "Bool")
+        {
+            if (referencedBy.Count >= 1)
+            {
+                referencedBy[0].connectedTo.Remove(this);
+                referencedBy.RemoveAt(0);
+            }
+            base.Attach();
+        }
+        else
+            Debug.LogError("Wrong type (should be Bool)");
+    }
+#if UNITY_EDITOR
+    public override void DrawNode(int id = 0)
+    {
+        value = GetResult();
+        if (referencedBy.Count >= 1)
+        {
+            GUILayout.Label("Node 1: " + referencedBy[0].name);
+            for (int i = 1; i < referencedBy.Count; i++)
+            {
+                GUILayout.Label("Node " + (i + 1).ToString() + ": " + referencedBy[i].name);
+            }
+        }
+        base.DrawNode(id);
+    }
+
+    protected override void PrintValue()
+    {
+        value = GetResult();
+        GUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        GUILayout.Label("Value " + value.ToString());
+        GUILayout.EndHorizontal();
+    }
+#endif
+}

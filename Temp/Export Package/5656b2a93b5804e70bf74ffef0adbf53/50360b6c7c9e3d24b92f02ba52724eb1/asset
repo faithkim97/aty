@@ -1,0 +1,35 @@
+﻿using UnityEngine;
+using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+public class StoryString : String
+{
+    public StoryVariableString variable;
+    public override string GetResult()
+    {
+        if (variable != null)
+        {
+            return variable.value;
+        }
+        else
+            return "";
+    }
+    public override string Type()
+    {
+        return "StoryString";
+    }
+    public override void CopyTo(Node other)
+    {
+        StoryString temp = (StoryString)other;
+        temp.variable = variable;
+        base.CopyTo(other);
+    }
+#if UNITY_EDITOR
+    //use a label instead of an Input field
+    protected override void PrintValue()
+    {
+        variable = EditorGUILayout.ObjectField("Variable: ", variable, typeof(StoryVariableString), true) as StoryVariableString;
+    }
+#endif
+}

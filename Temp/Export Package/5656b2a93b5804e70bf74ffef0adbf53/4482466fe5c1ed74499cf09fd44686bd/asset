@@ -1,0 +1,12 @@
+﻿using UnityEngine;
+using System.Collections;
+//it's easier to just make a new Node and press "Convert to var", but whatever floats your boat
+[CreateAssetMenu(fileName = "New Bool Variable", menuName = "Node editor/Bool StoryVar", order = 1)]
+public class StoryVariableBool : StoryVariable
+{
+    public bool value;
+    public override string Type()
+    {
+        return "Bool";
+    }
+}

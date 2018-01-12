@@ -1,0 +1,65 @@
+﻿using UnityEngine;
+using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+/// <summary>
+/// the equivalent of a "Set" function for the object versions of the variables
+/// </summary>
+public class SetBool : ExecuteFunction
+{
+    public StoryVariableBool variable;
+    public Bool boolvalue;
+    public override string Type()
+    {
+        return "Set bool";
+    }
+    public override void Function()
+    {
+        variable.value = boolvalue.GetResult();
+    }
+    public override void CopyTo(Node other)
+    {
+        base.CopyTo(other);
+        SetBool temp = other as SetBool;
+        temp.variable = variable;
+        temp.boolvalue = temp.parent.nodes[boolvalue.ID] as Bool;
+    }
+    public override void Attach()
+    {
+        if (attachNode.BaseType() == "Bool")
+        {
+            if (boolvalue != null)
+            {
+                boolvalue.connectedTo.Remove(this);
+            }
+            boolvalue = attachNode as Bool;
+        }
+        base.Attach();
+    }
+    public override Vector3 Left(Node node)
+    {
+        if (node == boolvalue)
+        {
+            return new Vector3(pos.x, (2 * pos.y + 95) / 2, 0);
+        }
+        else
+            return base.Left(node);
+    }
+#if UNITY_EDITOR
+    //use a label instead of an Input field
+    public override void DrawNode(int id = 0)
+    {
+        variable = EditorGUILayout.ObjectField("Variable: ", variable, typeof(StoryVariableBool), true) as StoryVariableBool;
+        if (boolvalue != null)
+        {
+            GUILayout.Label("Value: " + boolvalue.name);
+        }
+        else
+        {
+            GUILayout.Label("Value: null");
+        }
+        base.DrawNode(id);
+    }
+#endif
+}

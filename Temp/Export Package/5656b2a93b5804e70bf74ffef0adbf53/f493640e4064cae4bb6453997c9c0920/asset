@@ -1,0 +1,62 @@
+﻿using UnityEngine;
+using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+public class SetString : ExecuteFunction
+{
+    public StoryVariableString variable;
+    public String stringvalue;
+    public override string Type()
+    {
+        return "Set string";
+    }
+    public override void Function()
+    {
+        variable.value = stringvalue.GetResult();
+    }
+    public override void CopyTo(Node other)
+    {
+        base.CopyTo(other);
+        SetString temp = other as SetString;
+        temp.variable = variable;
+        temp.stringvalue = temp.parent.nodes[stringvalue.ID] as String;
+    }
+    public override void Attach()
+    {
+        if (attachNode.BaseType() == "String")
+        {
+            if (stringvalue != null)
+            {
+                stringvalue.connectedTo.Remove(this);
+            }
+            stringvalue = attachNode as String;
+        }
+        base.Attach();
+    }
+    public override Vector3 Left(Node node)
+    {
+        if (node == stringvalue)
+        {
+            return new Vector3(pos.x, (2 * pos.y + 95) / 2, 0);
+        }
+        else
+            return base.Left(node);
+    }
+#if UNITY_EDITOR
+    //use a label instead of an Input field
+    public override void DrawNode(int id = 0)
+    {
+        variable = EditorGUILayout.ObjectField("Variable: ", variable, typeof(StoryVariableString), true) as StoryVariableString;
+        if (stringvalue != null)
+        {
+            GUILayout.Label("Value: " + stringvalue.name);
+        }
+        else
+        {
+            GUILayout.Label("Value: null");
+        }
+        base.DrawNode(id);
+    }
+#endif
+}

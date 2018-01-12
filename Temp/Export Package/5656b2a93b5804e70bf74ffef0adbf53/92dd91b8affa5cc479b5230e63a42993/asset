@@ -1,0 +1,7 @@
+﻿using UnityEngine;
+using System.Collections;
+//it has nothing different than a regular script, but having it as it's own class makes it easier to search for
+public class DialogueScript : ScriptTemplate
+{
+
+}

@@ -1,0 +1,70 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+//inherits the default node editor
+public class DialogueScriptEditor : GraphEditorWindow
+{
+    static DialogueScriptEditor window;
+    //add the other node types from a sub folder
+    public override void SetupNodeTypes()
+    {
+        base.SetupNodeTypes();
+        NodeSearches[] temp = Resources.LoadAll<NodeSearches>("Node search menu/Dialogue");
+        foreach (NodeSearches o in temp)
+        {
+            if (!NodeTypes.Contains(o))
+                NodeTypes.Add(o);
+        }
+    }
+    [MenuItem("Window/Dialogue Node Editor")]
+    static void Init()
+    {
+        window = (DialogueScriptEditor)EditorWindow.GetWindow(typeof(DialogueScriptEditor));
+        window.SetupNodeTypes();
+    }
+    //create a canvas from an inherited class
+    protected override void CreateNewCanvas()
+    {
+        ClearMemory();
+        canvas = CreateInstance<DialogueScript>();
+    }
+    protected override void LoadCanvas()
+    {
+        assetPathAndName = "Assets/NodeEditor/Resources/" + canvas.name + ".asset";
+        DialogueScript newc = AssetDatabase.LoadAssetAtPath<DialogueScript>(assetPathAndName);
+        //reset the canvas, since we don't want it to reference a file in the projects, but to be it's own thing
+        CreateNewCanvas();
+        CopyList(canvas, newc);
+    }
+    protected override void SaveCanvas()
+    {
+        assetPathAndName = "Assets/NodeEditor/Resources/" + canvas.name + ".asset";
+        DialogueScript outPut = AssetDatabase.LoadAssetAtPath(assetPathAndName, typeof(DialogueScript)) as DialogueScript;
+        if (outPut != null)
+        {
+            for (int i = 0; i < outPut.nodes.Count; i++)
+            {
+                DestroyImmediate(outPut.nodes[i], true);
+            }
+            CopyList(outPut, canvas);
+            for (int i = 0; i < outPut.nodes.Count; i++)
+            {
+                AssetDatabase.AddObjectToAsset(outPut.nodes[i], assetPathAndName);
+            }
+        }
+        else
+        {
+            outPut = CreateInstance<DialogueScript>();
+            CopyList(outPut, canvas);
+            AssetDatabase.CreateAsset(outPut, assetPathAndName);
+            for (int i = 0; i < outPut.nodes.Count; i++)
+            {
+                outPut.nodes[i].hideFlags = HideFlags.HideInHierarchy;
+                AssetDatabase.AddObjectToAsset(outPut.nodes[i], assetPathAndName);
+            }
+        }
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+}

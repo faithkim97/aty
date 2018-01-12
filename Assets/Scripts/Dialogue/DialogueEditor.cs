@@ -70,7 +70,7 @@ public class DialogueEditor : EditorWindow {
 				
             
         } 
-
+		//CREATE EDIT DIALOGUE BUTTON 
 		/*if (GUILayout.Button ("Edit dialogue")) {
 			currNode.setDialogue (dialogues [id]);
 			Debug.Log ("inside add dialogue");

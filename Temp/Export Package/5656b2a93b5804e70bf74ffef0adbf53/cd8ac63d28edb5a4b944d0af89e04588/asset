@@ -1,0 +1,8 @@
+﻿using UnityEngine;
+using System.Collections;
+//attach this to anything that you want to be able to talk to
+public class ScriptStorage : MonoBehaviour
+{
+
+    public DialogueScript script;
+}

@@ -1,0 +1,41 @@
+﻿using UnityEngine;
+using System.Collections;
+/// <summary>
+/// the default node used in the dialogue scripts
+/// all the nodes that continue to a next step inherit from it (if/switch/etc.)
+/// in the Node code, if the type is a branch, the result is assigned there
+/// </summary>
+public class Branch : Node
+{
+
+    public override string Type()
+    {
+        return "Branch";
+    }
+    public override string BaseType()
+    {
+        return "Branch";
+    }
+    //reference the node in the neighbouring canvas, not this canvas
+    public override void CopyTo(Node other)
+    {
+        base.CopyTo(other);
+        if (value != null)
+        {
+            Branch temp = (Branch)other;
+            temp.value = temp.parent.nodes[value.ID];
+        }
+    }
+    public Node value;
+    public virtual Node GetResult()
+    {
+        return value;
+    }
+    public virtual Node GetResult(int index)
+    {
+        if (connectedTo.Count >= 1)
+            return connectedTo[index];
+        else
+            return null;
+    }
+}

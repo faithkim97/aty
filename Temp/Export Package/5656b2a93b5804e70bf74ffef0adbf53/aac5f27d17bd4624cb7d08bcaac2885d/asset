@@ -1,0 +1,104 @@
+﻿using UnityEngine;
+using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+using System.IO;
+#endif
+/// <summary>
+///the default bool data type. similar to this are Float and String (only the value is a different type)
+///nearly every other generic node inherits from these
+/// </summary>
+
+public class Bool : Node
+{
+    //the default value
+    public bool value;
+    //gets overriden by nearly every node to handle things it's own way
+    public virtual bool GetResult()
+    {
+        return value;
+    }
+    public override string Type() { return "Bool"; }
+    public override string BaseType() { return "Bool"; }
+
+#if UNITY_EDITOR
+    //the name of the Bool if it were an asset
+    string AssetName = "Var name";
+    //where we want to save it
+    string directory = "";
+    //PrintValue is used so that i don't have toggle/text fields on things that should be read only
+    public override void DrawNode(int id = 0)
+    {
+        PrintValue();
+        base.DrawNode(id);
+    }
+    protected virtual void PrintValue()
+    {
+        value = EditorGUILayout.Toggle("Value ", value);
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Convert to Var"))
+        {
+            ConvertToVar();
+        }
+        AssetName = GUILayout.TextField(AssetName);
+        GUILayout.EndHorizontal();
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Directory");
+        directory = GUILayout.TextField(directory);
+        GUILayout.EndHorizontal();
+    }
+    public void ConvertToVar()
+    {
+        StoryVariableBool temp = CreateInstance<StoryVariableBool>();
+        temp.value = value;
+        temp.name = AssetName;
+        string ownerdir = "Assets/NodeEditor/StoryVariables/" + directory + "/";
+        if (!Directory.Exists(ownerdir))
+        {
+            Directory.CreateDirectory(ownerdir);
+        }
+        ownerdir = ownerdir + temp.name + ".asset";
+        if (!File.Exists(ownerdir))
+        {
+            AssetDatabase.CreateAsset(temp, ownerdir);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            temp = AssetDatabase.LoadAssetAtPath(ownerdir, typeof(StoryVariableBool)) as StoryVariableBool;
+            StoryBool node = CreateInstance<StoryBool>();
+            for (int i = 0; i < connectedTo.Count; i++)
+            {
+                attachNode = node;
+                connectedTo[i].Attach();
+                connectedTo[i].ReorderReferences(node, this);
+                connectedTo[i].referencedBy.Remove(this);
+            }
+            for (int i = 0; i < referencedBy.Count; i++)
+            {
+                attachNode = referencedBy[i];
+                Attach();
+                connectedTo[i].ReorderConnections(node, this);
+                referencedBy[i].connectedTo.Remove(this);
+            }
+            node.ID = parent.nodes.Count - 1;
+            parent.nodes.Add(node);
+            node.name = node.ID.ToString() + "-" + node.Type();
+            node.variable = temp;
+            node.pos.x = pos.x;
+            node.pos.y = pos.y;
+            node.parent = parent;
+
+            Delete();
+        }
+        else
+            Debug.LogError("Asset already exists");
+    }
+#endif
+    //copy the value to the other node
+    public override void CopyTo(Node other)
+    {
+        base.CopyTo(other);
+        Bool temp = (Bool)other;
+        temp.value = value;
+    }
+
+}

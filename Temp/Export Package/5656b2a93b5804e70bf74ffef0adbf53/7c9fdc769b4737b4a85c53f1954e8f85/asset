@@ -1,0 +1,11 @@
+﻿using UnityEngine;
+using System.Collections;
+//a variable that's been converted to a float
+//using this for when you want to save/load certain player/world progress
+public class StoryVariable : ScriptableObject
+{
+    public virtual string Type()
+    {
+        return "null";
+    }
+}

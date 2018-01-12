@@ -1,0 +1,176 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+public class DialogueReader : MonoBehaviour
+{
+    //converts a node to an executefunction node and activates it's function
+    void DoFunc(Node node)
+    {
+        ExecuteFunction func = node as ExecuteFunction;
+        func.Function();
+    }
+    //are we talking or not, used to know if we should raycast
+    [HideInInspector]
+    public bool talking = false;
+    //the text that shows us if we can start talking/interacting with something
+    public Text InteractText;
+    //the layers that we will raycast
+    public LayerMask Interactable;
+    //the output of the raycast
+    RaycastHit hit;
+    //the AI's text, usually occupied by the strings in Switch nodes
+    public Text AIText;
+    //a prefab of the button that will be instantiated for the player's input
+    public GameObject GUIButton;
+    //the panel of the whole dialogue. enabled/disabled when we start/stop talking
+    public GameObject DialoguePanel;
+    //the panel in which answer buttons will be instantiated
+    public Transform AnswerPanel;
+    //the current progress of the dialogue
+    [HideInInspector]
+    public OutPut currentnode;
+    //the script from which the dialogue will be reading
+    DialogueScript script;
+    //from where we're raycasting
+    public Transform rotationPin;
+    //currently just used to get it's forward vector so we know where to raycast to
+    //you're advised to use your own vectors/transforms for this
+    Transform cam;
+    //finds the next switch node, activates functions along the way
+    public SwitchOutput FindSwitch(Node SearchFrom)
+    {
+
+        Branch curnode = SearchFrom as Branch;
+        if (curnode.Type() == "Switch")
+        {
+            return curnode as SwitchOutput;
+        }
+        else
+        {
+            if (curnode.BaseType() == "Function")
+            {
+                DoFunc(curnode);
+            }
+            if (curnode.connectedTo.Count >= 1)
+            {
+                return FindSwitch(curnode.GetResult());
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+    }
+    //finds the next output node, activates functions along the way
+    public OutPut FindOutput(Node SearchFrom)
+    {
+        if (SearchFrom != null)
+        {
+            Branch curnode = SearchFrom as Branch;
+            if (curnode.Type() == "Output")
+            {
+                return curnode as OutPut;
+            }
+            else
+            {
+                if (curnode.BaseType() == "Function")
+                {
+                    DoFunc(curnode);
+                }
+                if (curnode.connectedTo.Count >= 1)
+                {
+                    return FindOutput(curnode.GetResult());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        else
+            return null;
+    }
+    //activates the panels, sets the mouse cursor, finds the first switch node
+    void StartDialogue()
+    {
+        InteractText.enabled = false;
+        talking = true;
+        DialoguePanel.SetActive(true);
+        currentnode = FindSwitch(script.nodes[script.StartNode]);
+        UpdateDialogue();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    //destroys the currently active buttons
+    void DeleteButtons()
+    {
+        for (int i = AnswerPanel.childCount - 1; i >= 0; i--)
+        {
+            Destroy(AnswerPanel.GetChild(i).gameObject);
+        }
+    }
+    //updates the dialogue buttons and text
+    public void UpdateDialogue()
+    {
+        DeleteButtons();
+        if (currentnode != null)
+        {
+            AIText.text = currentnode.GetOutput();
+            for (int i = 0; i < currentnode.connectedTo.Count; i++)
+            {
+                //find the next output node from this connection
+                OutPut temp = FindOutput(currentnode.connectedTo[i]);
+                if (temp != null)
+                {
+                    GameObject button = Instantiate(GUIButton, Vector3.zero, Quaternion.identity) as GameObject;
+                    button.transform.SetParent(AnswerPanel);
+                    button.name = temp.GetOutput();
+                    DialogueButton but = button.GetComponent<DialogueButton>();
+                    but.SetupButton(button.name, i, this);
+                }
+            }
+        }
+        else
+        {//stop the dialogue if we ran out of nodes
+            StopDialogue();
+        }
+    }
+    //disables panels, adjusts the cursor
+    void StopDialogue()
+    {
+        talking = false;
+        DialoguePanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        InteractText.enabled = false;
+    }
+    void Start()
+    {
+        cam = Camera.main.transform;
+        StopDialogue();
+    }
+    //raycast if we're not talking, also mess around with the Interact text
+    void LateUpdate()
+    {
+        if (talking == false)
+        {
+            if (Physics.Raycast(rotationPin.position, cam.forward, out hit, 4, Interactable))
+            {
+
+                InteractText.enabled = true;
+                InteractText.text = "press F to interact with " + hit.collider.name;
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    script = hit.collider.GetComponent<ScriptStorage>().script;
+                    StartDialogue();
+                }
+            }
+            else
+            {
+                InteractText.enabled = false;
+            }
+        }
+    }
+}

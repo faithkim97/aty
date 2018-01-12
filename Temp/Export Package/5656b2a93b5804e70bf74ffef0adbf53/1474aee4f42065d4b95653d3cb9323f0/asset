@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+public class DialogueButton : MonoBehaviour
+{
+    //the text on the button
+    Text answers;
+    //sets the text on the button as well as a reference to the reader
+    public void SetupButton(string text, int _index, DialogueReader _reader)
+    {
+        answers = transform.GetChild(0).GetComponent<Text>();
+        answers.text = text;
+        index = _index;
+        reader = _reader;
+    }
+    //the script that's reading the dialogue
+    public DialogueReader reader;
+    //the Switch index of this button, referencing which node the dialogue will continue to after this button is pressed
+    public int index;
+    //calculates which node will be displayed next
+    public void FindNextDialogue()
+    {
+        reader.currentnode = reader.FindSwitch(reader.currentnode.connectedTo[index]);
+        reader.UpdateDialogue();
+    }
+}

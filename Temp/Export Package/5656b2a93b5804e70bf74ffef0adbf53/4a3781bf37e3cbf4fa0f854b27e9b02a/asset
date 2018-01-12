@@ -1,0 +1,38 @@
+﻿using UnityEngine;
+using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+/// <summary>
+/// the equivalent of a "Get" function
+/// </summary>
+public class StoryBool : Bool
+{
+    public StoryVariableBool variable;
+    public override bool GetResult()
+    {
+        if (variable != null)
+        {
+            return variable.value;
+        }
+        else
+            return false;
+    }
+    public override string Type()
+    {
+        return "StoryBool";
+    }
+    public override void CopyTo(Node other)
+    {
+        StoryBool temp = (StoryBool)other;
+        temp.variable = variable;
+        base.CopyTo(other);
+    }
+#if UNITY_EDITOR
+    //use a label instead of an Input field
+    protected override void PrintValue()
+    {
+        variable = EditorGUILayout.ObjectField("Variable: ", variable, typeof(StoryVariableBool), true) as StoryVariableBool;
+    }
+#endif
+}
