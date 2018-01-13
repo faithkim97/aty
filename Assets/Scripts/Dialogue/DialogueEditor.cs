@@ -12,7 +12,9 @@ public class DialogueEditor : EditorWindow {
 	//[SerializeField]
 	public List<string> dialogues = new List<string> ();
 	private List<DialogueTree> tree = new List<DialogueTree> ();
+	//keep track of left branch responses
 	List<string> lefts = new List<string>();
+	//keep track of right branch responses
 	List<string> rights = new List<string>();
 
 
@@ -73,13 +75,15 @@ public class DialogueEditor : EditorWindow {
 
 		if (GUILayout.Button("Add dialogue")) {
 			tree [id].setDialogue (dialogues [id]);
+			Debug.Log (tree [id].getDialogue());
 		}
 
 		lefts [id] = GUILayout.TextArea (lefts [id], 100);
 		if (GUILayout.Button ("left")) {
 			windowsToAttach.Add (id);
 			if (windowsToAttach.Count == 2) {
-				tree [id].setDialogue (lefts [id]);
+				DialogueTree.setBranch (lefts [id], false);
+				//tree [id].setDialogue (lefts [id]);
 				tree [id - 1].setLeft (tree[id]);
 				attachedWindows.Add(windowsToAttach[0]);
 				attachedWindows.Add(windowsToAttach[1]);
@@ -90,7 +94,7 @@ public class DialogueEditor : EditorWindow {
 		if (GUILayout.Button ("right")) {
 			windowsToAttach.Add (id);
 			if (windowsToAttach.Count == 2) {
-				tree [id].setDialogue (rights [id]);
+				DialogueTree.setBranch (rights [id], true);
 				tree [id - 1].setRight (tree[id]);
 				attachedWindows.Add(windowsToAttach[0]);
 				attachedWindows.Add(windowsToAttach[1]);
@@ -98,32 +102,7 @@ public class DialogueEditor : EditorWindow {
 			}
 		}
 
-
-
-
-	
-	
-       /* if (GUILayout.Button("Attach")) {
-			windowsToAttach.Add(id);
-			if (dTree.getDialogue () == null) {
-				currNode.setDialogue (dialogues [id]);
-			} else if (currNode.getLeft () == null && currNode.getRight() == null) {
-				currNode.setLeft (new DialogueTree (dialogues [id]));
-				currNode = dTree.getLeft ();
-
-			} else {
-				currNode.setRight (new DialogueTree (dialogues [id]));
-				currNode = dTree.getRight ();
-			}
-				
-            
-        } */
-		//CREATE EDIT DIALOGUE BUTTON 
-		/*if (GUILayout.Button ("Edit dialogue")) {
-			currNode.setDialogue (dialogues [id]);
-			Debug.Log ("inside add dialogue");
-			dTree.traverseTree ();
-		}*/ 
+      
 
         GUI.DragWindow();
     }

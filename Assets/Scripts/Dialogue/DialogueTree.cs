@@ -18,7 +18,7 @@ public class DialogueTree {
 	private int id;
 	//keeps track of all user response's association to bool value
 	//for which branch to go to
-	private Dictionary<string, bool> responseBranch = new Dictionary<string, bool>();
+	private static Dictionary<string, bool> responseBranch = new Dictionary<string, bool>();
 
 
     //instance of DialogueTree
@@ -74,11 +74,11 @@ public class DialogueTree {
 		return currNode;
 	}
 
-	public bool getBranch(string userResponse) {
+	public static bool getBranch(string userResponse) {
 		return responseBranch [userResponse];
 	}
 
-	public void setBranch(string key, bool value) {
+	public static void setBranch(string key, bool value) {
 		responseBranch.Add (key, value);
 	}
 
