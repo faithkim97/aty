@@ -8,7 +8,7 @@ public class DialogueEditor : EditorWindow {
     List<int> windowsToAttach = new List<int>();
     List<int> attachedWindows = new List<int>();
 	DialogueTree dTree;
-	DialogueTree currNode;
+	//DialogueTree currNode;
 	//[SerializeField]
 	public List<string> dialogues = new List<string> ();
 	private List<DialogueTree> tree = new List<DialogueTree> ();
@@ -44,12 +44,21 @@ public class DialogueEditor : EditorWindow {
 
         for (int i = 0; i < windows.Count; i++) {
 			//add nodes to the tree list 
-			tree.Add (new DialogueTree (i));
+			if (dTree == null) {
+				dTree = new DialogueTree (0);
+				tree.Add (dTree);
+			} else {
+				tree.Add (new DialogueTree (i));
+			}
+
 			lefts.Add ("left");
 			rights.Add ("right");
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
 		
         }
+		if (dTree != null && dTree.getDialogue() != null) {
+			dTree.traverseTree ();
+		}
 			
 
         EndWindows();
@@ -60,12 +69,13 @@ public class DialogueEditor : EditorWindow {
     void DrawNodeWindow(int id) {
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
-		lefts [id] = GUILayout.TextArea (lefts [id], 100);
-		rights [id] = GUILayout.TextArea (rights [id], 100);
+
+
 		if (GUILayout.Button("Add dialogue")) {
 			tree [id].setDialogue (dialogues [id]);
 		}
 
+		lefts [id] = GUILayout.TextArea (lefts [id], 100);
 		if (GUILayout.Button ("left")) {
 			windowsToAttach.Add (id);
 			if (windowsToAttach.Count == 2) {
@@ -76,7 +86,7 @@ public class DialogueEditor : EditorWindow {
 				windowsToAttach = new List<int>();
 			}
 		}
-
+		rights [id] = GUILayout.TextArea (rights [id], 100);
 		if (GUILayout.Button ("right")) {
 			windowsToAttach.Add (id);
 			if (windowsToAttach.Count == 2) {
@@ -87,6 +97,10 @@ public class DialogueEditor : EditorWindow {
 				windowsToAttach = new List<int>();
 			}
 		}
+
+
+
+
 	
 	
        /* if (GUILayout.Button("Attach")) {
