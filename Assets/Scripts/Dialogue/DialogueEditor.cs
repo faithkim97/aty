@@ -15,8 +15,16 @@ public class DialogueEditor : EditorWindow {
 	//keep track of right branch responses
 	List<string> rights = new List<string>();
 	GameObject saveTreeToObject;
+	
 
 
+	/*void Init() {
+		if (saveTreeToObject != null) {
+			sTree = saveTreeToObject.GetComponent<SerializedTree> ();
+		}
+
+	
+	}*/
     [MenuItem("Window/Dialogue editor")]
     static void ShowEditor() {
         DialogueEditor editor = EditorWindow.GetWindow<DialogueEditor>();
@@ -24,8 +32,6 @@ public class DialogueEditor : EditorWindow {
     }
 
     void OnGUI() {
-		//currNode = dTree;
-	        
 		//draw the branch
         if (attachedWindows.Count >= 2) {
             for (int i = 0; i < attachedWindows.Count; i += 2) {
@@ -34,8 +40,6 @@ public class DialogueEditor : EditorWindow {
         }
 
         BeginWindows();
-		//if saved is clicked
-		//if load is clicked 
 
 		if (GUILayout.Button("Create Node")) {
             windows.Add(new Rect(10,10, 200, 200));
@@ -57,21 +61,72 @@ public class DialogueEditor : EditorWindow {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
 		
         }
-		/*if (dTree != null && dTree.getDialogue() != null) {
-			dTree.traverseTree ();
-		}*/
 
-		saveTreeToObject = (GameObject)EditorGUILayout.ObjectField("Game Object", saveTreeToObject, typeof(GameObject), true);
+		saveTreeToObject = (GameObject)EditorGUILayout.ObjectField("Game Object to Save/Load Tree", saveTreeToObject, typeof(GameObject), true);
 		if (GUILayout.Button ("Save Tree")) {
 			SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
 			sTree.SaveDialogueTree (dTree);
 			
 		}
+
+		if (GUILayout.Button("Load Tree")) {
+			LoadTree();
+		}
         EndWindows();
 		
     }
 
-	
+	void LoadTree() {
+		if (saveTreeToObject != null) {
+			SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
+			DialogueTree savedTree = sTree.getSavedTree ();
+			savedTree.traverseTree ();
+			if (savedTree != null) {
+				List<DialogueTree> treeList = sTree.getTreeInList (savedTree);
+				for (int i = 0; i < treeList.Count; i++) {
+					//create visual window 
+					windows.Add(new Rect(10,10, 200, 200));
+					//windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
+					windows[i] = GUI.Window(i, windows[i], LoadNodeWindow, "Window " + i);
+
+				}//end of for
+			}
+		}//end of outer if
+
+	}//end of LoadTree
+
+	void LoadNodeWindow(int id) {
+		SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
+		//tree in list form 
+		List<DialogueTree> treeList = sTree.getTreeInList (sTree.getSavedTree ());
+		//load dialogue
+		dialogues.Add(treeList[id].getDialogue());
+		dialogues[id] = GUILayout.TextArea(treeList[id].getDialogue(), 200);
+		//load left left dialogue
+
+		//load right dialogue
+
+		//load left branch
+		if ( treeList[id].getLeft() != null ) {
+			windowsToAttach.Add (id);
+			windowsToAttach.Add ((2 * id) + 1);
+			attachedWindows.Add(windowsToAttach[0]);
+			attachedWindows.Add(windowsToAttach[1]);
+			windowsToAttach = new List<int>();
+
+		}
+			
+		//load right branch 
+		if ( treeList[id].getRight() != null ) {
+			windowsToAttach.Add (id);
+			windowsToAttach.Add ((2 * id) + 2);
+			attachedWindows.Add(windowsToAttach[0]);
+			attachedWindows.Add(windowsToAttach[1]);
+			windowsToAttach = new List<int>();
+		}
+
+	}
+
     void DrawNodeWindow(int id) {
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
@@ -79,6 +134,7 @@ public class DialogueEditor : EditorWindow {
 
 		if (GUILayout.Button("Add dialogue")) {
 			tree [id].setDialogue (dialogues [id]);
+			Debug.Log ("You have added a dialogue");
 		}
 
 		lefts [id] = GUILayout.TextArea (lefts [id], 100);
@@ -115,6 +171,8 @@ public class DialogueEditor : EditorWindow {
 
         GUI.DragWindow();
     }
+
+
 		
 		
 

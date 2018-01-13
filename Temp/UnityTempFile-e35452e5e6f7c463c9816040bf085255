@@ -182,6 +182,7 @@
 'Assets/Scripts/Dialogue/DialogueEditor.cs'
 'Assets/Scripts/Dialogue/DialogueManager.cs'
 'Assets/Scripts/Dialogue/DialogueTree.cs'
+'Assets/Scripts/Dialogue/SerializedTree.cs'
 'Assets/Scripts/Manager/CameraMovement.cs'
 'Assets/Scripts/Manager/GameManager.cs'
 'Assets/Scripts/Manager/UI/UICounter.cs'

@@ -5,13 +5,9 @@ using UnityEngine;
 public class SerializedTree : MonoBehaviour {
 
 	[SerializeField]
-	DialogueTree savedTree; 
-
-	void Update() {
-		if (savedTree != null) {
-			savedTree.traverseTree ();
-		}
-	}
+	private DialogueTree savedTree; 
+	//tree but in a list form
+	private List<DialogueTree> treeInList = new List<DialogueTree> ();
 
 	public void SaveDialogueTree( DialogueTree dTree ) {
 		savedTree = dTree;
@@ -19,6 +15,20 @@ public class SerializedTree : MonoBehaviour {
 
 	public void printTree() {
 		savedTree.traverseTree ();
+	}
+
+	public DialogueTree getSavedTree() {
+		return savedTree;
+	}
+
+	public List<DialogueTree> getTreeInList(DialogueTree dTree) {
+		if (dTree == null) {
+			return treeInList;
+		}
+		treeInList.Add (dTree);
+		getTreeInList (dTree.getLeft());
+		getTreeInList (dTree.getRight());
+		return treeInList;
 	}
 		
 }
