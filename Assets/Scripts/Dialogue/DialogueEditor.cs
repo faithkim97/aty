@@ -80,25 +80,34 @@ public class DialogueEditor : EditorWindow {
 
 		lefts [id] = GUILayout.TextArea (lefts [id], 100);
 		if (GUILayout.Button ("left")) {
+			Debug.Log ("left has been clicked");
 			windowsToAttach.Add (id);
 			if (windowsToAttach.Count == 2) {
-				DialogueTree.setBranch (lefts [id], false);
-				//tree [id].setDialogue (lefts [id]);
+				Debug.Log ("left " + id);
+				if (!DialogueTree.getDict().ContainsKey(lefts[id])) {
+					DialogueTree.setBranch (lefts [id], false);
+				}
+				
 				tree [id - 1].setLeft (tree[id]);
 				attachedWindows.Add(windowsToAttach[0]);
 				attachedWindows.Add(windowsToAttach[1]);
 				windowsToAttach = new List<int>();
+				Debug.Log (windowsToAttach.Count);
+
 			}
 		}
 		rights [id] = GUILayout.TextArea (rights [id], 100);
 		if (GUILayout.Button ("right")) {
 			windowsToAttach.Add (id);
 			if (windowsToAttach.Count == 2) {
-				DialogueTree.setBranch (rights [id], true);
+				if (!DialogueTree.getDict ().ContainsKey (rights [id])) {
+					DialogueTree.setBranch (rights [id], true);
+				}
 				tree [id - 1].setRight (tree[id]);
 				attachedWindows.Add(windowsToAttach[0]);
 				attachedWindows.Add(windowsToAttach[1]);
 				windowsToAttach = new List<int>();
+				Debug.Log (windowsToAttach.Count);
 			}
 		}
 

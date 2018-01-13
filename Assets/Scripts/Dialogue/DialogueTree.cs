@@ -73,7 +73,9 @@ public class DialogueTree {
 		findNode (id, currNode.getRight ());
 		return currNode;
 	}
-
+	public static Dictionary<string, bool> getDict() {
+		return responseBranch;
+	}
 	public static bool getBranch(string userResponse) {
 		return responseBranch [userResponse];
 	}
