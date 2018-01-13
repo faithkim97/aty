@@ -8,14 +8,13 @@ public class DialogueEditor : EditorWindow {
     List<int> windowsToAttach = new List<int>();
     List<int> attachedWindows = new List<int>();
 	DialogueTree dTree;
-	//DialogueTree currNode;
-	//[SerializeField]
 	public List<string> dialogues = new List<string> ();
 	private List<DialogueTree> tree = new List<DialogueTree> ();
 	//keep track of left branch responses
 	List<string> lefts = new List<string>();
 	//keep track of right branch responses
 	List<string> rights = new List<string>();
+	GameObject saveTreeToObject;
 
 
     [MenuItem("Window/Dialogue editor")]
@@ -58,11 +57,16 @@ public class DialogueEditor : EditorWindow {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
 		
         }
-		if (dTree != null && dTree.getDialogue() != null) {
+		/*if (dTree != null && dTree.getDialogue() != null) {
 			dTree.traverseTree ();
-		}
-			
+		}*/
 
+		saveTreeToObject = (GameObject)EditorGUILayout.ObjectField("Game Object", saveTreeToObject, typeof(GameObject), true);
+		if (GUILayout.Button ("Save Tree")) {
+			SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
+			sTree.SaveDialogueTree (dTree);
+			
+		}
         EndWindows();
 		
     }
@@ -75,15 +79,12 @@ public class DialogueEditor : EditorWindow {
 
 		if (GUILayout.Button("Add dialogue")) {
 			tree [id].setDialogue (dialogues [id]);
-			Debug.Log (tree [id].getDialogue());
 		}
 
 		lefts [id] = GUILayout.TextArea (lefts [id], 100);
 		if (GUILayout.Button ("left")) {
-			Debug.Log ("left has been clicked");
 			windowsToAttach.Add (id);
 			if (windowsToAttach.Count == 2) {
-				Debug.Log ("left " + id);
 				if (!DialogueTree.getDict().ContainsKey(lefts[id])) {
 					DialogueTree.setBranch (lefts [id], false);
 				}
@@ -92,8 +93,7 @@ public class DialogueEditor : EditorWindow {
 				attachedWindows.Add(windowsToAttach[0]);
 				attachedWindows.Add(windowsToAttach[1]);
 				windowsToAttach = new List<int>();
-				Debug.Log (windowsToAttach.Count);
-
+				
 			}
 		}
 		rights [id] = GUILayout.TextArea (rights [id], 100);
@@ -107,7 +107,7 @@ public class DialogueEditor : EditorWindow {
 				attachedWindows.Add(windowsToAttach[0]);
 				attachedWindows.Add(windowsToAttach[1]);
 				windowsToAttach = new List<int>();
-				Debug.Log (windowsToAttach.Count);
+		
 			}
 		}
 
@@ -129,7 +129,6 @@ public class DialogueEditor : EditorWindow {
         for (int i = 0; i < 3; i++) {// Draw a shadow
             Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 5);
         }
-
         Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.black, null, 1);
     }
 }
