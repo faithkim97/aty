@@ -130,12 +130,13 @@ public class DialogueTree {
 		traverseTree (currNode);
 
 	}
+	//preorder
 	private void traverseTree( DialogueTree currNode ) {
 		if (currNode == null) {
 			return;
 		}
-		traverseTree (currNode.getLeft ());
 		Debug.Log (currNode.getDialogue ());
+		traverseTree (currNode.getLeft ());
 		traverseTree( currNode.getRight());
 		
 	}//end of traverseTree

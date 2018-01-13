@@ -12,6 +12,8 @@ public class DialogueEditor : EditorWindow {
 	//[SerializeField]
 	public List<string> dialogues = new List<string> ();
 	private List<DialogueTree> tree = new List<DialogueTree> ();
+	List<string> lefts = new List<string>();
+	List<string> rights = new List<string>();
 
 
     [MenuItem("Window/Dialogue editor")]
@@ -38,13 +40,15 @@ public class DialogueEditor : EditorWindow {
 		//if saved is clicked
 		//if load is clicked 
 
-        if (GUILayout.Button("Create Node")) {
+		if (GUILayout.Button("Create Node")) {
             windows.Add(new Rect(10,10, 200, 200));
 			dialogues.Add ("Add new dialogue here");
+
         }
 
         for (int i = 0; i < windows.Count; i++) {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
+			//add nodes to the tree list 
 			tree.Add (new DialogueTree (i));
         }
 			
@@ -55,9 +59,14 @@ public class DialogueEditor : EditorWindow {
 
 	
     void DrawNodeWindow(int id) {
-		
+		DialogueTree currNode = dTree.findNode(id);
+		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
-        if (GUILayout.Button("Attach")) {
+		if (GUILayout.Button("Add dialogue")) {
+			currNode.setDialogue(dialogues[id]);
+		}
+	
+       /* if (GUILayout.Button("Attach")) {
 			windowsToAttach.Add(id);
 			if (dTree.getDialogue () == null) {
 				currNode.setDialogue (dialogues [id]);
@@ -71,7 +80,7 @@ public class DialogueEditor : EditorWindow {
 			}
 				
             
-        } 
+        } */
 		//CREATE EDIT DIALOGUE BUTTON 
 		/*if (GUILayout.Button ("Edit dialogue")) {
 			currNode.setDialogue (dialogues [id]);
