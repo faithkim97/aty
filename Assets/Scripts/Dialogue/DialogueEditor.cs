@@ -24,12 +24,8 @@ public class DialogueEditor : EditorWindow {
 
     void OnGUI() {
 		//currNode = dTree;
-	        if (windowsToAttach.Count == 2) {
-            attachedWindows.Add(windowsToAttach[0]);
-            attachedWindows.Add(windowsToAttach[1]);
-            windowsToAttach = new List<int>();
-        }
-
+	        
+		//draw the branch
         if (attachedWindows.Count >= 2) {
             for (int i = 0; i < attachedWindows.Count; i += 2) {
                 DrawNodeCurve(windows[attachedWindows[i]], windows[attachedWindows[i + 1]]);
@@ -47,9 +43,12 @@ public class DialogueEditor : EditorWindow {
         }
 
         for (int i = 0; i < windows.Count; i++) {
-            windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
 			//add nodes to the tree list 
 			tree.Add (new DialogueTree (i));
+			lefts.Add ("left");
+			rights.Add ("right");
+            windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
+		
         }
 			
 
@@ -59,12 +58,36 @@ public class DialogueEditor : EditorWindow {
 
 	
     void DrawNodeWindow(int id) {
-		DialogueTree currNode = dTree.findNode(id);
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
+		lefts [id] = GUILayout.TextArea (lefts [id], 100);
+		rights [id] = GUILayout.TextArea (rights [id], 100);
 		if (GUILayout.Button("Add dialogue")) {
-			currNode.setDialogue(dialogues[id]);
+			tree [id].setDialogue (dialogues [id]);
 		}
+
+		if (GUILayout.Button ("left")) {
+			windowsToAttach.Add (id);
+			if (windowsToAttach.Count == 2) {
+				tree [id].setDialogue (lefts [id]);
+				tree [id - 1].setLeft (tree[id]);
+				attachedWindows.Add(windowsToAttach[0]);
+				attachedWindows.Add(windowsToAttach[1]);
+				windowsToAttach = new List<int>();
+			}
+		}
+
+		if (GUILayout.Button ("right")) {
+			windowsToAttach.Add (id);
+			if (windowsToAttach.Count == 2) {
+				tree [id].setDialogue (rights [id]);
+				tree [id - 1].setRight (tree[id]);
+				attachedWindows.Add(windowsToAttach[0]);
+				attachedWindows.Add(windowsToAttach[1]);
+				windowsToAttach = new List<int>();
+			}
+		}
+	
 	
        /* if (GUILayout.Button("Attach")) {
 			windowsToAttach.Add(id);
