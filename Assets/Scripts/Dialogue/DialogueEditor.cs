@@ -15,6 +15,7 @@ public class DialogueEditor : EditorWindow {
 	//keep track of right branch responses
 	List<string> rights = new List<string>();
 	GameObject saveTreeToObject;
+	List<Rect> loadWindows = new List<Rect>();
 	
 
 
@@ -80,14 +81,14 @@ public class DialogueEditor : EditorWindow {
 		if (saveTreeToObject != null) {
 			SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
 			DialogueTree savedTree = sTree.getSavedTree ();
-			savedTree.traverseTree ();
+//			savedTree.traverseTree ();
 			if (savedTree != null) {
+				Debug.Log ("inside savedTree");
 				List<DialogueTree> treeList = sTree.getTreeInList (savedTree);
 				for (int i = 0; i < treeList.Count; i++) {
-					//create visual window 
-					windows.Add(new Rect(10,10, 200, 200));
-					//windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
-					windows[i] = GUI.Window(i, windows[i], LoadNodeWindow, "Window " + i);
+					loadWindows.Add( new Rect(10, 10, 200,200));
+					loadWindows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
+					loadWindows[i] = GUI.Window(i, windows[i], LoadNodeWindow, "Window " + i);
 
 				}//end of for
 			}

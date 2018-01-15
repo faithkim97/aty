@@ -1463,6 +1463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427885391}
   - component: {fileID: 1427885393}
+  - component: {fileID: 1427885392}
   m_Layer: 0
   m_Name: box dude
   m_TagString: Untagged
@@ -1484,6 +1485,17 @@ Transform:
   m_Father: {fileID: 1467889974}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1427885392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427885390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730aae89ee72b465aba6ed74afbe8720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1427885393
 SpriteRenderer:
   m_ObjectHideFlags: 0

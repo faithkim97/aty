@@ -7,7 +7,7 @@ public class SerializedTree : MonoBehaviour {
 	[SerializeField]
 	private DialogueTree savedTree; 
 	//tree but in a list form
-	private List<DialogueTree> treeInList = new List<DialogueTree> ();
+	private List<DialogueTree> treeInList;
 
 	public void SaveDialogueTree( DialogueTree dTree ) {
 		savedTree = dTree;
@@ -22,12 +22,17 @@ public class SerializedTree : MonoBehaviour {
 	}
 
 	public List<DialogueTree> getTreeInList(DialogueTree dTree) {
+		treeInList = new List<DialogueTree> ();
+		return recurseList (dTree);
+	}
+
+	private List<DialogueTree> recurseList(DialogueTree dTree) {
 		if (dTree == null) {
 			return treeInList;
 		}
 		treeInList.Add (dTree);
-		getTreeInList (dTree.getLeft());
-		getTreeInList (dTree.getRight());
+		recurseList (dTree.getLeft());
+		recurseList (dTree.getRight());
 		return treeInList;
 	}
 		
