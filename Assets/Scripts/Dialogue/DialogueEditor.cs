@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class DialogueEditor : EditorWindow {
     List<Rect> windows = new List<Rect>();
+
     List<int> windowsToAttach = new List<int>();
+
     List<int> attachedWindows = new List<int>();
+    [SerializeField]
 	DialogueTree dTree;
+ 
 	public List<string> dialogues = new List<string> ();
 	private List<DialogueTree> tree = new List<DialogueTree> ();
 	//keep track of left branch responses
@@ -15,17 +21,11 @@ public class DialogueEditor : EditorWindow {
 	//keep track of right branch responses
 	List<string> rights = new List<string>();
 	GameObject saveTreeToObject;
-	List<Rect> loadWindows = new List<Rect>();
-	
+    
+	//List<Rect> loadWindows = new List<Rect>(); 
+    static List<DialogueTree> savedTrees = new List<DialogueTree>();
 
 
-	/*void Init() {
-		if (saveTreeToObject != null) {
-			sTree = saveTreeToObject.GetComponent<SerializedTree> ();
-		}
-
-	
-	}*/
     [MenuItem("Window/Dialogue editor")]
     static void ShowEditor() {
         DialogueEditor editor = EditorWindow.GetWindow<DialogueEditor>();
@@ -33,6 +33,7 @@ public class DialogueEditor : EditorWindow {
     }
 
     void OnGUI() {
+      
 		//draw the branch
         if (attachedWindows.Count >= 2) {
             for (int i = 0; i < attachedWindows.Count; i += 2) {
@@ -45,53 +46,81 @@ public class DialogueEditor : EditorWindow {
 		if (GUILayout.Button("Create Node")) {
             windows.Add(new Rect(10,10, 200, 200));
 			dialogues.Add ("Add new dialogue here");
-
+            
         }
 
-        for (int i = 0; i < windows.Count; i++) {
-			//add nodes to the tree list 
-			if (dTree == null) {
-				dTree = new DialogueTree (0);
-				tree.Add (dTree);
-			} else {
-				tree.Add (new DialogueTree (i));
-			}
+        Debug.Log(windows.Count);
+          
+            for (int i = 0; i < windows.Count; i++) {
+             
+                //add nodes to the tree list 
+                if (dTree == null) {
+                    dTree = new DialogueTree(0);
+                    tree.Add(dTree);
+                }
+                else {
+                    tree.Add(new DialogueTree(i));
+                }
 
-			lefts.Add ("left");
-			rights.Add ("right");
-            windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
-		
+                lefts.Add("left");
+                rights.Add("right");
+                windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
+
+            }
+
+        
+        saveTreeToObject = (GameObject)EditorGUILayout.ObjectField("Game Object to Save/Load Tree", saveTreeToObject, typeof(GameObject), true);
+        if (GUILayout.Button("Save Tree")) {
+            SaveTreeData();
         }
-
-		saveTreeToObject = (GameObject)EditorGUILayout.ObjectField("Game Object to Save/Load Tree", saveTreeToObject, typeof(GameObject), true);
-		if (GUILayout.Button ("Save Tree")) {
-			SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
-			sTree.SaveDialogueTree (dTree);
-			
-		}
 
 		if (GUILayout.Button("Load Tree")) {
-			LoadTree();
-		}
+            LoadTreeData();
+
+            savedTrees[0].traverseTree();
+            //LoadTree();
+        }
         EndWindows();
 		
+    }
+    void SaveTreeData() {
+        SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
+        sTree.SaveDialogueTree(dTree);
+        savedTrees.Add(dTree);
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/savedTrees.gd");
+        bf.Serialize(file, savedTrees);
+        file.Close();
+    }
+
+    void LoadTreeData() {
+        if (File.Exists(Application.persistentDataPath + "/savedTrees.gd")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/savedTrees.gd", FileMode.Open);
+            savedTrees = (List<DialogueTree>)bf.Deserialize(file);
+            file.Close();
+        }
     }
 
 	void LoadTree() {
 		if (saveTreeToObject != null) {
 			SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
 			DialogueTree savedTree = sTree.getSavedTree ();
-//			savedTree.traverseTree ();
-			if (savedTree != null) {
+            //savedTree.traverseTree ();
+            if (savedTree == null) {
+                return;
+            }
+			//if (savedTree != null) {
 				Debug.Log ("inside savedTree");
 				List<DialogueTree> treeList = sTree.getTreeInList (savedTree);
 				//Debug.Log (treeList.Count);
 				for (int i = 0; i < treeList.Count; i++) {
-					Debug.Log ("for loop");
-					loadWindows.Add( new Rect(10, 10, 200,200));
+					Debug.Log (treeList[i].getDialogue());
+					//windows.Add( new Rect(10, 10, 200,200));
+                    //windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
 					//loadWindows[i] = GUI.Window(i, loadWindows[i], DrawNodeWindow, "Window " + i);
 					//loadWindows[i] = GUI.Window(i, loadWindows[i], LoadNodeWindow, "Window " + i);
-				}//end of for
+				//}//end of for
 
 				
 

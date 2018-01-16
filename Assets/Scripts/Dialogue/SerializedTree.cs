@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class SerializedTree : MonoBehaviour {
 
 	[SerializeField]
 	private DialogueTree savedTree; 
 	//tree but in a list form
+    [SerializeField]
 	private List<DialogueTree> treeInList;
 
 	public void SaveDialogueTree( DialogueTree dTree ) {

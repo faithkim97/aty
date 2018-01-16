@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Keeps track of all dialogues in the style of a binary tree
 /// </summary>
+[System.Serializable]
 public class DialogueTree {
    
     //left child of tree
@@ -20,21 +21,6 @@ public class DialogueTree {
 	//for which branch to go to
 	private static Dictionary<string, bool> responseBranch = new Dictionary<string, bool>();
 
-
-    //instance of DialogueTree
- /*   private static DialogueTree instance;
-    public static DialogueTree Instance {
-        get {
-            if (instance == null) {
-                Instance = GameObject.FindObjectOfType<DialogueTree>();
-            }
-            return instance;
-        }
-
-        set {
-            instance = value;
-        }
-    }*/
 	public DialogueTree() {
 		diaData = null;
 		left = null;
