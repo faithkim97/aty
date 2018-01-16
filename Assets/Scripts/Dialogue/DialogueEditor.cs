@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
+
 
 public class DialogueEditor : EditorWindow {
     List<Rect> windows = new List<Rect>();
@@ -74,23 +73,32 @@ public class DialogueEditor : EditorWindow {
         
         if (GUILayout.Button("Save Tree")) {
             SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
-            //SaveTreeData();
             sTree.SaveDialogueTree(dTree);
-            
         }
 
 		if (GUILayout.Button("Load Tree")) {
-            SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
-            List<DialogueTree> savedTrees = sTree.LoadDialogueTree();
-            //from savedTree list, get the correct tree to print
-            savedTrees[sTree.getID()].traverseTree();            
-            //LoadTree();
+            if (saveTreeToObject != null) {
+                SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
+                List<DialogueTree> savedTrees = sTree.LoadDialogueTree();
+                //from savedTree list, get the correct tree to print
+                List<DialogueTree> listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
+                //LoadTree(listTree);
+            }
+
         }
         EndWindows();
 		
     }
-   
 
+    void LoadTreeWindows(List<DialogueTree> listTree) {
+        windows = new List<Rect>();
+        for (int i = 0; i < listTree.Count; i++) {
+        }
+        
+        
+    }
+
+    /*
 	void LoadTree() {
 		if (saveTreeToObject != null) {
 			SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
@@ -117,12 +125,12 @@ public class DialogueEditor : EditorWindow {
 			}
 		}//end of outer if
 
-	}//end of LoadTree
+	}//end of LoadTree */
 
 
 
-	void LoadNodeWindow(int id) {
-		Debug.Log ("inside load node");
+    void LoadNodeWindow(int id) {
+		
 		SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
 		//tree in list form 
 		List<DialogueTree> treeList = sTree.getTreeInList (sTree.getSavedTree ());
@@ -155,7 +163,7 @@ public class DialogueEditor : EditorWindow {
 	}
 
     void DrawNodeWindow(int id) {
-		Debug.Log ("inside draw node");
+		
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
 
