@@ -85,18 +85,26 @@ public class DialogueEditor : EditorWindow {
 			if (savedTree != null) {
 				Debug.Log ("inside savedTree");
 				List<DialogueTree> treeList = sTree.getTreeInList (savedTree);
+				//Debug.Log (treeList.Count);
 				for (int i = 0; i < treeList.Count; i++) {
+					Debug.Log ("for loop");
 					loadWindows.Add( new Rect(10, 10, 200,200));
-					loadWindows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
-					loadWindows[i] = GUI.Window(i, windows[i], LoadNodeWindow, "Window " + i);
-
+					//loadWindows[i] = GUI.Window(i, loadWindows[i], DrawNodeWindow, "Window " + i);
+					//loadWindows[i] = GUI.Window(i, loadWindows[i], LoadNodeWindow, "Window " + i);
 				}//end of for
+
+				
+
+			
 			}
 		}//end of outer if
 
 	}//end of LoadTree
 
+
+
 	void LoadNodeWindow(int id) {
+		Debug.Log ("inside load node");
 		SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree> ();
 		//tree in list form 
 		List<DialogueTree> treeList = sTree.getTreeInList (sTree.getSavedTree ());
@@ -129,6 +137,7 @@ public class DialogueEditor : EditorWindow {
 	}
 
     void DrawNodeWindow(int id) {
+		Debug.Log ("inside draw node");
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
 
