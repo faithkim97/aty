@@ -70,37 +70,26 @@ public class DialogueEditor : EditorWindow {
 
         
         saveTreeToObject = (GameObject)EditorGUILayout.ObjectField("Game Object to Save/Load Tree", saveTreeToObject, typeof(GameObject), true);
+
+        
         if (GUILayout.Button("Save Tree")) {
-            SaveTreeData();
+            SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
+            //SaveTreeData();
+            sTree.SaveDialogueTree(dTree);
+            
         }
 
 		if (GUILayout.Button("Load Tree")) {
-            LoadTreeData();
-
-            savedTrees[0].traverseTree();
+            SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
+            List<DialogueTree> savedTrees = sTree.LoadDialogueTree();
+            //from savedTree list, get the correct tree to print
+            savedTrees[sTree.getID()].traverseTree();            
             //LoadTree();
         }
         EndWindows();
 		
     }
-    void SaveTreeData() {
-        SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
-        sTree.SaveDialogueTree(dTree);
-        savedTrees.Add(dTree);
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/savedTrees.gd");
-        bf.Serialize(file, savedTrees);
-        file.Close();
-    }
-
-    void LoadTreeData() {
-        if (File.Exists(Application.persistentDataPath + "/savedTrees.gd")) {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/savedTrees.gd", FileMode.Open);
-            savedTrees = (List<DialogueTree>)bf.Deserialize(file);
-            file.Close();
-        }
-    }
+   
 
 	void LoadTree() {
 		if (saveTreeToObject != null) {
