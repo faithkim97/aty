@@ -51,9 +51,10 @@ public class DialogueEditor : EditorWindow {
 
         AddWindows();
         for (int i = 0; i < loadWindows.Count; i++) {
-            Debug.Log("load tree");
-            loadWindows[i] = GUI.Window(i, loadWindows[i], test, "Window " + i);
+            Debug.Log("load tree " + loadWindows.Count  );
+            loadWindows[i] = GUI.Window(i, loadWindows[i], LoadTreeWindow, "Window " + i);
         }//end of for loop        
+
         saveTreeToObject = (GameObject)EditorGUILayout.ObjectField("Game Object to Save/Load Tree", saveTreeToObject, typeof(GameObject), true);
 
         if (GUILayout.Button("Save Tree")) {
@@ -81,19 +82,13 @@ public class DialogueEditor : EditorWindow {
         EndWindows();
 		
     }
+    void LoadTreeWindow(int id) {
+       
 
-    /*void LoadTreeWindows(List<DialogueTree> listTree) {
-        
-        Debug.Log(loadWindows.Count);
-        for (int i = 0; i < loadWindows.Count; i++) {
-            Debug.Log("load tree");
-            loadWindows[i] = GUI.Window(i, loadWindows[i], test, "Window " + i);
-        }//end of for loop        
-    }*/
-
-    void test(int id) {
-        Debug.Log("inside test");
+        GUI.DragWindow();
     }
+
+    /*
     void LoadNodeWindow(int id) {
         Debug.Log("Load node window");
         SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
@@ -125,7 +120,7 @@ public class DialogueEditor : EditorWindow {
             windowsToAttach = new List<int>();
         }
 
-    }
+    }*/
 
     void AddWindows() {
         for (int i = 0; i < windows.Count; i++) {
