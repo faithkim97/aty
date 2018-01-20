@@ -17,6 +17,9 @@ public class DialogueEditor : EditorWindow {
     /// being worked on 
     /// </summary>
 	public List<string> dialogues = new List<string> ();
+    /// <summary>
+    /// dTree in list form 
+    /// </summary>
 	private List<DialogueTree> tree = new List<DialogueTree> ();
 	//keep track of left branch responses
 	List<string> lefts = new List<string>();
@@ -36,6 +39,8 @@ public class DialogueEditor : EditorWindow {
     /// dialogues loaded from listTree
     /// </summary>
     List<string> loadedDialogues = new List<string>();
+    List<string> loadedRights = new List<string>();
+    List<string> loadedLefts = new List<string>();
 
 
 
@@ -84,6 +89,8 @@ public class DialogueEditor : EditorWindow {
                // savedTrees[sTree.getID()].traverseTree();
                 listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
                 for (int i = 0; i < listTree.Count; i++) {
+                    loadedRights.Add("loaded right");
+                    loadedLefts.Add("loaded left");
                     loadWindows.Add(new Rect(10, 10, 200, 200));
                     loadedDialogues.Add(listTree[i].getDialogue());
                 }
@@ -128,6 +135,39 @@ public class DialogueEditor : EditorWindow {
 			Debug.Log ("You have added a dialogue");
 		}
 
+        //text area for left branch
+        lefts[id] = GUILayout.TextArea(lefts[id], 100);
+        if (GUILayout.Button("left")) {
+            windowsToAttach.Add(id);
+            if (windowsToAttach.Count == 2) {
+                //setLeft
+                tree[(id-1)/2].setLeft(tree[id]);
+                //set branch data
+                tree[(id-1)/2].getBranch(tree[id]).setData(lefts[(id-1)/2]);
+                Debug.Log("left: " +tree[(id-1)/2].getBranch(tree[id]).getData());
+                //create GUI branch
+                attachedWindows.Add(windowsToAttach[0]);
+                attachedWindows.Add(windowsToAttach[1]);
+                windowsToAttach = new List<int>();
+            }
+       }//end of if left
+
+        rights[id] = GUILayout.TextArea(rights[id], 100);
+        if (GUILayout.Button("right")) {
+            windowsToAttach.Add(id);
+            if (windowsToAttach.Count == 2) {
+                //setRight
+                tree[(id - 1)/2].setRight(tree[id]);
+                //set branch data
+                tree[(id - 1)/2].getBranch(tree[id]).setData(rights[(id-1)/2]);
+                Debug.Log("right: " + tree[(id-1)/2].getBranch(tree[id]).getData());
+                //create GUI branch
+                attachedWindows.Add(windowsToAttach[0]);
+                attachedWindows.Add(windowsToAttach[1]);
+                windowsToAttach = new List<int>();
+            }
+        }//end of if right
+        /*
 		lefts [id] = GUILayout.TextArea (lefts [id], 100);
 		if (GUILayout.Button ("left")) {
 			windowsToAttach.Add (id);
@@ -156,7 +196,7 @@ public class DialogueEditor : EditorWindow {
 				windowsToAttach = new List<int>();
 		
 			}
-		}
+		}*/
         GUI.DragWindow();
     }//end of DrawNodeWindow
 

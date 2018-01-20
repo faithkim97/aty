@@ -18,33 +18,36 @@ public class DialogueTree {
 	//id of node to keep track of node
 	private int id;
 	//keeps track of all user response's association to bool value
-	//for which branch to go to
-	private static Dictionary<string, bool> responseBranch = new Dictionary<string, bool>();
-    private DialogueBranch branch;
+
+    private List<DialogueBranch> branches;
 
 	public DialogueTree() {
 		diaData = null;
 		left = null;
 		right = null;
+        branches = new List<DialogueBranch>();
 	}
 
 	public DialogueTree(int id) {
 		this.id = id;
 		diaData = null;
 		left = null;
-		right = null;
-	}
+        right = null;
+        branches = new List<DialogueBranch>();
+    }
 	public DialogueTree(string data, int id, DialogueTree left, DialogueTree right) {
 		diaData = data;
 		this.id = id;
 		this.left = left;
 		this.right = right;
-	}
+        branches = new List<DialogueBranch>();
+    }
 	public DialogueTree(string data) {
 		left = null;
 		right = null;
 		diaData = data;
-	}
+        branches = new List<DialogueBranch>();
+    }
 
 	public DialogueTree findNode(int id) {
 		DialogueTree currNode = this;
@@ -60,17 +63,7 @@ public class DialogueTree {
 		findNode (id, currNode.getRight ());
 		return currNode;
 	}
-	public static Dictionary<string, bool> getDict() {
-		return responseBranch;
-	}
-	public static bool getBranch(string userResponse) {
-		return responseBranch [userResponse];
-	}
-
-	public static void setBranch(string key, bool value) {
-		responseBranch.Add (key, value);
-	}
-
+	
 	public int getID() {
 		return id;
 	}
@@ -100,12 +93,13 @@ public class DialogueTree {
 
     public void setLeft(DialogueTree node) {
         left = node;
-        this.setBranch(new DialogueBranch());
+        setBranch(left);
+        
     }
 
     public void setRight(DialogueTree node) {
         right = node;
-        this.setBranch( new DialogueBranch());
+        setBranch(right);  
     }
 
 	public string getDialogue() {
@@ -132,13 +126,19 @@ public class DialogueTree {
 		
 	}//end of traverseTree
 
-    public void setBranch(DialogueBranch branch) {
-        this.branch = branch;
+    public void setBranch(DialogueTree child) {
+        branches.Add(new DialogueBranch(this, child));
     }
 
-    public DialogueBranch getBranch() {
-        return branch;
+    public DialogueBranch getBranch(DialogueTree child) {
+        for (int i = 0; i < branches.Count; i++) {
+            if (branches[id].hasBranch(this, child)) {
+                return branches[id];
+            }
+        }
+        return null;
     }
+
 
 
 
@@ -146,13 +146,22 @@ public class DialogueTree {
     [System.Serializable]
     public class DialogueBranch {
         private string data;
-
+        DialogueTree parent;
+        DialogueTree child;
         public DialogueBranch() {
             data = null;
+            parent = null;
+            child = null;
         }
-
-        public DialogueBranch(string data) {
+        public DialogueBranch(DialogueTree parent, DialogueTree child) {
+            data = null;
+            this.parent = parent;
+            this.child = child;
+        }
+        public DialogueBranch(string data, DialogueTree parent, DialogueTree child) {
             this.data = data;
+            this.parent = parent;
+            this.child = child;
         }
 
         public void setData(string data) {
@@ -161,6 +170,10 @@ public class DialogueTree {
 
         public string getData() {
             return data;
+        }
+
+        public bool hasBranch(DialogueTree parent, DialogueTree child) {
+            return (this.parent == parent && this.child == child);
         }
 
         
