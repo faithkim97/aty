@@ -286,6 +286,7 @@
     <Compile Include="Assets\Scripts\Dialogue\DialogueEditor.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueTree.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\SerializedTree.cs" />
     <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UICounter.cs" />
