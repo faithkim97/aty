@@ -12,7 +12,10 @@ public class DialogueEditor : EditorWindow {
     List<int> attachedWindows = new List<int>();
     [SerializeField]
 	DialogueTree dTree;
- 
+ /// <summary>
+ /// list of all dialogues in the current tree
+ /// being worked on 
+ /// </summary>
 	public List<string> dialogues = new List<string> ();
 	private List<DialogueTree> tree = new List<DialogueTree> ();
 	//keep track of left branch responses
@@ -25,7 +28,15 @@ public class DialogueEditor : EditorWindow {
     static List<DialogueTree> savedTrees = new List<DialogueTree>();
 
     List<Rect> loadWindows = new List<Rect>();
-    
+    /// <summary>
+    /// loaded tree in list form 
+    /// </summary>
+    List<DialogueTree> listTree = new List<DialogueTree>();
+    /// <summary>
+    /// dialogues loaded from listTree
+    /// </summary>
+    List<string> loadedDialogues = new List<string>();
+
 
 
     [MenuItem("Window/Dialogue editor")]
@@ -49,9 +60,11 @@ public class DialogueEditor : EditorWindow {
 			dialogues.Add ("Add new dialogue here");
         }
 
+        //when adding windows in tree creation mode 
         AddWindows();
+
+        //when loading windows from an existing tree
         for (int i = 0; i < loadWindows.Count; i++) {
-            Debug.Log("load tree " + loadWindows.Count  );
             loadWindows[i] = GUI.Window(i, loadWindows[i], LoadTreeWindow, "Window " + i);
         }//end of for loop        
 
@@ -61,7 +74,7 @@ public class DialogueEditor : EditorWindow {
             SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
             sTree.SaveDialogueTree(dTree);
         }
-        List<DialogueTree> listTree = new List<DialogueTree>();
+       
 
         if (GUILayout.Button("Load Tree")) {
             if (saveTreeToObject != null) {
@@ -70,57 +83,15 @@ public class DialogueEditor : EditorWindow {
                 savedTrees = sTree.LoadDialogueTree();
                // savedTrees[sTree.getID()].traverseTree();
                 listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
-                //LoadTreeWindows(listTree);
                 for (int i = 0; i < listTree.Count; i++) {
                     loadWindows.Add(new Rect(10, 10, 200, 200));
+                    loadedDialogues.Add(listTree[i].getDialogue());
                 }
             }//end of load tree
-
-            //LoadTreeWindows(listTree);
-
         }
         EndWindows();
 		
-    }
-    void LoadTreeWindow(int id) {
-       
-
-        GUI.DragWindow();
-    }
-
-    /*
-    void LoadNodeWindow(int id) {
-        Debug.Log("Load node window");
-        SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
-        //tree in list form 
-        List<DialogueTree> treeList = sTree.getTreeInList(sTree.getSavedTree());
-        //load dialogue
-        dialogues.Add(treeList[id].getDialogue());
-        dialogues[id] = GUILayout.TextArea(treeList[id].getDialogue(), 200);
-        //load left left dialogue
-
-        //load right dialogue
-
-        //load left branch
-        if (treeList[id].getLeft() != null) {
-            windowsToAttach.Add(id);
-            windowsToAttach.Add((2 * id) + 1);
-            attachedWindows.Add(windowsToAttach[0]);
-            attachedWindows.Add(windowsToAttach[1]);
-            windowsToAttach = new List<int>();
-
-        }
-
-        //load right branch 
-        if (treeList[id].getRight() != null) {
-            windowsToAttach.Add(id);
-            windowsToAttach.Add((2 * id) + 2);
-            attachedWindows.Add(windowsToAttach[0]);
-            attachedWindows.Add(windowsToAttach[1]);
-            windowsToAttach = new List<int>();
-        }
-
-    }*/
+    }//end of OnGUI
 
     void AddWindows() {
         for (int i = 0; i < windows.Count; i++) {
@@ -140,14 +111,13 @@ public class DialogueEditor : EditorWindow {
 
     } //end of AddWindow
 
+    void LoadTreeWindow(int id) {
+        loadedDialogues[id] = GUILayout.TextArea(loadedDialogues[id] , 200);
 
-
-
-
-   
+        GUI.DragWindow();
+    }
 
     void DrawNodeWindow(int id) {
-        Debug.Log("Draw Node bruh");
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
 
@@ -186,16 +156,8 @@ public class DialogueEditor : EditorWindow {
 		
 			}
 		}
-
-      
-
         GUI.DragWindow();
-    }
-
-
-		
-		
-
+    }//end of DrawNodeWindow
 
     void DrawNodeCurve(Rect start, Rect end) {
         Vector3 startPos = new Vector3(start.x + start.width, start.y + start.height / 2, 0);
