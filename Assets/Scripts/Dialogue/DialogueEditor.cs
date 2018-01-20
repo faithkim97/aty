@@ -12,10 +12,10 @@ public class DialogueEditor : EditorWindow {
     List<int> attachedWindows = new List<int>();
     [SerializeField]
 	DialogueTree dTree;
- /// <summary>
- /// list of all dialogues in the current tree
- /// being worked on 
- /// </summary>
+    /// <summary>
+    /// list of all dialogues in the current tree
+    /// being worked on 
+    /// </summary>
 	public List<string> dialogues = new List<string> ();
 	private List<DialogueTree> tree = new List<DialogueTree> ();
 	//keep track of left branch responses
