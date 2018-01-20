@@ -67,9 +67,11 @@ public class DialogueEditor : EditorWindow {
 
         //when adding windows in tree creation mode 
         AddWindows();
-
         //when loading windows from an existing tree
         for (int i = 0; i < loadWindows.Count; i++) {
+            
+            loadedRights.Add("loaded right");
+            loadedLefts.Add("loaded left");
             loadWindows[i] = GUI.Window(i, loadWindows[i], LoadTreeWindow, "Window " + i);
         }//end of for loop        
 
@@ -89,10 +91,9 @@ public class DialogueEditor : EditorWindow {
                // savedTrees[sTree.getID()].traverseTree();
                 listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
                 for (int i = 0; i < listTree.Count; i++) {
-                    loadedRights.Add("loaded right");
-                    loadedLefts.Add("loaded left");
                     loadWindows.Add(new Rect(10, 10, 200, 200));
                     loadedDialogues.Add(listTree[i].getDialogue());
+                    Debug.Log("dialogue: " + listTree[i].getDialogue());
                 }
             }//end of load tree
         }
@@ -119,8 +120,15 @@ public class DialogueEditor : EditorWindow {
     } //end of AddWindow
 
     void LoadTreeWindow(int id) {
-        //load dialogue text area
-        loadedDialogues[id] = GUILayout.TextArea(loadedDialogues[id] , 200);
+        Debug.Log(loadedDialogues);
+        if (loadedDialogues[id] != null) {
+            loadedDialogues[id] = GUILayout.TextArea(loadedDialogues[id], 200);
+        }
+
+        if (GUILayout.Button("Add dialogue")) {
+            listTree[id].setDialogue(loadedDialogues[id]);
+        }
+        
 
         GUI.DragWindow();
     }
@@ -128,13 +136,10 @@ public class DialogueEditor : EditorWindow {
     void DrawNodeWindow(int id) {
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
-
-
 		if (GUILayout.Button("Add dialogue")) {
 			tree [id].setDialogue (dialogues [id]);
 			Debug.Log ("You have added a dialogue");
 		}
-
         //text area for left branch
         lefts[id] = GUILayout.TextArea(lefts[id], 100);
        
