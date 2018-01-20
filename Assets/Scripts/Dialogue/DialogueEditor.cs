@@ -70,8 +70,8 @@ public class DialogueEditor : EditorWindow {
         //when loading windows from an existing tree
         for (int i = 0; i < loadWindows.Count; i++) {
             
-            loadedRights.Add("loaded right");
-            loadedLefts.Add("loaded left");
+            //loadedRights.Add("loaded right");
+            //loadedLefts.Add("loaded left");
             loadWindows[i] = GUI.Window(i, loadWindows[i], LoadTreeWindow, "Window " + i);
         }//end of for loop        
 
@@ -93,8 +93,15 @@ public class DialogueEditor : EditorWindow {
                 for (int i = 0; i < listTree.Count; i++) {
                     loadWindows.Add(new Rect(10, 10, 200, 200));
                     loadedDialogues.Add(listTree[i].getDialogue());
-                    Debug.Log("dialogue: " + listTree[i].getDialogue());
-                }
+                    if (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null) {
+                        loadedLefts.Add(DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData());
+                    }
+                    if (DialogueTree.getBranch(listTree[i], listTree[i].getRight()) != null) {
+                        loadedRights.Add(DialogueTree.getBranch(listTree[i], listTree[i].getRight()).getData());
+                    }
+                }//end of for loop
+
+                //dTree = listTree[0];
             }//end of load tree
         }
         EndWindows();
@@ -120,15 +127,26 @@ public class DialogueEditor : EditorWindow {
     } //end of AddWindow
 
     void LoadTreeWindow(int id) {
-        Debug.Log(loadedDialogues);
+        //load dialogues
         if (loadedDialogues[id] != null) {
             loadedDialogues[id] = GUILayout.TextArea(loadedDialogues[id], 200);
         }
-
         if (GUILayout.Button("Add dialogue")) {
             listTree[id].setDialogue(loadedDialogues[id]);
         }
-        
+
+        //load left
+        Debug.Log("laoded lefts: " + loadedLefts.Count);
+        if (loadedLefts.Count > 0) {
+            loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
+        }
+
+        //load right
+        if (loadedRights.Count > 0) {
+            loadedRights[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(), 100);
+        }
+       
+
 
         GUI.DragWindow();
     }

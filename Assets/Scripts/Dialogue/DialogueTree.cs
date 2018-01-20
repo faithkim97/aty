@@ -133,7 +133,7 @@ public class DialogueTree {
         //Debug.Log("branch just added: " + branches[branches.Count - 1].getParent().getDialogue() + " " + branches[branches.Count-1].getChild().getDialogue());
     }
     /// <summary>
-    /// GET BRANCH NOT WORKING---POINTERS AREN'T WORKING MAN
+    ///get branch
     /// </summary>
     /// <param name="child"></param>
     /// <returns></returns>
@@ -147,7 +147,7 @@ public class DialogueTree {
         return null;
     }
 
-    //[System.Serializable]
+    [System.Serializable]
     public class DialogueBranch {
         private string data;
         DialogueTree parent;
