@@ -112,6 +112,7 @@ public class DialogueEditor : EditorWindow {
     } //end of AddWindow
 
     void LoadTreeWindow(int id) {
+        //load dialogue text area
         loadedDialogues[id] = GUILayout.TextArea(loadedDialogues[id] , 200);
 
         GUI.DragWindow();

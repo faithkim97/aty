@@ -20,6 +20,7 @@ public class DialogueTree {
 	//keeps track of all user response's association to bool value
 	//for which branch to go to
 	private static Dictionary<string, bool> responseBranch = new Dictionary<string, bool>();
+    private DialogueBranch branch;
 
 	public DialogueTree() {
 		diaData = null;
@@ -99,10 +100,12 @@ public class DialogueTree {
 
     public void setLeft(DialogueTree node) {
         left = node;
+        this.setBranch(new DialogueBranch());
     }
 
     public void setRight(DialogueTree node) {
         right = node;
+        this.setBranch( new DialogueBranch());
     }
 
 	public string getDialogue() {
@@ -129,31 +132,37 @@ public class DialogueTree {
 		
 	}//end of traverseTree
 
+    public void setBranch(DialogueBranch branch) {
+        this.branch = branch;
+    }
+
+    public DialogueBranch getBranch() {
+        return branch;
+    }
 
 
 
-	/*
-    //[Serializable]
-    /// <summary>
-    /// Each node holds dialogue data
-    /// </summary>
-    public class DialogueNode {
-        /// <summary>
-        /// holds dialogue string in data
-        /// </summary>
-        private string diaData;
 
-		public DialogueNode( string data ) {
-			diaData = data;
-		}
+    [System.Serializable]
+    public class DialogueBranch {
+        private string data;
 
-        public string getDialogue() {
-            return diaData;
+        public DialogueBranch() {
+            data = null;
         }
 
-        public void setDialogue(string data) {
-            diaData = data;
-        } 
-    }//end of DialogueNode
-	*/
+        public DialogueBranch(string data) {
+            this.data = data;
+        }
+
+        public void setData(string data) {
+            this.data = data;
+        }
+
+        public string getData() {
+            return data;
+        }
+
+        
+    }//end of DialogueBranch class
 }
