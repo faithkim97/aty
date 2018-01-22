@@ -152,10 +152,14 @@ public class DialogueEditor : EditorWindow {
         //load left
         //Debug.Log("laoded lefts: " + loadedLefts.Count);
         if (loadedLefts.Count > 0) {
-            loadedLefts[id] = GUILayout.TextArea("hello", 100);
+            if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
+                loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
+            }
+            
+        }
 
             //DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData()
-        }
+        
 
         //load right
         if (loadedRights.Count > 0) {
