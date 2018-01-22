@@ -31,16 +31,12 @@ public class DialogueEditor : EditorWindow {
     static List<DialogueTree> savedTrees = new List<DialogueTree>();
 
     List<Rect> loadWindows = new List<Rect>();
-    /// <summary>
-    /// loaded tree in list form 
-    /// </summary>
     List<DialogueTree> listTree = new List<DialogueTree>();
-    /// <summary>
-    /// dialogues loaded from listTree
-    /// </summary>
     List<string> loadedDialogues = new List<string>();
     List<string> loadedRights = new List<string>();
     List<string> loadedLefts = new List<string>();
+    List<int> loadedWindowstoAttach = new List<int>();
+    List<int> loadedWindowsAttached = new List<int>();
 
 
 
@@ -55,6 +51,12 @@ public class DialogueEditor : EditorWindow {
         if (attachedWindows.Count >= 2) {
             for (int i = 0; i < attachedWindows.Count; i += 2) {
                 DrawNodeCurve(windows[attachedWindows[i]], windows[attachedWindows[i + 1]]);
+            }
+        }
+
+        if (loadedWindowsAttached.Count >= 2) {
+            for (int i = 0; i < loadedWindowsAttached.Count; i += 2) {
+                DrawNodeCurve(loadWindows[loadedWindowsAttached[i]], loadWindows[loadedWindowsAttached[i + 1]]);
             }
         }
 
@@ -80,8 +82,6 @@ public class DialogueEditor : EditorWindow {
         if (GUILayout.Button("Save Tree")) {
             SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
             sTree.SaveDialogueTree(dTree);
-            //dTree.traverseTree();
-            Debug.Log("dtree branch: " + DialogueTree.getBranch(dTree, dTree.getLeft()).getData());
             DialogueTree.SaveDialogueBranches();
         }
        
@@ -97,22 +97,6 @@ public class DialogueEditor : EditorWindow {
                 for (int i = 0; i < listTree.Count; i++) {
                     loadWindows.Add(new Rect(10, 10, 200, 200));
                     loadedDialogues.Add(listTree[i].getDialogue());
-                /*
-                    if (listTree[i].getLeft() != null) {
-                        
-                        if (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null ) {
-                            Debug.Log("inside for loop getleft branch bruh " + i);
-                            loadedLefts.Add(DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData());
-                        }
-                       
-                    }
-              
-                    if (listTree[i].getRight() != null) {
-                        if (DialogueTree.getBranch(listTree[i], listTree[i].getRight()) != null) {
-                            loadedRights.Add(DialogueTree.getBranch(listTree[i], listTree[i].getRight()).getData());
-                        }
-                        
-                    } */
                 }//end of for loop
 
                 //dTree = listTree[0];
@@ -154,6 +138,7 @@ public class DialogueEditor : EditorWindow {
         if (loadedLefts.Count > 0) {
             if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
+                loadedWindowstoAttach.Add((2*id + 1));
             }
             
         }
@@ -162,10 +147,16 @@ public class DialogueEditor : EditorWindow {
         if (loadedRights.Count > 0) {
             if ((listTree[id].getRight() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getRight()) != null)) {
                 loadedRights[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(), 100);
+                loadedWindowstoAttach.Add((2*id+2));
             }
         }
 
-
+        //create the branch gui
+        if (loadedWindowstoAttach.Count >= 2) {
+            loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
+            loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
+            loadedWindowstoAttach = new List<int>();
+        }
 
         GUI.DragWindow();
     }
