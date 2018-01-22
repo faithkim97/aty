@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 //possibly create boolean value of isSaved = true/false in one of the dialogue scripts
 /// <summary>
 /// Keeps track of all dialogues in the style of a binary tree
@@ -17,8 +19,7 @@ public class DialogueTree {
 	private string diaData;
 	//id of node to keep track of node
 	private int id;
-	//keeps track of all user response's association to bool value
-
+    //[SerializeField][HideInInspector]
     private static List<DialogueBranch> branches = new List<DialogueBranch>();
 
 	public DialogueTree() {
@@ -140,13 +141,36 @@ public class DialogueTree {
     public static DialogueBranch getBranch(DialogueTree parent, DialogueTree child) {
         for (int i = 0; i < branches.Count; i++) {
             if (branches[i].hasBranch(parent, child) || branches[i].hasBranch(child, parent)) {
+                //Debug.Log(branches[i]);
                 return branches[i];
             }
         }
-        Debug.Log("inside get branch");
+        //Debug.Log("inside get branch");
         return null;
     }
 
+    public static List<DialogueBranch> getBranches() {
+        return branches;
+    }
+
+    public static void SaveDialogueBranches() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/branches.gd");
+        bf.Serialize(file, branches);
+        file.Close();
+    }
+
+    public static List<DialogueBranch> LoadDialogueBranches() {
+        if (File.Exists(Application.persistentDataPath + "/branches.gd")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/branches.gd", FileMode.Open);
+            branches = (List<DialogueBranch>)bf.Deserialize(file);
+            file.Close();
+        }
+
+        return branches;
+    }
+         
     [System.Serializable]
     public class DialogueBranch {
         private string data;
@@ -168,6 +192,7 @@ public class DialogueTree {
             this.child = child;
         }
 
+       
         public void setData(string data) {
             this.data = data;
         }

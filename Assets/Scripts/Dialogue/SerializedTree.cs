@@ -25,6 +25,7 @@ public class SerializedTree : MonoBehaviour {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedTrees.gd");
         bf.Serialize(file, savedTrees);
+        //DialogueTree.SaveDialogueBranches();
         file.Close();
     }
 
@@ -35,6 +36,8 @@ public class SerializedTree : MonoBehaviour {
             savedTrees = (List<DialogueTree>)bf.Deserialize(file);
             file.Close();
         }
+
+        //DialogueTree.LoadDialogueBranches();
         return savedTrees;
     }
 
@@ -45,6 +48,8 @@ public class SerializedTree : MonoBehaviour {
 	public DialogueTree getSavedTree() {
 		return savedTree;
 	}
+
+
 
 	public List<DialogueTree> getTreeInList(DialogueTree dTree) {
 		treeInList = new List<DialogueTree> ();
