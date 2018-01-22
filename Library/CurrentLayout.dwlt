@@ -137,8 +137,8 @@ MonoBehaviour:
     y: 349
     width: 1076
     height: 422
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 15}
@@ -232,7 +232,11 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 342}
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 48
+=======
+  controlID: 77
+>>>>>>> dialogue_commit
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -256,7 +260,11 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 49
+=======
+  controlID: 28
+>>>>>>> dialogue_commit
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -275,8 +283,8 @@ MonoBehaviour:
     y: 0
     width: 754
     height: 349
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -392,9 +400,15 @@ MonoBehaviour:
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 4}
+<<<<<<< HEAD
     m_SelectedIDs: 90270000
     m_LastClickedID: 10128
     m_ExpandedIDs: 000000008027000006280000a8280000b4280000ea28000022290000
+=======
+    m_SelectedIDs: 94270000
+    m_LastClickedID: 10132
+    m_ExpandedIDs: 000000007c27000002280000a4280000b0280000e62800001e290000
+>>>>>>> dialogue_commit
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -422,7 +436,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000008027000006280000a8280000b4280000ea28000022290000
+=======
+    m_ExpandedIDs: 000000007c27000002280000a4280000b0280000e62800001e290000
+>>>>>>> dialogue_commit
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -540,9 +558,15 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: de290000
     m_LastClickedID: 10718
     m_ExpandedIDs: 84fbffff00000000ea290000
+=======
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 9efbffff00000000e8290000
+>>>>>>> dialogue_commit
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
