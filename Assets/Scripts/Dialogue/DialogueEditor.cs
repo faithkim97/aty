@@ -158,13 +158,11 @@ public class DialogueEditor : EditorWindow {
             
         }
 
-            //DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData()
-        
-
         //load right
         if (loadedRights.Count > 0) {
-            loadedRights[id] = GUILayout.TextArea( "hello", 100);
-            //DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(),
+            if ((listTree[id].getRight() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getRight()) != null)) {
+                loadedRights[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(), 100);
+            }
         }
 
 
@@ -209,36 +207,6 @@ public class DialogueEditor : EditorWindow {
                 windowsToAttach = new List<int>();
             }
         }//end of if right
-        /*
-		lefts [id] = GUILayout.TextArea (lefts [id], 100);
-		if (GUILayout.Button ("left")) {
-			windowsToAttach.Add (id);
-			if (windowsToAttach.Count == 2) {
-				if (!DialogueTree.getDict().ContainsKey(lefts[id])) {
-					DialogueTree.setBranch (lefts [id], false);
-				}
-				
-				tree [id - 1].setLeft (tree[id]);
-				attachedWindows.Add(windowsToAttach[0]);
-				attachedWindows.Add(windowsToAttach[1]);
-				windowsToAttach = new List<int>();
-				
-			}
-		}
-		rights [id] = GUILayout.TextArea (rights [id], 100);
-		if (GUILayout.Button ("right")) {
-			windowsToAttach.Add (id);
-			if (windowsToAttach.Count == 2) {
-				if (!DialogueTree.getDict ().ContainsKey (rights [id])) {
-					DialogueTree.setBranch (rights [id], true);
-				}
-				tree [id - 1].setRight (tree[id]);
-				attachedWindows.Add(windowsToAttach[0]);
-				attachedWindows.Add(windowsToAttach[1]);
-				windowsToAttach = new List<int>();
-		
-			}
-		}*/
         GUI.DragWindow();
     }//end of DrawNodeWindow
 
