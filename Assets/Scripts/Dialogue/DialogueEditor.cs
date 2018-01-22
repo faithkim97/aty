@@ -92,22 +92,26 @@ public class DialogueEditor : EditorWindow {
                 SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
                 savedTrees = sTree.LoadDialogueTree();
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
+                listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
                 for (int j = 0; j < branches.Count; j++) {
                     Debug.Log("branch: " + j + ": " + branches[j].getParent().getDialogue() + " " + branches[j].getChild().getDialogue());
+                    Debug.Log(listTree[0].getDialogue() + " " + listTree[0].getLeft().getDialogue() + " " + listTree[0].getRight().getDialogue());
                 }
                 // savedTrees[sTree.getID()].traverseTree();
               
-                listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
+                
                 //Debug.Log("loaded branch: " + DialogueTree.getBranch(listTree[0], listTree[0].getLeft()));
                 for (int i = 0; i < listTree.Count; i++) {
                     loadWindows.Add(new Rect(10, 10, 200, 200));
                     loadedDialogues.Add(listTree[i].getDialogue());
-                    if (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null) {
-                      Debug.Log("inside get branch yooooo");
-                        
-                       loadedLefts.Add(DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData());
+                    // if (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null) {
+
+                    if (listTree[i].getLeft() != null) {
+                        Debug.Log("inside for loop getleft branch bruh");
+                        loadedLefts.Add(DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData());
                     }
-                    if (DialogueTree.getBranch(listTree[i], listTree[i].getRight()) != null) {
+                    //}
+                    if (listTree[i].getRight() != null) {
                         loadedRights.Add(DialogueTree.getBranch(listTree[i], listTree[i].getRight()).getData());
                     }
                 }//end of for loop

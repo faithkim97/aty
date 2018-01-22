@@ -209,7 +209,11 @@ public class DialogueTree {
             return child;
         }
         public bool hasBranch(DialogueTree parent, DialogueTree child) {
-            return (this.parent == parent && this.child == child);
+            if (parent != null && child != null) {
+                if (this.parent.getDialogue() == parent.getDialogue() && this.child.getDialogue() == child.getDialogue()) { return true; }
+            }
+            // return (this.parent.getDialogue() == parent.getDialogue() && this.child.getDialogue() == child.getDialogue());
+            return false;
         }
 
         
