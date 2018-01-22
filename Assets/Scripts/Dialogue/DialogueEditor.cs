@@ -53,7 +53,7 @@ public class DialogueEditor : EditorWindow {
                 DrawNodeCurve(windows[attachedWindows[i]], windows[attachedWindows[i + 1]]);
             }
         }
-
+        //draw the branch when loaded
         if (loadedWindowsAttached.Count >= 2) {
             for (int i = 0; i < loadedWindowsAttached.Count; i += 2) {
                 DrawNodeCurve(loadWindows[loadedWindowsAttached[i]], loadWindows[loadedWindowsAttached[i + 1]]);
@@ -138,7 +138,11 @@ public class DialogueEditor : EditorWindow {
         if (loadedLefts.Count > 0) {
             if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
-                loadedWindowstoAttach.Add((2*id + 1));
+                loadedWindowstoAttach.Add(id);
+                loadedWindowstoAttach.Add((2 * id + 1));
+                loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
+                loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
+                loadedWindowstoAttach = new List<int>();
             }
             
         }
@@ -147,16 +151,20 @@ public class DialogueEditor : EditorWindow {
         if (loadedRights.Count > 0) {
             if ((listTree[id].getRight() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getRight()) != null)) {
                 loadedRights[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(), 100);
-                loadedWindowstoAttach.Add((2*id+2));
+                loadedWindowstoAttach.Add(id);
+                loadedWindowstoAttach.Add((2 * id + 2));
+                loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
+                loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
+                loadedWindowstoAttach = new List<int>();
             }
         }
-
+        /*
         //create the branch gui
-        if (loadedWindowstoAttach.Count >= 2) {
+        if (loadedWindowstoAttach.Count == 2) {
             loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
             loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
             loadedWindowstoAttach = new List<int>();
-        }
+        }*/
 
         GUI.DragWindow();
     }
