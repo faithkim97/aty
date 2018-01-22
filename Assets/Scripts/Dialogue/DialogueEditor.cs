@@ -70,8 +70,8 @@ public class DialogueEditor : EditorWindow {
         //when loading windows from an existing tree
         for (int i = 0; i < loadWindows.Count; i++) {
             
-            //loadedRights.Add("loaded right");
-            //loadedLefts.Add("loaded left");
+            loadedRights.Add("loaded right");
+            loadedLefts.Add("loaded left");
             loadWindows[i] = GUI.Window(i, loadWindows[i], LoadTreeWindow, "Window " + i);
         }//end of for loop        
 
@@ -93,27 +93,26 @@ public class DialogueEditor : EditorWindow {
                 savedTrees = sTree.LoadDialogueTree();
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
                 listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
-                for (int j = 0; j < branches.Count; j++) {
-                    Debug.Log("branch: " + j + ": " + branches[j].getParent().getDialogue() + " " + branches[j].getChild().getDialogue());
-                    Debug.Log(listTree[0].getDialogue() + " " + listTree[0].getLeft().getDialogue() + " " + listTree[0].getRight().getDialogue());
-                }
-                // savedTrees[sTree.getID()].traverseTree();
-              
-                
-                //Debug.Log("loaded branch: " + DialogueTree.getBranch(listTree[0], listTree[0].getLeft()));
+
                 for (int i = 0; i < listTree.Count; i++) {
                     loadWindows.Add(new Rect(10, 10, 200, 200));
                     loadedDialogues.Add(listTree[i].getDialogue());
-                    // if (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null) {
-
+                /*
                     if (listTree[i].getLeft() != null) {
-                        Debug.Log("inside for loop getleft branch bruh");
-                        loadedLefts.Add(DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData());
+                        
+                        if (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null ) {
+                            Debug.Log("inside for loop getleft branch bruh " + i);
+                            loadedLefts.Add(DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData());
+                        }
+                       
                     }
-                    //}
+              
                     if (listTree[i].getRight() != null) {
-                        loadedRights.Add(DialogueTree.getBranch(listTree[i], listTree[i].getRight()).getData());
-                    }
+                        if (DialogueTree.getBranch(listTree[i], listTree[i].getRight()) != null) {
+                            loadedRights.Add(DialogueTree.getBranch(listTree[i], listTree[i].getRight()).getData());
+                        }
+                        
+                    } */
                 }//end of for loop
 
                 //dTree = listTree[0];
@@ -153,14 +152,17 @@ public class DialogueEditor : EditorWindow {
         //load left
         //Debug.Log("laoded lefts: " + loadedLefts.Count);
         if (loadedLefts.Count > 0) {
-            loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
+            loadedLefts[id] = GUILayout.TextArea("hello", 100);
+
+            //DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData()
         }
 
         //load right
         if (loadedRights.Count > 0) {
-            loadedRights[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(), 100);
+            loadedRights[id] = GUILayout.TextArea( "hello", 100);
+            //DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(),
         }
-       
+
 
 
         GUI.DragWindow();
