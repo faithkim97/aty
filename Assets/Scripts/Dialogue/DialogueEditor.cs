@@ -84,33 +84,55 @@ public class DialogueEditor : EditorWindow {
             sTree.SaveDialogueTree(dTree);
             DialogueTree.SaveDialogueBranches();
         }
-       
+
 
         if (GUILayout.Button("Load Tree")) {
             if (saveTreeToObject != null) {
                 loadWindows = new List<Rect>();
                 SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
                 savedTrees = sTree.LoadDialogueTree();
-            
-                savedTrees[sTree.getID()].traverseTree();
+
+                //savedTrees[sTree.getID()].traverseTree();
                 //you don't need this 
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
-                listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
-                Debug.Log("ListTree Count: " + listTree.Count);
+                if (sTree.getSavedTree() != null) {
+                    listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
+                    Debug.Log("ListTree Count: " + listTree.Count);
 
-                for (int i = 0; i < listTree.Count; i++) {
-                    //create windows
-                    loadWindows.Add(new Rect(10, 10, 200, 200));
-                    //add loaded dialogues
-                    loadedDialogues.Add(listTree[i].getDialogue());
-                }//end of for loop
+                    for (int i = 0; i < listTree.Count; i++) {
+                        //create windows
+                        loadWindows.Add(new Rect(10, 10, 200, 200));
+                        //add loaded dialogues
+                        loadedDialogues.Add(listTree[i].getDialogue());
+                    }//end of for loop
 
-                //dTree = listTree[0];
-            }//end of load tree
+                    //dTree = listTree[0];
+                }
+                else {
+                    Debug.Log("Your dialogue tree is null");
+                }
+            } 
+        }//end of load button
+
+       
+
+        if (GUILayout.Button("Clear Dialogue Tree")) {
+            ClearTreeButton();
+            Debug.Log("saved tree after clear: " + saveTreeToObject.GetComponent<SerializedTree>().getSavedTree());
+            Debug.Log("Your dialogue tree has been cleared");
         }
+
+        
         EndWindows();
 		
     }//end of OnGUI
+
+    void ClearTreeButton() {
+        if (saveTreeToObject != null) {
+            SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
+            sTree.ClearDialogueTree();
+        }
+    }
 
     void AddWindows() {
         for (int i = 0; i < windows.Count; i++) {
