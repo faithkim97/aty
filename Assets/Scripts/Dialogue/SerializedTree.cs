@@ -22,7 +22,9 @@ public class SerializedTree : MonoBehaviour {
 	public void SaveDialogueTree( DialogueTree dTree ) {
 		savedTree = dTree;
         if (!savedTrees.Contains(savedTree)) {
+            //Debug.Log( "saving: " + savedTree);
             if (savedTree != null) {
+                //Debug.Log("inside savedTree != null");
                 savedTrees.Add(savedTree);
             }  
             BinaryFormatter bf = new BinaryFormatter();
