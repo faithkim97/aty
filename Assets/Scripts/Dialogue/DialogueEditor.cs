@@ -91,6 +91,7 @@ public class DialogueEditor : EditorWindow {
                 loadWindows = new List<Rect>();
                 SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
                 savedTrees = sTree.LoadDialogueTree();
+                savedTrees[sTree.getID()].traverseTree();
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
                 listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
 
@@ -138,11 +139,10 @@ public class DialogueEditor : EditorWindow {
         if (loadedLefts.Count > 0) {
             if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
-                loadedWindowstoAttach.Add(id);
-                loadedWindowstoAttach.Add((2 * id + 1));
-                loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
-                loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
-                loadedWindowstoAttach = new List<int>();
+                LoadGUIBranches(id, 1);
+            }
+            else {
+                loadedLefts[id] = GUILayout.TextArea("insert left response", 100);
             }
             
         }
@@ -151,24 +151,23 @@ public class DialogueEditor : EditorWindow {
         if (loadedRights.Count > 0) {
             if ((listTree[id].getRight() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getRight()) != null)) {
                 loadedRights[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(), 100);
-                loadedWindowstoAttach.Add(id);
-                loadedWindowstoAttach.Add((2 * id + 2));
-                loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
-                loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
-                loadedWindowstoAttach = new List<int>();
+                LoadGUIBranches(id, 2);
+            }
+            else {
+                loadedRights[id] = GUILayout.TextArea("insert right response", 100);
             }
         }
-        /*
-        //create the branch gui
-        if (loadedWindowstoAttach.Count == 2) {
-            loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
-            loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
-            loadedWindowstoAttach = new List<int>();
-        }*/
-
+       
         GUI.DragWindow();
     }
+    void LoadGUIBranches(int id, int branchID) {
+        loadedWindowstoAttach.Add(id);
+        loadedWindowstoAttach.Add((2 * id + branchID));
+        loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
+        loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
+        loadedWindowstoAttach = new List<int>();
 
+    }
     void DrawNodeWindow(int id) {
 		//create dialogue area 
 		dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
