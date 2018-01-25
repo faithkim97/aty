@@ -91,12 +91,17 @@ public class DialogueEditor : EditorWindow {
                 loadWindows = new List<Rect>();
                 SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
                 savedTrees = sTree.LoadDialogueTree();
+            
                 savedTrees[sTree.getID()].traverseTree();
+                //you don't need this 
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
                 listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
+                Debug.Log("ListTree Count: " + listTree.Count);
 
                 for (int i = 0; i < listTree.Count; i++) {
+                    //create windows
                     loadWindows.Add(new Rect(10, 10, 200, 200));
+                    //add loaded dialogues
                     loadedDialogues.Add(listTree[i].getDialogue());
                 }//end of for loop
 
