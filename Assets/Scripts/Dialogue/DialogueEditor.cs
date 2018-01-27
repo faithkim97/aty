@@ -71,9 +71,11 @@ public class DialogueEditor : EditorWindow {
         AddWindows();
         //when loading windows from an existing tree
         for (int i = 0; i < loadWindows.Count; i++) {
-            
-            loadedRights.Add("loaded right");
-            loadedLefts.Add("loaded left");
+
+            string rightDialogue = ((listTree[i].getRight() != null) && (DialogueTree.getBranch(listTree[i], listTree[i].getRight()) != null)) ? DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData() : ("insert right response");
+            string leftDialogue = ((listTree[i].getLeft() != null) && (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null)) ? DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData() : ("insert left response");
+            loadedLefts.Add(leftDialogue);
+            loadedRights.Add(rightDialogue);
             loadWindows[i] = GUI.Window(i, loadWindows[i], LoadTreeWindow, "Window " + i);
         }//end of for loop        
 
@@ -164,12 +166,13 @@ public class DialogueEditor : EditorWindow {
             listTree[id].setDialogue(loadedDialogues[id]);
         }
 
-        string leftDialogue = ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) ? DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData() : ("insert left response");
-        loadedLefts[id] = GUILayout.TextArea(leftDialogue, 100);
+        
+        loadedLefts[id] = GUILayout.TextArea(loadedLefts[id], 200);
+
         //load left
         //Debug.Log("laoded lefts: " + loadedLefts.Count);
         // if (loadedLefts.Count > 0) {
-        /*
+        
         if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 LoadGUIBranches(id, 1);
                 if (GUILayout.Button("edit left")) {
@@ -193,7 +196,7 @@ public class DialogueEditor : EditorWindow {
                 }
             }
 
-        //} */
+        //} 
 
         //load right
         if (loadedRights.Count > 0) {
