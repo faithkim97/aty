@@ -11,9 +11,9 @@ using System.IO;
 public class DialogueTree {
    
     //left child of tree
-    //left == negative options
+    //left == positive options
     private DialogueTree left;
-    //right == positive options
+    //right == negative options
     private DialogueTree right;
 	//dialogue of each node
 	private string diaData;
@@ -130,6 +130,12 @@ public class DialogueTree {
     }
 
     public static void setBranch(DialogueTree parent, DialogueTree child) {
+        /*
+        DialogueBranch currBranch = getBranch(parent, child);
+        //if it contains branch, then remove it
+        if (branches.Contains(currBranch)) {
+            branches.Remove(currBranch);
+        }*/
         branches.Add(new DialogueBranch(parent, child));
         //Debug.Log("branch just added: " + branches[branches.Count - 1].getParent().getDialogue() + " " + branches[branches.Count-1].getChild().getDialogue());
     }

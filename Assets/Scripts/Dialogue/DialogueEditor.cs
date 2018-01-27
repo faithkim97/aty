@@ -164,21 +164,36 @@ public class DialogueEditor : EditorWindow {
             listTree[id].setDialogue(loadedDialogues[id]);
         }
 
+        string leftDialogue = ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) ? DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData() : ("insert left response");
+        loadedLefts[id] = GUILayout.TextArea(leftDialogue, 100);
         //load left
         //Debug.Log("laoded lefts: " + loadedLefts.Count);
-        if (loadedLefts.Count > 0) {
-            if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
-                loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
+        // if (loadedLefts.Count > 0) {
+        /*
+        if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 LoadGUIBranches(id, 1);
-                if (GUILayout.Button("Edit left response")) {
-                    Debug.Log("left");
+                if (GUILayout.Button("edit left")) {
+                    DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).setData(loadedLefts[id]);
+                    Debug.Log(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData());
+                }
+
+            }
+            else if ( listTree[id].getLeft() == null || (listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) == null)){
+                
+                if (GUILayout.Button("left")) {
+                    loadedWindowstoAttach.Add(id);
+                    if (loadedWindowstoAttach.Count == 2) {
+                        DialogueTree.setBranch(listTree[(id - 1) / 2], listTree[id]);
+                        DialogueTree.getBranch(listTree[(id - 1) / 2], listTree[id]).setData(loadedLefts[id]);
+                        loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
+                        loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
+                        loadedWindowstoAttach = new List<int>();
+
+                    }
                 }
             }
-            else {
-                loadedLefts[id] = GUILayout.TextArea("insert left response", 100);
-            }
-            
-        }
+
+        //} */
 
         //load right
         if (loadedRights.Count > 0) {
