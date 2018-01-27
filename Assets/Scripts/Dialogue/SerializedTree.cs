@@ -21,13 +21,33 @@ public class SerializedTree : MonoBehaviour {
     }
 	public void SaveDialogueTree( DialogueTree dTree ) {
 		savedTree = dTree;
-        savedTrees.Add(savedTree);
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/savedTrees.gd");
-        bf.Serialize(file, savedTrees);
-        //DialogueTree.SaveDialogueBranches();
-        file.Close();
-    }
+        if (!savedTrees.Contains(savedTree)) {
+            //Debug.Log( "saving: " + savedTree);
+            if (savedTree != null) {
+                //Debug.Log("inside savedTree != null");
+                savedTrees.Add(savedTree);
+            }  
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + "/savedTrees.gd");
+            bf.Serialize(file, savedTrees);
+            //DialogueTree.SaveDialogueBranches();
+            file.Close();
+        }
+        
+    }//end of SaveDialogueTree
+
+    /// <summary>
+    /// clear the dialogue Tree from serialized list of saved trees 
+    /// </summary>
+    public DialogueTree ClearDialogueTree() {
+        if ((savedTree != null) && savedTrees.Contains(savedTree)) {
+            savedTrees.Remove(savedTree);
+        }
+
+       // SaveDialogueTree(savedTree);
+        
+        return savedTree = null;
+    }//end of ClearDialogueTree
 
     public List<DialogueTree> LoadDialogueTree() {
         if (File.Exists(Application.persistentDataPath + "/savedTrees.gd")) {
