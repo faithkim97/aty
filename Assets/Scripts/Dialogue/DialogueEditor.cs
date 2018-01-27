@@ -83,6 +83,7 @@ public class DialogueEditor : EditorWindow {
             SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
             sTree.SaveDialogueTree(dTree);
             DialogueTree.SaveDialogueBranches();
+            Debug.Log("Your tree has been saved");
         }
 
 
@@ -118,6 +119,8 @@ public class DialogueEditor : EditorWindow {
 
         if (GUILayout.Button("Clear Dialogue Tree")) {
             ClearTreeButton();
+            dTree = null;
+            saveTreeToObject.GetComponent<SerializedTree>().SaveDialogueTree(dTree);
             Debug.Log("saved tree after clear: " + saveTreeToObject.GetComponent<SerializedTree>().getSavedTree());
             Debug.Log("Your dialogue tree has been cleared");
         }
