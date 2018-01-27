@@ -37,7 +37,7 @@ public class DialogueEditor : EditorWindow {
     List<string> loadedLefts = new List<string>();
     List<int> loadedWindowstoAttach = new List<int>();
     List<int> loadedWindowsAttached = new List<int>();
-
+    bool loadAddBranch = false;
 
 
     [MenuItem("Window/Dialogue editor")]
@@ -100,6 +100,7 @@ public class DialogueEditor : EditorWindow {
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
                 if (sTree.getSavedTree() != null) {
                     listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
+                    tree = listTree;
                     Debug.Log("ListTree Count: " + listTree.Count);
 
                     for (int i = 0; i < listTree.Count; i++) {
@@ -158,6 +159,7 @@ public class DialogueEditor : EditorWindow {
     } //end of AddWindow
 
     void LoadTreeWindow(int id) {
+        loadAddBranch = true;
         //load dialogues
         if (loadedDialogues[id] != null) {
             loadedDialogues[id] = GUILayout.TextArea(loadedDialogues[id], 200);
@@ -229,34 +231,37 @@ public class DialogueEditor : EditorWindow {
 		}
         //text area for left branch
         lefts[id] = GUILayout.TextArea(lefts[id], 100);
-       
-        if (GUILayout.Button("left")) {
-            windowsToAttach.Add(id);
-            if (windowsToAttach.Count == 2) {
-                //setLeft
-                tree[(id-1)/2].setLeft(tree[id]);
-                DialogueTree.setBranch(tree[(id - 1) / 2], tree[id]);
-                DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).setData(lefts[(id-1)/2]);
-                //Debug.Log(DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).getData());
-                attachedWindows.Add(windowsToAttach[0]);
-                attachedWindows.Add(windowsToAttach[1]);
-                windowsToAttach = new List<int>();
-            }
-       }//end of if left
+ 
+            if (GUILayout.Button("left")) {
+          
+                windowsToAttach.Add(id);
+                if (windowsToAttach.Count == 2) {
+                    //setLeft
+                    tree[(id - 1) / 2].setLeft(tree[id]);
+                    DialogueTree.setBranch(tree[(id - 1) / 2], tree[id]);
+                    DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).setData(lefts[(id - 1) / 2]);
+                    //Debug.Log(DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).getData());
+                    attachedWindows.Add(windowsToAttach[0]);
+                    attachedWindows.Add(windowsToAttach[1]);
+                    windowsToAttach = new List<int>();
+                }
+           
+            }//end of if left
 
-        rights[id] = GUILayout.TextArea(rights[id], 100);
-        if (GUILayout.Button("right")) {
-            windowsToAttach.Add(id);
-            if (windowsToAttach.Count == 2) {
-                tree[(id - 1) / 2].setRight(tree[id]);
-                DialogueTree.setBranch(tree[(id - 1) / 2], tree[id]);
-                DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).setData(rights[(id-1)/2]);
-                //Debug.Log(DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).getData());
-                attachedWindows.Add(windowsToAttach[0]);
-                attachedWindows.Add(windowsToAttach[1]);
-                windowsToAttach = new List<int>();
-            }
-        }//end of if right
+            rights[id] = GUILayout.TextArea(rights[id], 100);
+            if (GUILayout.Button("right")) {
+                windowsToAttach.Add(id);
+                if (windowsToAttach.Count == 2) {
+                    tree[(id - 1) / 2].setRight(tree[id]);
+                    DialogueTree.setBranch(tree[(id - 1) / 2], tree[id]);
+                    DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).setData(rights[(id - 1) / 2]);
+                    //Debug.Log(DialogueTree.getBranch(tree[(id - 1) / 2], tree[id]).getData());
+                    attachedWindows.Add(windowsToAttach[0]);
+                    attachedWindows.Add(windowsToAttach[1]);
+                    windowsToAttach = new List<int>();
+                }
+            }//end of if right
+  
         GUI.DragWindow();
     }//end of DrawNodeWindow
 
