@@ -184,13 +184,14 @@ public class DialogueEditor : EditorWindow {
             else if ( listTree[id].getLeft() == null || (listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) == null)){
                 
                 if (GUILayout.Button("left")) {
-                    loadedWindowstoAttach.Add(id);
-                    if (loadedWindowstoAttach.Count == 2) {
+                    windowsToAttach.Add(id);
+                    if (windowsToAttach.Count == 2) {
+                         listTree[(id - 1) / 2].setLeft(listTree[id]);
                         DialogueTree.setBranch(listTree[(id - 1) / 2], listTree[id]);
                         DialogueTree.getBranch(listTree[(id - 1) / 2], listTree[id]).setData(loadedLefts[id]);
-                        loadedWindowsAttached.Add(loadedWindowstoAttach[0]);
-                        loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
-                        loadedWindowstoAttach = new List<int>();
+                        attachedWindows.Add(loadedWindowstoAttach[0]);
+                        attachedWindows.Add(loadedWindowstoAttach[1]);
+                        windowsToAttach = new List<int>();
 
                     }
                 }
@@ -258,6 +259,8 @@ public class DialogueEditor : EditorWindow {
         }//end of if right
         GUI.DragWindow();
     }//end of DrawNodeWindow
+
+    
 
     void DrawNodeCurve(Rect start, Rect end) {
         Vector3 startPos = new Vector3(start.x + start.width, start.y + start.height / 2, 0);
