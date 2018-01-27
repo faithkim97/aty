@@ -170,6 +170,9 @@ public class DialogueEditor : EditorWindow {
             if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 loadedLefts[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData(), 100);
                 LoadGUIBranches(id, 1);
+                if (GUILayout.Button("Edit left response")) {
+                    Debug.Log("left");
+                }
             }
             else {
                 loadedLefts[id] = GUILayout.TextArea("insert left response", 100);
