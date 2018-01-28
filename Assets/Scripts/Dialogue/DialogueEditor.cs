@@ -99,6 +99,7 @@ public class DialogueEditor : EditorWindow {
                 //you don't need this 
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
                 if (sTree.getSavedTree() != null) {
+                    dTree = sTree.getSavedTree();
                     listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
                     tree = listTree;
                     Debug.Log("ListTree Count: " + listTree.Count);
@@ -170,10 +171,6 @@ public class DialogueEditor : EditorWindow {
 
         
         loadedLefts[id] = GUILayout.TextArea(loadedLefts[id], 200);
-
-        //load left
-        //Debug.Log("laoded lefts: " + loadedLefts.Count);
-        // if (loadedLefts.Count > 0) {
         
         if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 LoadGUIBranches(id, 1);
@@ -186,31 +183,42 @@ public class DialogueEditor : EditorWindow {
             else if ( listTree[id].getLeft() == null || (listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) == null)){
                 
                 if (GUILayout.Button("left")) {
-                    windowsToAttach.Add(id);
-                    if (windowsToAttach.Count == 2) {
+                   // windowsToAttach.Add(id);
+                    //if (windowsToAttach.Count == 2) {
                          listTree[(id - 1) / 2].setLeft(listTree[id]);
                         DialogueTree.setBranch(listTree[(id - 1) / 2], listTree[id]);
                         DialogueTree.getBranch(listTree[(id - 1) / 2], listTree[id]).setData(loadedLefts[id]);
-                        attachedWindows.Add(loadedWindowstoAttach[0]);
-                        attachedWindows.Add(loadedWindowstoAttach[1]);
-                        windowsToAttach = new List<int>();
+                        //attachedWindows.Add(loadedWindowstoAttach[0]);
+                        //attachedWindows.Add(loadedWindowstoAttach[1]);
+                        //windowsToAttach = new List<int>();
 
-                    }
+                    //}
                 }
             }
 
-        //} 
-
-        //load right
-        if (loadedRights.Count > 0) {
-            if ((listTree[id].getRight() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getRight()) != null)) {
-                loadedRights[id] = GUILayout.TextArea(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData(), 100);
+        loadedRights[id] = GUILayout.TextArea(loadedRights[id], 100);
+        if ((listTree[id].getRight() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getRight()) != null)) {
                 LoadGUIBranches(id, 2);
-            }
-            else {
-                loadedRights[id] = GUILayout.TextArea("insert right response", 100);
+            if (GUILayout.Button("edit right")) {
+                DialogueTree.getBranch(listTree[id], listTree[id].getRight()).setData(loadedRights[id]);
+                Debug.Log(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData());
             }
         }
+       else {
+            if (GUILayout.Button("right")) {
+             // windowsToAttach.Add(id);
+              if (windowsToAttach.Count == 2) {
+                    listTree[(id - 1) / 2].setRight(listTree[id]);
+                    DialogueTree.setBranch(listTree[(id - 1) / 2], listTree[id]);
+                    DialogueTree.getBranch(listTree[(id - 1) / 2], listTree[id]).setData(loadedRights[id]);
+                   // attachedWindows.Add(loadedWindowstoAttach[0]);
+                    //attachedWindows.Add(loadedWindowstoAttach[1]);
+                    //windowsToAttach = new List<int>();
+
+              }
+            }
+        }
+        
        
         GUI.DragWindow();
     }
