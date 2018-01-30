@@ -205,9 +205,9 @@ public class DialogueEditor : EditorWindow {
             }
         }
        else {
-            if (GUILayout.Button("right")) {
+            //if (GUILayout.Button("right")) {
              // windowsToAttach.Add(id);
-              if (windowsToAttach.Count == 2) {
+              //if (windowsToAttach.Count == 2) {
                     listTree[(id - 1) / 2].setRight(listTree[id]);
                     DialogueTree.setBranch(listTree[(id - 1) / 2], listTree[id]);
                     DialogueTree.getBranch(listTree[(id - 1) / 2], listTree[id]).setData(loadedRights[id]);
@@ -215,8 +215,8 @@ public class DialogueEditor : EditorWindow {
                     //attachedWindows.Add(loadedWindowstoAttach[1]);
                     //windowsToAttach = new List<int>();
 
-              }
-            }
+              //}
+            //}
         }
         
        
