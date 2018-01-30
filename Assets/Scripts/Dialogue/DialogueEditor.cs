@@ -56,9 +56,14 @@ public class DialogueEditor : EditorWindow {
         }
         //draw the branch when loaded
         if (loadedWindowsAttached.Count >= 2) {
-            for (int i = 0; i < loadedWindowsAttached.Count; i += 2) {
-                DrawNodeCurve(loadWindows[loadedWindowsAttached[i]], loadWindows[loadedWindowsAttached[i + 1]]);
-            }
+            for (int i = 0; i < loadedWindowsAttached.Count; i +=2) {
+				//if (listTree[i].getLeft() != null) {
+				DrawNodeCurve(loadWindows[loadedWindowsAttached[i]], loadWindows[loadedWindowsAttached[i+1]]);
+				//}
+				//if (listTree [i].getRight () != null) {
+					//DrawNodeCurve(loadWindows[loadedWindowsAttached[i]], loadWindows[loadedWindowsAttached[(2*i) + 2]]);
+				//}
+            }//end of for loop
         }
 
         BeginWindows();
@@ -195,11 +200,15 @@ public class DialogueEditor : EditorWindow {
             else if ( listTree[id].getLeft() == null || (listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) == null)){
                 
                 if (GUILayout.Button("left")) {
+				Debug.Log ("inside left button of load");
                    // windowsToAttach.Add(id);
 					loadedWindowstoAttach.Add(id);
+					Debug.Log("windows to attach: " + loadedWindowstoAttach[0]);
                     if (loadedWindowstoAttach.Count == 2) {
+						Debug.Log ("when loaded windows == 2");
                          listTree[(id - 1) / 2].setLeft(listTree[id]);
                         DialogueTree.setBranch(listTree[(id - 1) / 2], listTree[id]);
+					    Debug.Log("parent: "  + listTree[(id-1)/2].getDialogue() + " child: " + listTree[id].getDialogue());
                         DialogueTree.getBranch(listTree[(id - 1) / 2], listTree[id]).setData(loadedLefts[id]);
 						loadedWindowsAttached.Add (loadedWindowstoAttach[0]);
 						loadedWindowsAttached.Add (loadedWindowstoAttach [1]);
@@ -260,7 +269,7 @@ public class DialogueEditor : EditorWindow {
         lefts[id] = GUILayout.TextArea(lefts[id], 100);
  
             if (GUILayout.Button("left")) {
-          
+			
                 windowsToAttach.Add(id);
                 if (windowsToAttach.Count == 2) {
                     //setLeft
