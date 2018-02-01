@@ -54,6 +54,8 @@ public class DialogueEditor : EditorWindow {
                 DrawNodeCurve(windows[attachedWindows[i]], windows[attachedWindows[i + 1]]);
             }
         }
+
+		Debug.Log ("loaded windows: " + loadedWindowsAttached.Count);
         //draw the branch when loaded
         if (loadedWindowsAttached.Count >= 2) {
             for (int i = 0; i < loadedWindowsAttached.Count; i +=2) {
@@ -65,6 +67,8 @@ public class DialogueEditor : EditorWindow {
 				//}
             }//end of for loop
         }
+
+		loadedWindowsAttached = new List<int> ();
 
         BeginWindows();
 
@@ -84,7 +88,6 @@ public class DialogueEditor : EditorWindow {
         AddWindows();
         //when loading windows from an existing tree
         for (int i = 0; i < loadWindows.Count; i++) {
-
             string rightDialogue = ((listTree[i].getRight() != null) && (DialogueTree.getBranch(listTree[i], listTree[i].getRight()) != null)) ? DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData() : ("insert right response");
             string leftDialogue = ((listTree[i].getLeft() != null) && (DialogueTree.getBranch(listTree[i], listTree[i].getLeft()) != null)) ? DialogueTree.getBranch(listTree[i], listTree[i].getLeft()).getData() : ("insert left response");
             loadedLefts.Add(leftDialogue);
@@ -104,12 +107,14 @@ public class DialogueEditor : EditorWindow {
 
 
         if (GUILayout.Button("Load Tree")) {
+			loadedWindowsAttached = new List<int> ();
+			//zero here
+			//Debug.Log ("load count: " + loadedWindowsAttached.Count);
             if (saveTreeToObject != null) {
 				loadTree = true;
                 loadWindows = new List<Rect>();
                 SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
                 savedTrees = sTree.LoadDialogueTree();
-
                 //savedTrees[sTree.getID()].traverseTree();
                 //you don't need this 
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
@@ -119,7 +124,6 @@ public class DialogueEditor : EditorWindow {
                     tree = listTree;
 					dTree = listTree [0];
                     Debug.Log("ListTree Count: " + listTree.Count);
-
                     for (int i = 0; i < listTree.Count; i++) {
                         //create windows
                         loadWindows.Add(new Rect(10, 10, 200, 200));
@@ -133,6 +137,8 @@ public class DialogueEditor : EditorWindow {
                 else {
                     Debug.Log("Your dialogue tree is null");
                 }
+
+
             } 
         }//end of load button
 
@@ -191,6 +197,7 @@ public class DialogueEditor : EditorWindow {
         
         if ((listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) != null)) {
                 LoadGUIBranches(id, 1);
+		
                 if (GUILayout.Button("edit left")) {
                     DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).setData(loadedLefts[id]);
                     Debug.Log(DialogueTree.getBranch(listTree[id], listTree[id].getLeft()).getData());
@@ -198,15 +205,17 @@ public class DialogueEditor : EditorWindow {
 
             }
             else if ( listTree[id].getLeft() == null || (listTree[id].getLeft() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getLeft()) == null)){
-                
+     
                 if (GUILayout.Button("left")) {
-				Debug.Log ("inside left button of load");
+					Debug.Log ("inside left of load");
+					Debug.Log ("windowsAttached: " + loadedWindowsAttached.Count);
                    // windowsToAttach.Add(id);
 					loadedWindowstoAttach.Add(id);
-					Debug.Log("windows to attach: " + loadedWindowstoAttach[0]);
-                    if (loadedWindowstoAttach.Count == 2) {
+
+					//Debug.Log("windows to attach: " + loadedWindowstoAttach[0]);
+				if (loadedWindowstoAttach.Count == 2) {
 						Debug.Log ("when loaded windows == 2");
-                         listTree[(id - 1) / 2].setLeft(listTree[id]);
+                        listTree[(id - 1) / 2].setLeft(listTree[id]);
                         DialogueTree.setBranch(listTree[(id - 1) / 2], listTree[id]);
 					    Debug.Log("parent: "  + listTree[(id-1)/2].getDialogue() + " child: " + listTree[id].getDialogue());
                         DialogueTree.getBranch(listTree[(id - 1) / 2], listTree[id]).setData(loadedLefts[id]);
@@ -218,12 +227,13 @@ public class DialogueEditor : EditorWindow {
                         //windowsToAttach = new List<int>();
 
                     }
-                }
+                }//end of left 
             }//end of else if 
 
         loadedRights[id] = GUILayout.TextArea(loadedRights[id], 100);
         if ((listTree[id].getRight() != null) && (DialogueTree.getBranch(listTree[id], listTree[id].getRight()) != null)) {
                 LoadGUIBranches(id, 2);
+	
             if (GUILayout.Button("edit right")) {
                 DialogueTree.getBranch(listTree[id], listTree[id].getRight()).setData(loadedRights[id]);
                 Debug.Log(DialogueTree.getBranch(listTree[id], listTree[id].getRight()).getData());
@@ -257,6 +267,7 @@ public class DialogueEditor : EditorWindow {
         loadedWindowsAttached.Add(loadedWindowstoAttach[1]);
         loadedWindowstoAttach = new List<int>();
 
+
     }
     void DrawNodeWindow(int id) {
 		//create dialogue area 
@@ -269,7 +280,7 @@ public class DialogueEditor : EditorWindow {
         lefts[id] = GUILayout.TextArea(lefts[id], 100);
  
             if (GUILayout.Button("left")) {
-			
+			Debug.Log ("inside left of draw node");
                 windowsToAttach.Add(id);
                 if (windowsToAttach.Count == 2) {
                     //setLeft
@@ -286,6 +297,7 @@ public class DialogueEditor : EditorWindow {
 
             rights[id] = GUILayout.TextArea(rights[id], 100);
             if (GUILayout.Button("right")) {
+			Debug.Log ("in right");
                 windowsToAttach.Add(id);
                 if (windowsToAttach.Count == 2) {
                     tree[(id - 1) / 2].setRight(tree[id]);
