@@ -69,6 +69,10 @@ public class SerializedTree : MonoBehaviour {
 		return savedTree;
 	}
 
+    public static DialogueTree getSavedTree(int id) {
+        return savedTrees[id];
+    }
+
 
 
 	public List<DialogueTree> getTreeInList(DialogueTree dTree) {
