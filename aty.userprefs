@@ -2,12 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Dialogue/DialogueEditor.cs">
     <Files>
-      <File FileName="Assets/Scripts/Dialogue/DialogueEditor.cs" Line="45" Column="4" />
+      <File FileName="Assets/Scripts/Dialogue/DialogueEditor.cs" Line="71" Column="59" />
       <File FileName="Assets/Scripts/Dialogue/DialogueTree.cs" Line="88" Column="19" />
-      <File FileName="Assets/Scripts/Manager/GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Mechanics/PlayerControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/UI/UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Manager/UI/UIGameOver.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Dialogue/SerializedTree.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

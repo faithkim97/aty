@@ -39,23 +39,28 @@ public class PlayerControl : MonoBehaviour {
     }//end of jump
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("coin")) {
-			GameManager.incCoinCount();
-            GameManager.decreaseTunnelHeight(GameObject.Find("Top"));
-            GameManager.decreaseTunnelHeight(GameObject.Find("Bottom"));
-            GameObject.Destroy(other.gameObject);
-        } 
-        else if ( other.gameObject.CompareTag("obstacle")) {
+		if (other.gameObject.CompareTag ("coin")) {
+			GameManager.incCoinCount ();
+			GameManager.decreaseTunnelHeight (GameObject.Find ("Top"));
+			GameManager.decreaseTunnelHeight (GameObject.Find ("Bottom"));
 			GameObject.Destroy (other.gameObject);
-            GameManager.increaseTunnelHeight(GameObject.Find("Top"));
-            GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
-            if (GameManager.getCoinCount() == 0) {
-                GameManager.incDeathCount();
-                //game over scene 
-                GameManager.Instance.LoadScene(1);
-            }
-            GameManager.decCoinCount ();
-        }
+		} else if (other.gameObject.CompareTag ("obstacle")) {
+			GameObject.Destroy (other.gameObject);
+			GameManager.increaseTunnelHeight (GameObject.Find ("Top"));
+			GameManager.increaseTunnelHeight (GameObject.Find ("Bottom"));
+			if (GameManager.getCoinCount () == 0) {
+				GameManager.incDeathCount ();
+				//game over scene 
+				GameManager.Instance.LoadScene (1);
+			}
+			GameManager.decCoinCount ();
+		}// end of else if 
+
+		else if (other.gameObject.CompareTag ("diaTag")) {
+			DialogueManager diaManager = GameObject.FindObjectOfType<DialogueManager> ();
+			diaManager.diaActive = true;
+
+		}
     }
 
 

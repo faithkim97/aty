@@ -41,6 +41,7 @@ public class DialogueEditor : EditorWindow {
 	bool loadTree = false;
 
 
+
     [MenuItem("Window/Dialogue editor")]
     static void ShowEditor() {
         DialogueEditor editor = EditorWindow.GetWindow<DialogueEditor>();
@@ -48,27 +49,27 @@ public class DialogueEditor : EditorWindow {
     }
 
     void OnGUI() {
-		//draw the branch
         if (attachedWindows.Count >= 2) {
             for (int i = 0; i < attachedWindows.Count; i += 2) {
                 DrawNodeCurve(windows[attachedWindows[i]], windows[attachedWindows[i + 1]]);
             }
         }
 
-		Debug.Log ("loaded windows: " + loadedWindowsAttached.Count);
+		//Debug.Log ("loaded windows: " + loadedWindowsAttached.Count);
+
         //draw the branch when loaded
         if (loadedWindowsAttached.Count >= 2) {
             for (int i = 0; i < loadedWindowsAttached.Count; i +=2) {
-				//if (listTree[i].getLeft() != null) {
 				DrawNodeCurve(loadWindows[loadedWindowsAttached[i]], loadWindows[loadedWindowsAttached[i+1]]);
-				//}
-				//if (listTree [i].getRight () != null) {
-					//DrawNodeCurve(loadWindows[loadedWindowsAttached[i]], loadWindows[loadedWindowsAttached[(2*i) + 2]]);
-				//}
+			
             }//end of for loop
+			//loadedWindowsAttached = new List<int> ();
         }
 
-		loadedWindowsAttached = new List<int> ();
+		///I DON'T KNOW WHAT TO DOOOAWOFAEWIOAWOOFEWEWAJOFFWEOJO
+	
+		//loadedWindowsAttached = new List<int> ();
+
 
         BeginWindows();
 
@@ -107,7 +108,7 @@ public class DialogueEditor : EditorWindow {
 
 
         if (GUILayout.Button("Load Tree")) {
-			loadedWindowsAttached = new List<int> ();
+			
 			//zero here
 			//Debug.Log ("load count: " + loadedWindowsAttached.Count);
             if (saveTreeToObject != null) {
@@ -183,6 +184,7 @@ public class DialogueEditor : EditorWindow {
     } //end of AddWindow
 
     void LoadTreeWindow(int id) {
+		
         loadAddBranch = true;
         //load dialogues
 		if (loadedDialogues [id] != null) {
