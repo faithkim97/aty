@@ -56,11 +56,6 @@ public class PlayerControl : MonoBehaviour {
 			GameManager.decCoinCount ();
 		}// end of else if 
 
-		else if (other.gameObject.CompareTag ("diaTag")) {
-			DialogueManager diaManager = GameObject.FindObjectOfType<DialogueManager> ();
-			diaManager.diaActive = true;
-
-		}
     }
 
 
