@@ -28,7 +28,7 @@ public class DialogueEditor : EditorWindow {
 	GameObject saveTreeToObject;
     
 	//List<Rect> loadWindows = new List<Rect>(); 
-    static List<DialogueTree> savedTrees = new List<DialogueTree>();
+    static Dictionary<int, DialogueTree> savedTrees = new Dictionary<int,DialogueTree>();
 
     List<Rect> loadWindows = new List<Rect>();
     List<DialogueTree> listTree = new List<DialogueTree>();
@@ -66,7 +66,7 @@ public class DialogueEditor : EditorWindow {
 			//loadedWindowsAttached = new List<int> ();
         }
 
-		///I DON'T KNOW WHAT TO DOOOAWOFAEWIOAWOOFEWEWAJOFFWEOJO
+	
 	
 		//loadedWindowsAttached = new List<int> ();
 
@@ -116,10 +116,11 @@ public class DialogueEditor : EditorWindow {
                 loadWindows = new List<Rect>();
                 SerializedTree sTree = saveTreeToObject.GetComponent<SerializedTree>();
                 savedTrees = sTree.LoadDialogueTree();
+                
                 //savedTrees[sTree.getID()].traverseTree();
                 //you don't need this 
                 List<DialogueTree.DialogueBranch> branches = DialogueTree.LoadDialogueBranches();
-                if (sTree.getSavedTree() != null) {
+                if (SerializedTree.getSavedTrees().ContainsKey(sTree.getID())) {
                     //dTree = sTree.getSavedTree();
                     listTree = sTree.getTreeInList(savedTrees[sTree.getID()]);
                     tree = listTree;

@@ -14,7 +14,7 @@ public class DialogueHolder : MonoBehaviour {
 	void Start () {
         //load tree
         SerializedTree sTree = gameObject.GetComponent<SerializedTree>();
-        List<DialogueTree> savedTrees =  sTree.LoadDialogueTree();
+        Dictionary<int,DialogueTree> savedTrees =  sTree.LoadDialogueTree();
         savedTree = savedTrees[sTree.getID()];
         currDialogue = savedTree;
         DialogueTree.LoadDialogueBranches();
