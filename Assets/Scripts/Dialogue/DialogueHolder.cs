@@ -5,6 +5,7 @@ using UnityEngine;
 /// Will be attached to each game object
 /// Activates and prints out dialogue from serialized tree
 /// </summary>
+[System.Serializable]
 public class DialogueHolder : MonoBehaviour {
     private DialogueTree savedTree;
     private DialogueManager diaManager;
@@ -24,15 +25,39 @@ public class DialogueHolder : MonoBehaviour {
         ID = sTree.getID();
 	}
 
-    private void OnTriggerStay2D(Collider2D collision) {
-        Debug.Log("inside trigger");
-        if (Input.GetKeyDown(KeyCode.Space) && collision.gameObject.CompareTag("player")) {
-            diaManager.ShowBox();
+
+    private void Update() {
+        if (diaManager.diaActive) {
+            traverseDialogues();
             diaManager.ShowDialogue(currDialogue.getDialogue());
             diaManager.ShowPlayerChoices(currDialogue);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision) {
+        //Debug.Log("inside trigger");
+        if (Input.GetKeyDown(KeyCode.Space) && collision.gameObject.CompareTag("player")) {
+            diaManager.ShowBox();
+            
             
         }
     }//end of Trigger
+
+    public void traverseDialogues() {
+        if (Input.GetKeyDown(KeyCode.K)) {
+
+            if (currDialogue != null) { Debug.Log("inside right");
+                currDialogue = currDialogue.getRight(); }
+           
+        }
+        else if (Input.GetKeyDown(KeyCode.L)) {
+            if (currDialogue != null) { Debug.Log("inside left");
+                currDialogue = currDialogue.getLeft(); }
+            
+        }
+    }
+
+    //public void Save current node 
 
 
 }//end of DialogueHolder

@@ -38,9 +38,8 @@ public class DialogueManager : MonoBehaviour {
 
     public void ShowPlayerChoices(DialogueTree currNode) {
 
-        negText.text = DialogueTree.getBranch(currNode, currNode.getLeft()).getData();
-        Debug.Log(DialogueTree.getBranch(currNode, currNode.getLeft()).getData());
-        posText.text = DialogueTree.getBranch(currNode, currNode.getRight()).getData();
+        negText.text = DialogueTree.getBranch(currNode, currNode.getLeft()) != null ? DialogueTree.getBranch(currNode, currNode.getLeft()).getData() : "";
+        posText.text = DialogueTree.getBranch(currNode, currNode.getRight()) != null ? DialogueTree.getBranch(currNode, currNode.getRight()).getData() : "";
         //Debug.Log(DialogueTree.getBranch(currNode, currNode.getRight()).getData());
         //Debug.Log(posText.text);
     }
