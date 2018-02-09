@@ -283,8 +283,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Animation\TunnelAnimation.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueCreator.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueEditor.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueHolder.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueList.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueTree.cs" />
     <Compile Include="Assets\Scripts\Dialogue\SerializedTree.cs" />
