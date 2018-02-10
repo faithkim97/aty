@@ -7,57 +7,50 @@ using UnityEngine;
 /// </summary>
 [System.Serializable]
 public class DialogueHolder : MonoBehaviour {
-    private DialogueTree savedTree;
+    private DialogueList dialogueList;
     private DialogueManager diaManager;
     int ID;
-    private DialogueTree currDialogue;
+    //list of strings of all dialogues that need to be displayed
+    private List<string> currDialogue;
+ 
 	// Use this for initialization
 	void Start () {
-        //load tree
-        SerializedTree sTree = gameObject.GetComponent<SerializedTree>();
-        Dictionary<int,DialogueTree> savedTrees =  sTree.LoadDialogueTree();
-        savedTree = savedTrees[sTree.getID()];
-        currDialogue = savedTree;
-        DialogueTree.LoadDialogueBranches();
-        //savedTree.traverseTree();
-        //find dialogue manager
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
-        ID = sTree.getID();
+        DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
+        Dictionary<int, List<string>> savedDialogues = dialogueList.LoadDialogueList();
+        currDialogue = savedDialogues[ID];
+ 
 	}
 
 
     private void Update() {
         if (diaManager.diaActive) {
-            traverseDialogues();
-            diaManager.ShowDialogue(currDialogue.getDialogue());
-            diaManager.ShowPlayerChoices(currDialogue);
+            diaManager.ShowDialogue(traverseList());
+
         }
-    }
+    }//end of Update()
 
     private void OnTriggerStay2D(Collider2D collision) {
         //Debug.Log("inside trigger");
         if (Input.GetKeyDown(KeyCode.Space) && collision.gameObject.CompareTag("player")) {
             diaManager.ShowBox();
+            diaManager.ShowDialogue("hello");
+           // diaManager.ShowDialogue(traverseList());
             
             
         }
     }//end of Trigger
 
-    public void traverseDialogues() {
-        if (Input.GetKeyDown(KeyCode.K)) {
 
-            if (currDialogue != null) { Debug.Log("inside right");
-                currDialogue = currDialogue.getRight(); }
-           
+
+    public string traverseList() {
+        int i = 1;
+        if (Input.GetKey(KeyCode.K) && i < currDialogue.Count ) {
+            return currDialogue[i];
+            i++;
         }
-        else if (Input.GetKeyDown(KeyCode.L)) {
-            if (currDialogue != null) { Debug.Log("inside left");
-                currDialogue = currDialogue.getLeft(); }
-            
-        }
+        return "";
     }
-
-    //public void Save current node 
 
 
 }//end of DialogueHolder

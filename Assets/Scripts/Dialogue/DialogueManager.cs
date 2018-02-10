@@ -7,8 +7,6 @@ public class DialogueManager : MonoBehaviour {
     public GameObject diaBox;
     public Text diaText;
     public bool diaActive = false;
-    public Text negText;
-    public Text posText;
 
     private void Start() {
         diaBox.SetActive(false);
@@ -36,16 +34,4 @@ public class DialogueManager : MonoBehaviour {
         diaText.text = dialogue;
     }
 
-    public void ShowPlayerChoices(DialogueTree currNode) {
-
-        negText.text = DialogueTree.getBranch(currNode, currNode.getLeft()) != null ? DialogueTree.getBranch(currNode, currNode.getLeft()).getData() : "";
-        posText.text = DialogueTree.getBranch(currNode, currNode.getRight()) != null ? DialogueTree.getBranch(currNode, currNode.getRight()).getData() : "";
-        //Debug.Log(DialogueTree.getBranch(currNode, currNode.getRight()).getData());
-        //Debug.Log(posText.text);
-    }
-
-
-   
-
-
-}
+}//end of class

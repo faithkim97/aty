@@ -23,8 +23,7 @@ public class DialogueList : MonoBehaviour {
     [HideInInspector]
     private static Dictionary<int, List<string>> savedDialogues = new Dictionary<int, List<string>>();
 
-    public void SaveDialogueList(List<string> d) {
-        dialogue = d;
+    public void SaveDialogueList() {
         if (!savedDialogues.ContainsKey(id) && dialogue != null) {
             //Debug.Log("inside saved tree does not contain key");
             savedDialogues.Add(id, dialogue);
@@ -36,7 +35,7 @@ public class DialogueList : MonoBehaviour {
         file.Close();
     }
 
-    public Dictionary<int, List<string>> LoadDialogueTree() {
+    public Dictionary<int, List<string>> LoadDialogueList() {
         if (File.Exists(Application.persistentDataPath + "/savedDialogues.gd")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedDialogues.gd", FileMode.Open);
@@ -58,6 +57,9 @@ public class DialogueList : MonoBehaviour {
     }
 
     public void setDialogue(string dia) {
+        if (dialogue == null) {
+            dialogue = new List<string>();
+        }
         dialogue.Add(dia);
     }
 

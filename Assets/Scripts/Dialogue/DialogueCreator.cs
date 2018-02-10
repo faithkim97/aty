@@ -1,72 +1,80 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
+
 
 public class DialogueCreator : EditorWindow {
+
     List<Rect> windows = new List<Rect>();
     List<int> windowsToAttach = new List<int>();
     List<int> attachedWindows = new List<int>();
+    GameObject currObject;
 
-    List<string> dialogue = new List<string>();
-    GameObject attachedObject;
-    DialogueList dialogueList; 
-
-    [MenuItem("Window/Dialogue creator")]
+    List<string> dialogues = new List<string>();
+    DialogueList currDialogue;
+    [MenuItem("Window/Dialogue Creator")]
     static void ShowEditor() {
         DialogueCreator editor = EditorWindow.GetWindow<DialogueCreator>();
     }
 
-    private void OnGUI() {
-        attachedObject = (GameObject)EditorGUILayout.ObjectField("Game Object to Attach Dialogue", attachedObject, typeof(GameObject), true);
-        if (attachedObject != null) {
-            dialogueList = attachedObject.GetComponent<DialogueList>();
+
+    void OnGUI() {
+        currObject = (GameObject)EditorGUILayout.ObjectField("Game Object to Save/Load Tree", currObject, typeof(GameObject), true);
+        if (currObject != null) {
+            currDialogue = currObject.GetComponent<DialogueList>();
         }
+        if (windowsToAttach.Count == 2) {
+            attachedWindows.Add(windowsToAttach[0]);
+            attachedWindows.Add(windowsToAttach[1]);
+            windowsToAttach = new List<int>();
+        }
+
         if (attachedWindows.Count >= 2) {
             for (int i = 0; i < attachedWindows.Count; i += 2) {
                 DrawNodeCurve(windows[attachedWindows[i]], windows[attachedWindows[i + 1]]);
             }
         }
 
+        BeginWindows();
+
+        if (GUILayout.Button("Create Node")) {
+            windows.Add(new Rect(100, 100, 200, 200));
+            dialogues.Add("Insert dialogue here");
+        }
+
         for (int i = 0; i < windows.Count; i++) {
             windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
         }
 
-        if (GUILayout.Button("Create Node")) {
-            windows.Add(new Rect(10, 10, 200, 200));
-            dialogue.Add("insert dialogue here");
-        }
-
         if (GUILayout.Button("Save Dialogue List")) {
-            dialogueList.SaveDialogueList(dialogue);
-            Debug.Log("saved");
+            currDialogue.SaveDialogueList();
+            Debug.Log("Saved current dialogue");
         }
 
         if (GUILayout.Button("Clear Dialogue List")) {
-            dialogueList.ClearDialogue();
+            List<string> currD = currDialogue.ClearDialogue();
+            currDialogue.SaveDialogueList();
+            Debug.Log("cleared: " + currD);
         }
 
-    }//end of onGUI
+        EndWindows();
+    }
 
 
     void DrawNodeWindow(int id) {
-        dialogue[id] = GUILayout.TextArea(dialogue[id], 200);
-        if (GUILayout.Button("Add dialogue")) {
-            dialogueList.setDialogue(dialogue[id]);
+        dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
+
+        if (GUILayout.Button("Add Dialogue")) {
+            currDialogue.setDialogue(dialogues[id]);
         }
 
         if (GUILayout.Button("Attach")) {
             windowsToAttach.Add(id);
-            if (windowsToAttach.Count == 2) {
-                attachedWindows.Add(windowsToAttach[0]);
-                attachedWindows.Add(windowsToAttach[1]);
-                windowsToAttach = new List<int>();
-            }//end of count == 2
         }
 
+        GUI.DragWindow();
+    }
 
-
-    }//end of DrawNodeWindow
 
     void DrawNodeCurve(Rect start, Rect end) {
         Vector3 startPos = new Vector3(start.x + start.width, start.y + start.height / 2, 0);
@@ -78,9 +86,7 @@ public class DialogueCreator : EditorWindow {
         for (int i = 0; i < 3; i++) {// Draw a shadow
             Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 5);
         }
+
         Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.black, null, 1);
     }
-
-
-
-}//end of DialogueCreator
+}
