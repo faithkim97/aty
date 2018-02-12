@@ -1,34 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 //possibly create boolean value of isSaved = true/false in one of the dialogue scripts
 /// <summary>
 /// Keeps track of all dialogues in the style of a binary tree
 /// </summary>
-public class DialogueTree : MonoBehaviour {
-    //current node player dialogue is on
-    private DialogueNode currNode;
+[System.Serializable]
+public class DialogueTree {
+   
     //left child of tree
-    //left == negative options
-    private DialogueNode left;
-    //right == positive options
-    private DialogueNode right;
+    //left == positive options
+    private DialogueTree left;
+    //right == negative options
+    private DialogueTree right;
+	//dialogue of each node
+	private string diaData;
+	//id of node to keep track of node
+	private int id;
+    //[SerializeField][HideInInspector]
+    private static List<DialogueBranch> branches = new List<DialogueBranch>();
 
-    //instance of DialogueTree
-    private DialogueTree instance;
-    public DialogueTree Instance {
-        get {
-            if (instance == null) {
-                Instance = FindObjectOfType<DialogueTree>();
-            }
-            return instance;
-        }
+	public DialogueTree() {
+		diaData = null;
+		left = null;
+		right = null;
+       // branches = new List<DialogueBranch>();
+	}
 
-        set {
-            instance = value;
-        }
+	public DialogueTree(int id) {
+		this.id = id;
+		diaData = null;
+		left = null;
+        right = null;
+        //branches = new List<DialogueBranch>();
+    }
+	public DialogueTree(string data, int id, DialogueTree left, DialogueTree right) {
+		diaData = data;
+		this.id = id;
+		this.left = left;
+		this.right = right;
+        //branches = new List<DialogueBranch>();
+    }
+	public DialogueTree(string data) {
+		left = null;
+		right = null;
+		diaData = data;
+        //branches = new List<DialogueBranch>();
     }
 
+	public DialogueTree findNode(int id) {
+		DialogueTree currNode = this;
+		return findNode(id, currNode);
+	}
+
+	private DialogueTree findNode(int id, DialogueTree currNode) {
+		if (currNode.getLeft () == null && currNode.getRight () == null && currNode.getID () != id ) {
+			return null;
+		}
+
+		findNode (id, currNode.getLeft ());
+		findNode (id, currNode.getRight ());
+		return currNode;
+	}
+	
+	public int getID() {
+		return id;
+	}
+
+	public void setID(int i) {
+		id = i;
+	}
     public bool hasLeft() {
         return left != null;
     }
@@ -41,49 +84,144 @@ public class DialogueTree : MonoBehaviour {
         return ((left == null) && (right == null));
     }
 
-    public DialogueNode getLeft() {
+	public DialogueTree getLeft() {
         return left;
     }
 
-    public DialogueNode getRight() {
+	public DialogueTree getRight() {
         return right;
     }
 
-    public DialogueNode getCurrNode() {
-        return currNode;
-    }
+   
 
-    public void setCurrNode(DialogueNode newNode) {
-        currNode = newNode;
-    }
+	public string getDialogue() {
+		return diaData;
+	}
 
-    public void setLeft(DialogueNode node) {
+	public void setDialogue(string newDia) {
+		diaData = newDia;
+	}
+
+	public void traverseTree() {
+		DialogueTree currNode = this;
+		traverseTree (currNode);
+
+	}
+	//preorder
+	private void traverseTree( DialogueTree currNode ) {
+		if (currNode == null) {
+			return;
+		}
+		Debug.Log (currNode.getDialogue ());
+		traverseTree (currNode.getLeft ());
+		traverseTree( currNode.getRight());
+		
+	}//end of traverseTree
+
+    public void setLeft(DialogueTree node) {
         left = node;
+        //setBranch(this, left);
+
     }
 
-    public void setRight(DialogueNode node) {
+    public void setRight(DialogueTree node) {
         right = node;
+        //setBranch(this, right);
     }
 
-
-
-
-    //[Serializable]
+    public static void setBranch(DialogueTree parent, DialogueTree child) {
+        /*
+        DialogueBranch currBranch = getBranch(parent, child);
+        //if it contains branch, then remove it
+        if (branches.Contains(currBranch)) {
+            branches.Remove(currBranch);
+        }*/
+        branches.Add(new DialogueBranch(parent, child));
+        //Debug.Log("branch just added: " + branches[branches.Count - 1].getParent().getDialogue() + " " + branches[branches.Count-1].getChild().getDialogue());
+    }
     /// <summary>
-    /// Each node holds dialogue data
+    ///get branch
     /// </summary>
-    public class DialogueNode {
-        /// <summary>
-        /// holds dialogue string in data
-        /// </summary>
-        private string diaData;
+    /// <param name="child"></param>
+    /// <returns></returns>
+    public static DialogueBranch getBranch(DialogueTree parent, DialogueTree child) {
+        for (int i = 0; i < branches.Count; i++) {
+            if (branches[i].hasBranch(parent, child) || branches[i].hasBranch(child, parent)) {
+                //Debug.Log(branches[i]);
+                return branches[i];
+            }
+        }
+        //Debug.Log("inside get branch");
+        return null;
+    }
 
-        public string getDialogue() {
-            return diaData;
+    public static List<DialogueBranch> getBranches() {
+        return branches;
+    }
+
+    public static void SaveDialogueBranches() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/branches.gd");
+        bf.Serialize(file, branches);
+        file.Close();
+    }
+
+    public static List<DialogueBranch> LoadDialogueBranches() {
+        if (File.Exists(Application.persistentDataPath + "/branches.gd")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/branches.gd", FileMode.Open);
+            branches = (List<DialogueBranch>)bf.Deserialize(file);
+            file.Close();
         }
 
-        public void setDialogue(string data) {
-            diaData = data;
-        } 
-    }//end of DialogueNode
+        return branches;
+    }
+         
+    [System.Serializable]
+    public class DialogueBranch {
+        private string data;
+        DialogueTree parent;
+        DialogueTree child;
+        public DialogueBranch() {
+            data = null;
+            parent = null;
+            child = null;
+        }
+        public DialogueBranch(DialogueTree parent, DialogueTree child) {
+            data = null;
+            this.parent = parent;
+            this.child = child;
+        }
+        public DialogueBranch(string data, DialogueTree parent, DialogueTree child) {
+            this.data = data;
+            this.parent = parent;
+            this.child = child;
+        }
+
+       
+        public void setData(string data) {
+            this.data = data;
+        }
+
+        public string getData() {
+            return data;
+        }
+
+        public DialogueTree getParent() {
+            return parent;
+        }
+
+        public DialogueTree getChild() {
+            return child;
+        }
+        public bool hasBranch(DialogueTree parent, DialogueTree child) {
+            if (parent != null && child != null) {
+                if (this.parent.getDialogue() == parent.getDialogue() && this.child.getDialogue() == child.getDialogue()) { return true; }
+            }
+            // return (this.parent.getDialogue() == parent.getDialogue() && this.child.getDialogue() == child.getDialogue());
+            return false;
+        }
+
+        
+    }//end of DialogueBranch class
 }

@@ -9,6 +9,7 @@ TagManager:
   - top
   - bottom
   - diaTrigger
+  - player
   layers:
   - Default
   - TransparentFX
