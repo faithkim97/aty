@@ -11,7 +11,8 @@ public class SerializedTree : MonoBehaviour {
     [SerializeField]
     private int id;
     //list of all saved trees on each NPC; index is according to id number
-    private static List<DialogueTree> savedTrees = new List<DialogueTree>(); 
+    //private static List<DialogueTree> savedTrees = new List<DialogueTree>(); 
+    private static Dictionary<int, DialogueTree> savedTrees = new Dictionary<int, DialogueTree>();
 	//tree but in a list form
     //[SerializeField]
     //current tree but in list form
@@ -19,46 +20,38 @@ public class SerializedTree : MonoBehaviour {
     public int getID() {
         return id;
     }
-	public void SaveDialogueTree( DialogueTree dTree ) {
-		savedTree = dTree;
-        if (!savedTrees.Contains(savedTree)) {
-            //Debug.Log( "saving: " + savedTree);
-            if (savedTree != null) {
-                //Debug.Log("inside savedTree != null");
-                savedTrees.Add(savedTree);
-            }  
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/savedTrees.gd");
-            bf.Serialize(file, savedTrees);
-            //DialogueTree.SaveDialogueBranches();
-            file.Close();
-        }
-        
-    }//end of SaveDialogueTree
 
-    /// <summary>
-    /// clear the dialogue Tree from serialized list of saved trees 
-    /// </summary>
-    public DialogueTree ClearDialogueTree() {
-        if ((savedTree != null) && savedTrees.Contains(savedTree)) {
-            savedTrees.Remove(savedTree);
+    public void SaveDialogueTree(DialogueTree dTree) {
+        savedTree = dTree;
+        if (!savedTrees.ContainsKey(id) && dTree != null) {
+            Debug.Log("inside saved tree does not contain key");
+            savedTrees.Add(id, savedTree);
         }
 
-       // SaveDialogueTree(savedTree);
-        
-        return savedTree = null;
-    }//end of ClearDialogueTree
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/savedTrees.gd");
+        bf.Serialize(file, savedTrees);
+        file.Close();
+    }
 
-    public List<DialogueTree> LoadDialogueTree() {
+    public Dictionary<int,DialogueTree> LoadDialogueTree() {
         if (File.Exists(Application.persistentDataPath + "/savedTrees.gd")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedTrees.gd", FileMode.Open);
-            savedTrees = (List<DialogueTree>)bf.Deserialize(file);
+            savedTrees = (Dictionary<int,DialogueTree>)bf.Deserialize(file);
             file.Close();
         }
 
         //DialogueTree.LoadDialogueBranches();
         return savedTrees;
+    }
+
+    public DialogueTree ClearDialogueTree() {
+        if ((savedTree != null) && savedTrees.ContainsValue(savedTree)) {
+            savedTrees.Remove(id);
+        }
+
+        return savedTree = null;
     }
 
 	public void printTree() {
@@ -68,6 +61,10 @@ public class SerializedTree : MonoBehaviour {
 	public DialogueTree getSavedTree() {
 		return savedTree;
 	}
+
+    public static DialogueTree getSavedTree(int id) {
+        return savedTrees[id];
+    }
 
 
 
@@ -85,5 +82,9 @@ public class SerializedTree : MonoBehaviour {
 		recurseList (dTree.getRight());
 		return treeInList;
 	}
+
+    public static Dictionary<int, DialogueTree> getSavedTrees() {
+        return savedTrees;
+    }
 		
 }
