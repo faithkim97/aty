@@ -12,6 +12,8 @@ public class DialogueHolder : MonoBehaviour {
     int ID;
     //list of strings of all dialogues that need to be displayed
     private List<string> currDialogue;
+	//using this to index into the dialogue 
+	int i;
  
 	// Use this for initialization
 	void Start () {
@@ -49,16 +51,15 @@ public class DialogueHolder : MonoBehaviour {
 
 
     public void traverseList() {
-		diaManager.ShowDialogue (currDialogue [0]);
-        int i = 1;
-        if (Input.GetKey(KeyCode.K) && i < currDialogue.Count ) {
-			diaManager.ShowDialogue (currDialogue [i]);
-			Debug.Log (i);
-			Debug.Log ("count: " + currDialogue.Count);
+		if (i == currDialogue.Count) {
+			diaManager.HideBox ();
+			return;
+		}
+		diaManager.ShowDialogue (currDialogue [i]);
+		if (i < currDialogue.Count && Input.GetKeyUp(KeyCode.K)  ) {
             i++;
         }
-        
-    }
+    }//end of traverselist
 
 
 }//end of DialogueHolder
