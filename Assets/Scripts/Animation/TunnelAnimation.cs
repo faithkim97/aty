@@ -60,33 +60,31 @@ public class TunnelAnimation : MonoBehaviour {
     }
 
     private IEnumerator AnimateDecreaseTunnel(GameObject tunnel) {
-        //change size of tunnel trigger
-        GameObject child = gameObject.transform.GetChild(0).gameObject;
-        BoxCollider2D tunnelTrigger = child.GetComponent<BoxCollider2D>();
+
+        BoxCollider2D tunnelTrigger = tunnel.GetComponent<BoxCollider2D>();
         //change size of tunnel
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight > tunnelHeight; currHeight -= .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
-            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x + 2, currHeight + 2);
+            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x +20, currHeight + 20);
             yield return null;
         }
     }
 
     private IEnumerator AnimateIncreaseTunnel( GameObject tunnel) {
-        //used to change size of the tunnel trigger
-        GameObject child = gameObject.transform.GetChild(0).gameObject;
-        BoxCollider2D tunnelTrigger = child.GetComponent<BoxCollider2D>();
+
+        BoxCollider2D tunnelTrigger = tunnel.GetComponent<BoxCollider2D>();
         //used to change size of the tunnel
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight <= tunnelHeight; currHeight += .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
-            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x + 2, currHeight + 2);
+            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x + 20, currHeight + 20);
             yield return null;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("top") || collision.gameObject.CompareTag("bottom")) {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("bottom") || collision.gameObject.CompareTag("top")) {
             Debug.Log("TUNNELS ARE TOUCHINGGGG");
         }
         
