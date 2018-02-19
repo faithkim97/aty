@@ -28,7 +28,7 @@ public class TunnelAnimation : MonoBehaviour {
         }
     }
     //fix this to be cleaner--a little repetitive
-    private void Start() {
+   /*private void Start() {
         //if player dies at least once, then save the tunnel heights from last gameplay
         if (GameManager.getDeathCount() > 0 && tunnelHeight != 0.0f) {
             GameObject tunnel = GameObject.Find("Top");
@@ -38,7 +38,7 @@ public class TunnelAnimation : MonoBehaviour {
             topRect.sizeDelta = new Vector2(topRect.sizeDelta.x, tunnelHeight);
             bottomRect.sizeDelta = new Vector2(bottomRect.sizeDelta.x, tunnelHeight);
         }     
-    }
+    } */
 
     /// <summary>
     /// starts coroutine for increase animation
@@ -60,20 +60,37 @@ public class TunnelAnimation : MonoBehaviour {
     }
 
     private IEnumerator AnimateDecreaseTunnel(GameObject tunnel) {
+        //change size of tunnel trigger
+        GameObject child = gameObject.transform.GetChild(0).gameObject;
+        BoxCollider2D tunnelTrigger = child.GetComponent<BoxCollider2D>();
+        //change size of tunnel
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight > tunnelHeight; currHeight -= .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
+            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x + 2, currHeight + 2);
             yield return null;
         }
     }
 
     private IEnumerator AnimateIncreaseTunnel( GameObject tunnel) {
+        //used to change size of the tunnel trigger
+        GameObject child = gameObject.transform.GetChild(0).gameObject;
+        BoxCollider2D tunnelTrigger = child.GetComponent<BoxCollider2D>();
+        //used to change size of the tunnel
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight <= tunnelHeight; currHeight += .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
+            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x + 2, currHeight + 2);
             yield return null;
         }
     }
 
-    
-}
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("top") || collision.gameObject.CompareTag("bottom")) {
+            Debug.Log("TUNNELS ARE TOUCHINGGGG");
+        }
+        
+    }//end of on trigger enter
+
+
+}//end of class

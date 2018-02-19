@@ -49,6 +49,7 @@ public class PlayerControl : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("obstacle")) {
 			GameObject.Destroy (other.gameObject);
             IncreaseTunnel();
+            //changeee
 			if (GameManager.getCoinCount () == 0) {
 				GameManager.incDeathCount ();
 				//game over scene 

@@ -10,6 +10,7 @@ TagManager:
   - bottom
   - diaTrigger
   - player
+  - tunnelTrigger
   layers:
   - Default
   - TransparentFX
