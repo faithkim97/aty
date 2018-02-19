@@ -12,20 +12,28 @@ public class DialogueHolder : MonoBehaviour {
     int ID;
     //list of strings of all dialogues that need to be displayed
     private List<string> currDialogue;
+	//using this to index into the dialogue 
+	int i;
  
 	// Use this for initialization
 	void Start () {
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
         Dictionary<int, List<string>> savedDialogues = dialogueList.LoadDialogueList();
-        currDialogue = savedDialogues[ID];
- 
+		if (!savedDialogues.ContainsKey (ID)) {
+			Debug.LogError ("The key in dictionary does not exist");
+		} else {
+			currDialogue = savedDialogues[ID];
+
+		}
+        
 	}
 
     private void Update() {
-        if (diaManager.diaActive) {
-            diaManager.ShowDialogue(currDialogue[1]);
-            diaManager.ShowDialogue(traverseList());
+
+		if (diaManager.diaActive) {
+            //diaManager.ShowDialogue(traverseList());
+			traverseList();
         }
     }
 
@@ -34,23 +42,22 @@ public class DialogueHolder : MonoBehaviour {
         //Debug.Log("inside trigger");
         if (Input.GetKeyDown(KeyCode.Space) && collision.gameObject.CompareTag("player")) {
             diaManager.ShowBox();
-      
-           // diaManager.ShowDialogue(traverseList());
-            
             
         }
     }//end of Trigger
 
 
 
-    public string traverseList() {
-        int i = 1;
-        if (Input.GetKey(KeyCode.K) && i < currDialogue.Count ) {
-            return currDialogue[i];
+    public void traverseList() {
+		if (i == currDialogue.Count) {
+			diaManager.HideBox ();
+			return;
+		}
+		diaManager.ShowDialogue (currDialogue [i]);
+		if (i < currDialogue.Count && Input.GetKeyUp(KeyCode.K)  ) {
             i++;
         }
-        return "";
-    }
+    }//end of traverselist
 
 
 }//end of DialogueHolder
