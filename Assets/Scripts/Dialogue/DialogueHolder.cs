@@ -22,19 +22,19 @@ public class DialogueHolder : MonoBehaviour {
  
 	}
 
-
     private void Update() {
         if (diaManager.diaActive) {
+            diaManager.ShowDialogue(currDialogue[1]);
             diaManager.ShowDialogue(traverseList());
-
         }
-    }//end of Update()
+    }
+
 
     private void OnTriggerStay2D(Collider2D collision) {
         //Debug.Log("inside trigger");
         if (Input.GetKeyDown(KeyCode.Space) && collision.gameObject.CompareTag("player")) {
             diaManager.ShowBox();
-            diaManager.ShowDialogue("hello");
+      
            // diaManager.ShowDialogue(traverseList());
             
             
