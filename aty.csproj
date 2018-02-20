@@ -296,6 +296,7 @@
     <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mechanics\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\ScreenShake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprite Pack\Tap and Fly\Readme.txt" />

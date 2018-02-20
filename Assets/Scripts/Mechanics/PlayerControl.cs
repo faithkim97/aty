@@ -41,13 +41,15 @@ public class PlayerControl : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("coin")) {
 			GameManager.incCoinCount ();
-			GameManager.decreaseTunnelHeight (GameObject.Find ("Top"));
-			GameManager.decreaseTunnelHeight (GameObject.Find ("Bottom"));
+            if (GameManager.getCoinCount() >= 3) {
+                IncreaseTunnel();
+            }
+            else { DecreaseTunnel(); }
 			GameObject.Destroy (other.gameObject);
 		} else if (other.gameObject.CompareTag ("obstacle")) {
 			GameObject.Destroy (other.gameObject);
-			GameManager.increaseTunnelHeight (GameObject.Find ("Top"));
-			GameManager.increaseTunnelHeight (GameObject.Find ("Bottom"));
+            IncreaseTunnel();
+            //changeee
 			if (GameManager.getCoinCount () == 0) {
 				GameManager.incDeathCount ();
 				//game over scene 
@@ -56,6 +58,16 @@ public class PlayerControl : MonoBehaviour {
 			GameManager.decCoinCount ();
 		}// end of else if 
 
+    }
+
+    void DecreaseTunnel() {
+        GameManager.decreaseTunnelHeight(GameObject.Find("Top"));
+        GameManager.decreaseTunnelHeight(GameObject.Find("Bottom"));
+    }
+
+    void IncreaseTunnel() {
+        GameManager.increaseTunnelHeight(GameObject.Find("Top"));
+        GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
     }
 
 
