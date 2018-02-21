@@ -51,13 +51,17 @@ public class PlayerControl : MonoBehaviour {
             IncreaseTunnel();
             //changeee
 			if (GameManager.getCoinCount () == 0) {
-				GameManager.incDeathCount ();
-				//game over scene 
-				GameManager.Instance.LoadScene (1);
+                GameOver();
 			}
 			GameManager.decCoinCount ();
 		}// end of else if 
 
+    }
+
+    void GameOver() {
+        GameManager.incDeathCount();
+        //game over scene 
+        GameManager.Instance.LoadScene(1);
     }
 
     void DecreaseTunnel() {

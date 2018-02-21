@@ -11,7 +11,6 @@ public class TunnelAnimation : MonoBehaviour {
     [SerializeField]
     [HideInInspector]
     private static float tunnelHeight = 0.0f;
-    public float increment = 0.0f;
     /// <summary>
     /// Creates an instance of TunnelAnimation
     /// </summary>
@@ -62,7 +61,7 @@ public class TunnelAnimation : MonoBehaviour {
 
     private IEnumerator AnimateDecreaseTunnel(GameObject tunnel) {
 
-        BoxCollider2D tunnelTrigger = tunnel.GetComponent<BoxCollider2D>();
+       // BoxCollider2D tunnelTrigger = tunnel.GetComponent<BoxCollider2D>();
         //change size of tunnel
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight > tunnelHeight; currHeight -= .5f) {
@@ -79,14 +78,18 @@ public class TunnelAnimation : MonoBehaviour {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight <= tunnelHeight; currHeight += .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
-            tunnelTrigger.size = new Vector2(tunnelTrigger.size.x + increment, tunnelTrigger.size.y + increment);
+            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x, currHeight);
             yield return null;
         }
     }
-
+    /// <summary>
+    /// if tunnels touch, then game over
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("bottom") || collision.gameObject.CompareTag("top")) {
-            Debug.Log("TUNNELS ARE TOUCHINGGGG");
+            GameManager.incDeathCount();
+            GameManager.Instance.LoadScene(1);
         }
         
     }//end of on trigger enter
