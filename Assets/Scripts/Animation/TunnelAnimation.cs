@@ -66,7 +66,7 @@ public class TunnelAnimation : MonoBehaviour {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight > tunnelHeight; currHeight -= .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
-            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x +20, currHeight + 20);
+            //tunnelTrigger.size = new Vector2(tunnelTrigger.size );
             yield return null;
         }
     }
@@ -78,12 +78,12 @@ public class TunnelAnimation : MonoBehaviour {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         for (float currHeight = tunnelRect.sizeDelta.y; currHeight <= tunnelHeight; currHeight += .5f) {
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
-            tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x + 20, currHeight + 20);
+            tunnelTrigger.size = new Vector2(tunnelTrigger.size.x + 5, tunnelTrigger.size.y + 5);
             yield return null;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("bottom") || collision.gameObject.CompareTag("top")) {
             Debug.Log("TUNNELS ARE TOUCHINGGGG");
         }
