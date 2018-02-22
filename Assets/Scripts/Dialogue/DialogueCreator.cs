@@ -57,6 +57,10 @@ public class DialogueCreator : EditorWindow {
             Debug.Log("cleared: " + currD);
         }
 
+        if (GUILayout.Button("Load Dialogue")) {
+            currDialogue.printDialogues();
+        }
+
         EndWindows();
     }
 

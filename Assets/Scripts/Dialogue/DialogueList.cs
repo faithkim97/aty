@@ -67,6 +67,12 @@ public class DialogueList : MonoBehaviour {
         return dialogue[id];
     }
 
+    public void printDialogues() {
+        for (int i = 0; i < dialogue.Count; i++) {
+            Debug.Log(dialogue[i]);
+        }
+    }
+
 
 
 
