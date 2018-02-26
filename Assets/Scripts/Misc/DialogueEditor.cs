@@ -42,7 +42,7 @@ public class DialogueEditor : EditorWindow {
 
 
 
-    [MenuItem("Window/Dialogue editor")]
+    //[MenuItem("Window/Dialogue editor")]
     static void ShowEditor() {
         DialogueEditor editor = EditorWindow.GetWindow<DialogueEditor>();
 		 

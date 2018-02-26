@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerControl : MonoBehaviour {
     [SerializeField]
-    private int playerSpeed = 10;
+    private static int playerSpeed = 10;
     [SerializeField]
     private int jumpPower = 1000;
     private float moveX;
@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour {
 
     void movePlayer() {
         //controls
+        //hardcode in arrows so that w a s d DOESN'T WORK 
         moveX = Input.GetAxis("Horizontal");
         //player direction 
         //player movement 
@@ -72,6 +73,14 @@ public class PlayerControl : MonoBehaviour {
     void IncreaseTunnel() {
         GameManager.increaseTunnelHeight(GameObject.Find("Top"));
         GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
+    }
+
+    public int getPlayerSpeed() {
+        return playerSpeed;
+    }
+
+    public void setPlayerSpeed(int newSpeed) {
+        playerSpeed = newSpeed;
     }
 
 

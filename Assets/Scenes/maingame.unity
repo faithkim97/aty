@@ -421,7 +421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b7dbf69e46ccc48821810ca7bc8c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 10
   jumpPower: 2000
 --- !u!61 &158143074
 BoxCollider2D:

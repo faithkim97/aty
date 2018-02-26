@@ -142,5 +142,9 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(i);
     }
 
+    public void setDifficulty() {
+
+    }//end of setDifficulty
+
  
 }//end of GameManager
