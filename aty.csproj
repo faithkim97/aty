@@ -292,6 +292,7 @@
     <Compile Include="Assets\Scripts\Dialogue\SerializedTree.cs" />
     <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\PillTimer.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UICounter.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
