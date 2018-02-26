@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 ///</summary>
 public class GameManager : MonoBehaviour {
     private static GameManager instance;
-
+	private static bool exhausted = false;
     public static GameManager Instance {
         get {
             if (instance == null) {
@@ -56,6 +56,15 @@ public class GameManager : MonoBehaviour {
 		}
 	}
     
+
+	public static bool getExhausted() {
+		return exhausted;
+	}
+
+	public static void setExhausted(bool setBool) {
+		exhausted = setBool;
+	}
+
     ///<summary>
     ///increment deathCount 
     ///</summary>
