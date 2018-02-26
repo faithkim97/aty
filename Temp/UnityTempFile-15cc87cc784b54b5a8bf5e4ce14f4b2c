@@ -188,6 +188,7 @@
 'Assets/Scripts/Dialogue/SerializedTree.cs'
 'Assets/Scripts/Manager/CameraMovement.cs'
 'Assets/Scripts/Manager/GameManager.cs'
+'Assets/Scripts/Manager/PillTimer.cs'
 'Assets/Scripts/Manager/UI/UICounter.cs'
 'Assets/Scripts/Manager/UI/UIGameOver.cs'
 'Assets/Scripts/Manager/UI/UIManager.cs'
