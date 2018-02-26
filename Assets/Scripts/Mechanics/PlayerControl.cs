@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerControl : MonoBehaviour {
     [SerializeField]
-    private static int playerSpeed = 10;
+    private static int playerSpeed = 1;
     [SerializeField]
     private int jumpPower = 1000;
     private float moveX;
@@ -71,11 +71,11 @@ public class PlayerControl : MonoBehaviour {
         GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
     }
 
-    public int getPlayerSpeed() {
+    public static int getPlayerSpeed() {
         return playerSpeed;
     }
 
-    public void setPlayerSpeed(int newSpeed) {
+    public static void setPlayerSpeed(int newSpeed) {
         playerSpeed = newSpeed;
     }
 

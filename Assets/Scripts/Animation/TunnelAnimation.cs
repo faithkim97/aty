@@ -27,18 +27,6 @@ public class TunnelAnimation : MonoBehaviour {
             instance = value;
         }
     }
-    //fix this to be cleaner--a little repetitive
-   /*private void Start() {
-        //if player dies at least once, then save the tunnel heights from last gameplay
-        if (GameManager.getDeathCount() > 0 && tunnelHeight != 0.0f) {
-            GameObject tunnel = GameObject.Find("Top");
-            GameObject bottomTunnel = GameObject.Find("Bottom");
-            RectTransform topRect = tunnel.GetComponent<RectTransform>();
-            RectTransform bottomRect = bottomTunnel.GetComponent<RectTransform>();
-            topRect.sizeDelta = new Vector2(topRect.sizeDelta.x, tunnelHeight);
-            bottomRect.sizeDelta = new Vector2(bottomRect.sizeDelta.x, tunnelHeight);
-        }     
-    } */
 
     /// <summary>
     /// starts coroutine for increase animation
@@ -87,7 +75,7 @@ public class TunnelAnimation : MonoBehaviour {
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("bottom") || collision.gameObject.CompareTag("top")) {
+        if (collision.gameObject.CompareTag("bottom") ) {
             GameManager.incDeathCount();
             GameManager.Instance.LoadScene(1);
         }

@@ -38,6 +38,13 @@ public class GameManager : MonoBehaviour {
     [SerializeField][HideInInspector]
 	private static LinkedList<GameObject> NPCs = new LinkedList<GameObject> ();
 
+    private void FixedUpdate() {
+        if (exhausted) {
+            setDifficulty();
+            exhausted = false;
+        }
+    }
+
     ///<summary>
     /// Add NPCs to the list to keep track of them
     /// </summary>
@@ -65,12 +72,21 @@ public class GameManager : MonoBehaviour {
 		exhausted = setBool;
 	}
 
+    
+    private void setDifficulty() {
+       int playerSpeed = PlayerControl.getPlayerSpeed();
+        if (playerSpeed < 10) {
+            PlayerControl.setPlayerSpeed(playerSpeed + 2);
+        }
+    }//end of setDifficulty
+
     ///<summary>
     ///increment deathCount 
     ///</summary>
     //this will be called in ontriggerenter of playercontrol
     public static void incDeathCount() {
         deathCount++;
+        exhausted = true;
     }
     
     ///<summary>
@@ -151,9 +167,6 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(i);
     }
 
-    public void setDifficulty() {
-
-    }//end of setDifficulty
 
  
 }//end of GameManager
