@@ -50,10 +50,6 @@ public class PlayerControl : MonoBehaviour {
 		} else if (other.gameObject.CompareTag ("obstacle")) {
 			GameObject.Destroy (other.gameObject);
             IncreaseTunnel();
-            //changeee
-			if (GameManager.getCoinCount () == 0) {
-                GameOver();
-			}
 			GameManager.decCoinCount ();
 		}// end of else if 
 
