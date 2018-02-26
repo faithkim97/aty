@@ -20,27 +20,36 @@ public class ScreenShake : MonoBehaviour {
 	[SerializeField] 
 	private float shakeAmount;
 
-	void FixedUpdate(){
-		float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
-		float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
+    private bool shake = false;
 
-		transform.position = new Vector3 (posX, posY, transform.position.z);
+    void FixedUpdate(){
+        if (shake) {
+            
+            float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
+            float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
 
-		if (Input.GetKeyDown(KeyCode.F)) {
-			ShakeCamera (0.1f, 1.0f);
-		}
+            transform.position = new Vector3(posX, posY, transform.position.z);
+        }
 	}
 
 	void Update() {
-		if (shakeTimer >= 0) {
+        
+		if (shakeTimer > 0) {
 			Vector2 shakePos = Random.insideUnitCircle * shakeAmount;
 			transform.position = new Vector3 ( transform.position.x + shakePos.x, transform.position.y + shakePos.y, transform.position.z);
 			shakeTimer -= Time.deltaTime;
 		}
+
+        if (shakeTimer <= 0) {
+            shake = false;
+            gameObject.transform.position = gameObject.GetComponent<CameraMovement>().CameraPosition();
+            Debug.Log("after: " + gameObject.transform.position);
+        }
 	
 	}
 
 	public void ShakeCamera(float shakePower, float shakeDuration) {
+        shake = true;
 		shakeAmount = shakePower;
 		shakeTimer = shakeDuration;
 	

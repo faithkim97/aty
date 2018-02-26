@@ -21,4 +21,8 @@ public class CameraMovement : MonoBehaviour {
         }
         transform.position = Vector3.Lerp(transform.position, playerPos, offsetSmoothing * Time.deltaTime);
     }
+
+    public Vector3 CameraPosition() {
+        return gameObject.transform.position; 
+    }
 }

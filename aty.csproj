@@ -282,6 +282,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Animation\ScreenShake.cs" />
     <Compile Include="Assets\Scripts\Animation\TunnelAnimation.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueCreator.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueHolder.cs" />
@@ -294,7 +295,6 @@
     <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mechanics\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\Mechanics\ScreenShake.cs" />
     <Compile Include="Assets\Scripts\Misc\DialogueEditor.cs" />
     <Compile Include="Assets\Scripts\Misc\DialogueTree.cs" />
     <Compile Include="Assets\Scripts\Misc\SerializedTree.cs" />
