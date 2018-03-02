@@ -30,7 +30,11 @@ public class LevelManager : MonoBehaviour {
     private void setLevelScenario() {
         int tiredCount = GameManager.getDeathCount();
         //tiredCount == 3
-            //show email from health services
+        //show email from health services
+        if (tiredCount == 3) {
+            DialogueList dialogueList = GameObject.Find("Health Service email").GetComponent<DialogueList>();
+            
+        }
 
         //tiredCount == 4
             //show email from Dean
@@ -40,4 +44,5 @@ public class LevelManager : MonoBehaviour {
 
 
     }
+
 }//end of LevelManagaer
