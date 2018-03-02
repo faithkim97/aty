@@ -51,22 +51,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Animation\ScreenShake.cs" />
      <Compile Include="Assets\Scripts\Animation\TunnelAnimation.cs" />
      <Compile Include="Assets\Scripts\Dialogue\DialogueCreator.cs" />
-     <Compile Include="Assets\Scripts\Dialogue\DialogueEditor.cs" />
      <Compile Include="Assets\Scripts\Dialogue\DialogueHolder.cs" />
      <Compile Include="Assets\Scripts\Dialogue\DialogueList.cs" />
      <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
-     <Compile Include="Assets\Scripts\Dialogue\DialogueTree.cs" />
-     <Compile Include="Assets\Scripts\Dialogue\SerializedTree.cs" />
      <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Manager\PillTimer.cs" />
      <Compile Include="Assets\Scripts\Manager\UI\UICounter.cs" />
      <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
      <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\Mechanics\PlayerControl.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\ScreenShake.cs" />
+     <Compile Include="Assets\Scripts\Misc\DialogueEditor.cs" />
+     <Compile Include="Assets\Scripts\Misc\DialogueTree.cs" />
+     <Compile Include="Assets\Scripts\Misc\SerializedTree.cs" />
      <None Include="Assets\Sprite Pack\Tap and Fly\Readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
