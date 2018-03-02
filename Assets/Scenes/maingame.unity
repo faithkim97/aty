@@ -408,7 +408,7 @@ Transform:
   m_LocalScale: {x: 1.6565622, y: 1.6624992, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &158143073
 MonoBehaviour:
@@ -1619,11 +1619,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1282486733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1282486738
 MonoBehaviour:
@@ -1654,8 +1654,8 @@ MonoBehaviour:
   smoothTimeY: 0
   smoothTimeX: 0
   player: {fileID: 158143070}
-  shakeTimer: 0
-  shakeAmount: 0
+  shakeTimer: 5
+  shakeAmount: 0.3
 --- !u!4 &1313445240 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298,

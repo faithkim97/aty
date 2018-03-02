@@ -16,13 +16,17 @@ public class ScreenShake : MonoBehaviour {
 	public GameObject player;
 
 	[SerializeField] 
-	private float shakeTimer; 
+	private float shakeTimer;
+    private float originalTimer;
 	[SerializeField] 
 	private float shakeAmount;
 
     private bool shake = false;
-
+    private void Start() {
+        originalTimer = shakeTimer;
+    }
     void FixedUpdate(){
+        
         if (shake) {
             
             float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
@@ -35,6 +39,7 @@ public class ScreenShake : MonoBehaviour {
 	void Update() {
         
 		if (shakeTimer > 0) {
+            PlayerControl();
 			Vector2 shakePos = Random.insideUnitCircle * shakeAmount;
 			transform.position = new Vector3 ( transform.position.x + shakePos.x, transform.position.y + shakePos.y, transform.position.z);
 			shakeTimer -= Time.deltaTime;
@@ -42,18 +47,39 @@ public class ScreenShake : MonoBehaviour {
 
         if (shakeTimer <= 0) {
             shake = false;
-            gameObject.transform.position = gameObject.GetComponent<CameraMovement>().CameraPosition();
-            Debug.Log("after: " + gameObject.transform.position);
+            StabilizeCameraPosition();
         }
 	
 	}
 
+    private void StabilizeCameraPosition() {
+        gameObject.transform.position = gameObject.GetComponent<CameraMovement>().CameraPosition();
+    }
 	public void ShakeCamera(float shakePower, float shakeDuration) {
         shake = true;
 		shakeAmount = shakePower;
 		shakeTimer = shakeDuration;
 	
 	}//end of ShakeCamera
+
+    public void setShakeTimer(float newTimer) {
+        shakeTimer = newTimer;
+    }
+
+    public void setShakeAmount(float newshakeAmount) {
+        shakeAmount = newshakeAmount;
+    }
+
+    private void PlayerControl() {
+        bool keyPressed = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)
+                               || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow) 
+                              || Input.GetKey(KeyCode.LeftArrow);
+        if (keyPressed) {
+            shakeTimer = originalTimer;
+            GameManager.increaseTunnelHeight(GameObject.Find("Top"));
+            GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
+        }
+    }
 
 
 
