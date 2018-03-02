@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 ///</summary>
 public class GameManager : MonoBehaviour {
     private static GameManager instance;
-	private static bool exhausted = false;
+	
     public static GameManager Instance {
         get {
             if (instance == null) {
@@ -38,12 +38,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField][HideInInspector]
 	private static LinkedList<GameObject> NPCs = new LinkedList<GameObject> ();
 
-    private void FixedUpdate() {
-        if (exhausted) {
-            setDifficulty();
-            exhausted = false;
-        }
-    }
+  
 
     ///<summary>
     /// Add NPCs to the list to keep track of them
@@ -62,23 +57,7 @@ public class GameManager : MonoBehaviour {
 			NPCs.Remove(c);
 		}
 	}
-    
 
-	public static bool getExhausted() {
-		return exhausted;
-	}
-
-	public static void setExhausted(bool setBool) {
-		exhausted = setBool;
-	}
-
-    
-    private void setDifficulty() {
-       int playerSpeed = PlayerControl.getPlayerSpeed();
-        if (playerSpeed < 10) {
-            PlayerControl.setPlayerSpeed(playerSpeed + 2);
-        }
-    }//end of setDifficulty
 
     ///<summary>
     ///increment deathCount 
@@ -86,7 +65,7 @@ public class GameManager : MonoBehaviour {
     //this will be called in ontriggerenter of playercontrol
     public static void incDeathCount() {
         deathCount++;
-        exhausted = true;
+        LevelManager.setExhausted(true);
     }
     
     ///<summary>

@@ -21,7 +21,7 @@ public class ScreenShake : MonoBehaviour {
 	[SerializeField] 
 	private float shakeAmount;
 
-    private bool shake = false;
+    private static bool shake = false;
     private void Start() {
         originalTimer = shakeTimer;
     }
@@ -38,14 +38,12 @@ public class ScreenShake : MonoBehaviour {
 
 	void Update() {
         
-		if (shakeTimer > 0) {
+		if (shake && shakeTimer > 0) {
             PlayerControl();
-			Vector2 shakePos = Random.insideUnitCircle * shakeAmount;
-			transform.position = new Vector3 ( transform.position.x + shakePos.x, transform.position.y + shakePos.y, transform.position.z);
-			shakeTimer -= Time.deltaTime;
+            ShakeScreen();
 		}
 
-        if (shakeTimer <= 0) {
+        if (shake && shakeTimer <= 0) {
             shake = false;
             StabilizeCameraPosition();
         }
@@ -81,6 +79,14 @@ public class ScreenShake : MonoBehaviour {
         }
     }
 
+    private void ShakeScreen() {
+        Vector2 shakePos = Random.insideUnitCircle * shakeAmount;
+        transform.position = new Vector3(transform.position.x + shakePos.x, transform.position.y + shakePos.y, transform.position.z);
+        shakeTimer -= Time.deltaTime;
+    }
 
+    public static void ShakeScreen(bool shakeScreen) {
+        shake = shakeScreen;
+    }
 
 }//end of class

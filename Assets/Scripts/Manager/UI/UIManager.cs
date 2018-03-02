@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void SetDeathText(Text deathText) {
-		deathText.text = "Deaths: " + GameManager.getDeathCount ();
+		deathText.text = "Day: " + GameManager.getDeathCount ();
 	}
 
 }

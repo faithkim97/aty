@@ -40,9 +40,8 @@ public class DialogueHolder : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision) {
         //Debug.Log("inside trigger");
-        if (Input.GetKeyDown(KeyCode.Space) && collision.gameObject.CompareTag("player")) {
+        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
             diaManager.ShowBox();
-            
         }
     }//end of Trigger
 
