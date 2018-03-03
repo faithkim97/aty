@@ -39,8 +39,8 @@ public class DialogueHolder : MonoBehaviour {
 
 
     private void OnTriggerStay2D(Collider2D collision) {
-        //Debug.Log("inside trigger");
-        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+		NarrativeTrigger (collision);
+		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
             diaManager.ShowBox();
         }
     }//end of Trigger
@@ -57,6 +57,16 @@ public class DialogueHolder : MonoBehaviour {
             i++;
         }
     }//end of traverselist
+
+	private void NarrativeTrigger(Collider2D collision) {
+		GameObject g = collision.gameObject;
+		bool narrTag = gameObject.CompareTag ("health") || gameObject.CompareTag ("dean") 
+					|| gameObject.CompareTag ("mom");
+		if (narrTag && g.CompareTag ("player")) {
+			diaManager.ShowBox ();
+		}
+
+	}
 
 
 }//end of DialogueHolder

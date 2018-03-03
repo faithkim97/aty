@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Used to hardcode specific events that happen at each day/level
+/// </summary>
 public class LevelManager : MonoBehaviour {
     private static bool exhausted = false;
 
