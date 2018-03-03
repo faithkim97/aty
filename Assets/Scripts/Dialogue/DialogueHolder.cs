@@ -36,9 +36,10 @@ public class DialogueHolder : MonoBehaviour {
 			traverseList();
         }
     }
-
+		
 
     private void OnTriggerStay2D(Collider2D collision) {
+		
 		NarrativeTrigger (collision);
 		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
             diaManager.ShowBox();
@@ -66,7 +67,7 @@ public class DialogueHolder : MonoBehaviour {
 			diaManager.ShowBox ();
 		}
 
-	}
+	}//end of Narrative Trigger
 
 
 }//end of DialogueHolder
