@@ -39,9 +39,15 @@ public class DialogueHolder : MonoBehaviour {
 		
 
     private void OnTriggerStay2D(Collider2D collision) {
-		
-		NarrativeTrigger (collision);
-		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+		GameObject g = collision.gameObject;
+		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
+		//|| gameObject.CompareTag ("mom");
+		//not working because it doesn't do it when death count == 3 
+		if (GameManager.getDeathCount() == 1 && narrTag && g.CompareTag ("player")) {
+			diaManager.ShowBox ();
+		}
+		//NarrativeTrigger (collision);
+		else if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
             diaManager.ShowBox();
         }
     }//end of Trigger
@@ -61,8 +67,8 @@ public class DialogueHolder : MonoBehaviour {
 
 	private void NarrativeTrigger(Collider2D collision) {
 		GameObject g = collision.gameObject;
-		bool narrTag = gameObject.CompareTag ("health") || gameObject.CompareTag ("dean") 
-					|| gameObject.CompareTag ("mom");
+		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
+					//|| gameObject.CompareTag ("mom");
 		if (narrTag && g.CompareTag ("player")) {
 			diaManager.ShowBox ();
 		}
