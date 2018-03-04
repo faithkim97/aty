@@ -27,7 +27,7 @@ public class DialogueList : MonoBehaviour {
         if (!savedDialogues.ContainsKey(id) && dialogue != null) {
             //Debug.Log("inside saved tree does not contain key");
             savedDialogues.Add(id, dialogue);
-        }
+      }
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedDialogues.gd");
@@ -68,10 +68,17 @@ public class DialogueList : MonoBehaviour {
     }
 
     public void printDialogues() {
-        for (int i = 0; i < dialogue.Count; i++) {
-            Debug.Log(dialogue[i]);
+		Dictionary<int, List<string>> savedDialogues = LoadDialogueList();
+		List<string> d = savedDialogues [getID()];
+        for (int i = 0; i < d.Count; i++) {
+            Debug.Log(d[i]);
         }
     }
+
+	public int getID() {
+
+		return id;
+	}
 
 
 

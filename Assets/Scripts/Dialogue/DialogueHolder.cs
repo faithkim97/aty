@@ -20,13 +20,22 @@ public class DialogueHolder : MonoBehaviour {
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
         Dictionary<int, List<string>> savedDialogues = dialogueList.LoadDialogueList();
+		Debug.Log ("size of dictionary (should be 2): " + savedDialogues.Count);
 		if (!savedDialogues.ContainsKey (ID)) {
 			Debug.LogError ("The key in dictionary does not exist");
 		} else {
 			currDialogue = savedDialogues[ID];
 
+		
 		}
+
+	
         
+	}
+
+	public int getID() {
+
+		return ID;
 	}
 
     private void Update() {
@@ -44,10 +53,12 @@ public class DialogueHolder : MonoBehaviour {
 		//|| gameObject.CompareTag ("mom");
 		//not working because it doesn't do it when death count == 3 
 		if (GameManager.getDeathCount() == 1 && narrTag && g.CompareTag ("player")) {
+			Debug.Log ("IF");
 			diaManager.ShowBox ();
 		}
 		//NarrativeTrigger (collision);
-		else if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+			Debug.Log ("ELSE IF");
             diaManager.ShowBox();
         }
     }//end of Trigger

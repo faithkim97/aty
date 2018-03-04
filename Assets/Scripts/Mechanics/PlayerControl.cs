@@ -55,11 +55,11 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
-    void GameOver() {
+  /*  void GameOver() {
         GameManager.incDeathCount();
         //game over scene 
         GameManager.Instance.LoadScene(1);
-    }
+    } */
 
     void DecreaseTunnel() {
         GameManager.decreaseTunnelHeight(GameObject.Find("Top"));

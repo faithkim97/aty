@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{466BE11E-CE10-4EA4-253B-46136AB97DEE}</ProjectGuid>
+    <ProjectGuid>{980A02ED-00A9-3D89-7246-7D130FCFE833}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -51,27 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Animation\ScreenShake.cs" />
-     <Compile Include="Assets\Scripts\Animation\TunnelAnimation.cs" />
-     <Compile Include="Assets\Scripts\Dialogue\DialogueCreator.cs" />
-     <Compile Include="Assets\Scripts\Dialogue\DialogueHolder.cs" />
-     <Compile Include="Assets\Scripts\Dialogue\DialogueList.cs" />
-     <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
-     <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
-     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Manager\LevelManager.cs" />
-     <Compile Include="Assets\Scripts\Manager\PillTimer.cs" />
-     <Compile Include="Assets\Scripts\Manager\UI\UICounter.cs" />
-     <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
-     <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\PlayerControl.cs" />
-     <Compile Include="Assets\Scripts\Misc\DialogueEditor.cs" />
-     <Compile Include="Assets\Scripts\Misc\DialogueTree.cs" />
-     <Compile Include="Assets\Scripts\Misc\SerializedTree.cs" />
-     <Compile Include="Assets\SerializableDictionary\Example\SerializableDictionaryExample.cs" />
-     <Compile Include="Assets\SerializableDictionary\Example\UserSerializableDictionaries.cs" />
-     <Compile Include="Assets\SerializableDictionary\SerializableDictionary.cs" />
-     <None Include="Assets\Sprite Pack\Tap and Fly\Readme.txt" />
+     <Compile Include="Assets\SerializableDictionary\Editor\SerializableDictionaryPropertyDrawer.cs" />
+     <Compile Include="Assets\SerializableDictionary\Example\Editor\UserSerializableDictionaryPropertyDrawers.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -159,6 +140,10 @@
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/Faith/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{466BE11E-CE10-4EA4-253B-46136AB97DEE}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
