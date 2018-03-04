@@ -1,10 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Dialogue/DialogueCreator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Dialogue/DialogueHolder.cs">
     <Files>
-      <File FileName="Assets/Scripts/Dialogue/DialogueCreator.cs" Line="61" Column="43" />
-      <File FileName="Assets/Scripts/Dialogue/DialogueHolder.cs" Line="25" Column="1" />
+      <File FileName="Assets/Scripts/Dialogue/SerializedDialogue.cs" Line="5" Column="32" />
+      <File FileName="Assets/Scripts/Dialogue/DialogueHolder.cs" Line="22" Column="27" />
       <File FileName="Assets/Scripts/Manager/LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Dialogue/DialogueList.cs" Line="38" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

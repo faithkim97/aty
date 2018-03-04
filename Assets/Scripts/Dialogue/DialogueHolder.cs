@@ -19,7 +19,7 @@ public class DialogueHolder : MonoBehaviour {
 	void Start () {
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
-        Dictionary<int, List<string>> savedDialogues = dialogueList.LoadDialogueList();
+        SerializedDialogue savedDialogues = dialogueList.LoadDialogueList();
 		Debug.Log ("size of dictionary (should be 2): " + savedDialogues.Count);
 		if (!savedDialogues.ContainsKey (ID)) {
 			Debug.LogError ("The key in dictionary does not exist");

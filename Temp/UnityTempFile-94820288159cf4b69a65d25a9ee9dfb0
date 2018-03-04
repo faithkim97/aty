@@ -185,6 +185,7 @@
 'Assets/Scripts/Dialogue/DialogueHolder.cs'
 'Assets/Scripts/Dialogue/DialogueList.cs'
 'Assets/Scripts/Dialogue/DialogueManager.cs'
+'Assets/Scripts/Dialogue/SerializedDialogue.cs'
 'Assets/Scripts/Manager/CameraMovement.cs'
 'Assets/Scripts/Manager/GameManager.cs'
 'Assets/Scripts/Manager/LevelManager.cs'

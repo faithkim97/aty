@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Dialogue\DialogueHolder.cs" />
      <Compile Include="Assets\Scripts\Dialogue\DialogueList.cs" />
      <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
+     <Compile Include="Assets\Scripts\Dialogue\SerializedDialogue.cs" />
      <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Manager\LevelManager.cs" />
