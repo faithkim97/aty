@@ -19,14 +19,20 @@ public class DialogueHolder : MonoBehaviour {
 	void Start () {
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
-        Dictionary<int, List<string>> savedDialogues = dialogueList.LoadDialogueList();
+        Dictionary<int,List<string>> savedDialogues = dialogueList.LoadDialogueList();
 		if (!savedDialogues.ContainsKey (ID)) {
 			Debug.LogError ("The key in dictionary does not exist");
-		} else {
+		} else { 
 			currDialogue = savedDialogues[ID];
-
 		}
+
+	
         
+	}
+
+	public int getID() {
+
+		return ID;
 	}
 
     private void Update() {
@@ -36,12 +42,24 @@ public class DialogueHolder : MonoBehaviour {
 			traverseList();
         }
     }
-
+		
 
     private void OnTriggerStay2D(Collider2D collision) {
-        //Debug.Log("inside trigger");
-        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+		GameObject g = collision.gameObject;
+		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
+		//|| gameObject.CompareTag ("mom");
+		//not working because it doesn't do it when death count == 3 
+		if (GameManager.getDeathCount() == 1 && narrTag && g.CompareTag ("player")) {
+			Debug.Log ("IF");
+			diaManager.ShowBox ();
+		}
+		//NarrativeTrigger (collision);
+		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+			Debug.Log ("ELSE IF");
             diaManager.ShowBox();
+            for (int i =0; i<currDialogue.Count; i++) {
+                Debug.Log(currDialogue[i]);
+            }
         }
     }//end of Trigger
 
@@ -57,6 +75,16 @@ public class DialogueHolder : MonoBehaviour {
             i++;
         }
     }//end of traverselist
+
+	private void NarrativeTrigger(Collider2D collision) {
+		GameObject g = collision.gameObject;
+		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
+					//|| gameObject.CompareTag ("mom");
+		if (narrTag && g.CompareTag ("player")) {
+			diaManager.ShowBox ();
+		}
+
+	}//end of Narrative Trigger
 
 
 }//end of DialogueHolder

@@ -58,7 +58,18 @@ public class DialogueCreator : EditorWindow {
         }
 
         if (GUILayout.Button("Load Dialogue")) {
-            currDialogue.printDialogues();
+			
+				//DialogueManager diaManager = GameObject.FindObjectOfType<DialogueManager>();
+				currDialogue = currObject.GetComponent<DialogueList>();
+                Dictionary<int,List<string>> loadedDict = currDialogue.LoadDialogueList();
+                List<string> loadedDialogue = loadedDict[currDialogue.getID()];
+
+            //print dialogue
+            for (int i = 0; i < loadedDialogue.Count; i++) {
+                Debug.Log(loadedDialogue[i]);
+            }
+			
+            
         }
 
         EndWindows();

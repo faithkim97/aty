@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Used to hardcode specific events that happen at each day/level
+/// </summary>
 public class LevelManager : MonoBehaviour {
     private static bool exhausted = false;
+	private DialogueManager diaManager;
 
+	private void Start() {
+		diaManager = FindObjectOfType<DialogueManager> ();
+	}
     private void FixedUpdate() {
         if (exhausted) {
             setDifficulty();
-            exhausted = false;
+            //exhausted = false;
         }
     }
 
@@ -32,7 +38,14 @@ public class LevelManager : MonoBehaviour {
         //tiredCount == 3
         //show email from health services
         if (tiredCount == 3) {
-            DialogueList dialogueList = GameObject.Find("Health Service email").GetComponent<DialogueList>();
+			//if diaActive
+			if (diaManager.diaActive) {
+				//Show message from health services 
+				Debug.Log("email from health services UI must be added");
+			}
+            //DialogueList dialogueList = GameObject.Find("Health Service email").GetComponent<DialogueList>();
+
+
             
         }
 
@@ -42,7 +55,7 @@ public class LevelManager : MonoBehaviour {
         //tiredCount == 5
             //get text from Mom 
 
-
+		exhausted = false;
     }
 
 }//end of LevelManagaer
