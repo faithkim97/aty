@@ -19,14 +19,11 @@ public class DialogueHolder : MonoBehaviour {
 	void Start () {
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
-        SerializedDialogue savedDialogues = dialogueList.LoadDialogueList();
-		Debug.Log ("size of dictionary (should be 2): " + savedDialogues.Count);
+        Dictionary<int,List<string>> savedDialogues = dialogueList.LoadDialogueList();
 		if (!savedDialogues.ContainsKey (ID)) {
 			Debug.LogError ("The key in dictionary does not exist");
-		} else {
+		} else { 
 			currDialogue = savedDialogues[ID];
-
-		
 		}
 
 	
@@ -60,6 +57,9 @@ public class DialogueHolder : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
 			Debug.Log ("ELSE IF");
             diaManager.ShowBox();
+            for (int i =0; i<currDialogue.Count; i++) {
+                Debug.Log(currDialogue[i]);
+            }
         }
     }//end of Trigger
 

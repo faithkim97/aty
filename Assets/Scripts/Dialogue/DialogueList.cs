@@ -21,7 +21,7 @@ public class DialogueList : MonoBehaviour {
     /// </summary>
     [SerializeField]
     [HideInInspector]
-	private static SerializedDialogue savedDialogues = new SerializedDialogue();
+	private static Dictionary<int, List<string>> savedDialogues = new Dictionary<int, List<string>>();
 
     public void SaveDialogueList() {
         if (!savedDialogues.ContainsKey(id) && dialogue != null) {
@@ -35,11 +35,11 @@ public class DialogueList : MonoBehaviour {
         file.Close();
     }
 
-    public SerializedDialogue LoadDialogueList() {
+    public Dictionary<int,List<string>> LoadDialogueList() {
         if (File.Exists(Application.persistentDataPath + "/savedDialogues.gd")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedDialogues.gd", FileMode.Open);
-            savedDialogues = (SerializedDialogue)bf.Deserialize(file);
+            savedDialogues = (Dictionary<int, List<string>>)bf.Deserialize(file);
             file.Close();
         }
 
@@ -68,7 +68,7 @@ public class DialogueList : MonoBehaviour {
     }
 
     public void printDialogues() {
-		SerializedDialogue savedDialogues = LoadDialogueList();
+		Dictionary<int, List<string>> savedDialogues = LoadDialogueList();
 		List<string> d = savedDialogues [getID()];
         for (int i = 0; i < d.Count; i++) {
             Debug.Log(d[i]);
