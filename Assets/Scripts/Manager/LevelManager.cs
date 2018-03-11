@@ -44,8 +44,6 @@ public class LevelManager : MonoBehaviour {
 				Debug.Log("email from health services UI must be added");
 			}
             //DialogueList dialogueList = GameObject.Find("Health Service email").GetComponent<DialogueList>();
-
-
             
         }
 

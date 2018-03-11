@@ -7,73 +7,68 @@ using UnityEngine;
 /// </summary>
 [System.Serializable]
 public class DialogueHolder : MonoBehaviour {
-    private DialogueList dialogueList;
+  //  private DialogueList dialogueList;
     private DialogueManager diaManager;
-    int ID;
     //list of strings of all dialogues that need to be displayed
-    private List<string> currDialogue;
+     private List<string> currDialogue;
 	//using this to index into the dialogue 
 	int i;
+    bool triggered = false;
  
 	// Use this for initialization
 	void Start () {
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
         Dictionary<int,List<string>> savedDialogues = dialogueList.LoadDialogueList();
-		if (!savedDialogues.ContainsKey (ID)) {
+		if (!savedDialogues.ContainsKey (dialogueList.getID())) {
 			Debug.LogError ("The key in dictionary does not exist");
 		} else { 
-			currDialogue = savedDialogues[ID];
-		}
+			currDialogue = savedDialogues[dialogueList.getID()];
+		} 
+	}//end of start
 
-	
-        
-	}
-
-	public int getID() {
-
-		return ID;
-	}
-
-    private void Update() {
-
-		if (diaManager.diaActive) {
+   private void Update() {
+		if (triggered) {
             //diaManager.ShowDialogue(traverseList());
 			traverseList();
         }
     }
-		
+	
 
     private void OnTriggerStay2D(Collider2D collision) {
+        triggered = true;
 		GameObject g = collision.gameObject;
 		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
 		//|| gameObject.CompareTag ("mom");
 		//not working because it doesn't do it when death count == 3 
-		if (GameManager.getDeathCount() == 1 && narrTag && g.CompareTag ("player")) {
-			Debug.Log ("IF");
-			diaManager.ShowBox ();
+		if (narrTag && GameManager.getDeathCount() == 1 && g.CompareTag ("player")) {
+            diaManager.ShowBox ();
+            traverseList();
 		}
 		//NarrativeTrigger (collision);
-		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
-			Debug.Log ("ELSE IF");
+		if (Input.GetKeyDown(KeyCode.F) && g.CompareTag("player")) {
             diaManager.ShowBox();
-            for (int i =0; i<currDialogue.Count; i++) {
-                Debug.Log(currDialogue[i]);
-            }
+            traverseList();
         }
     }//end of Trigger
 
 
 
     public void traverseList() {
-		if (i == currDialogue.Count) {
-			diaManager.HideBox ();
-			return;
-		}
-		diaManager.ShowDialogue (currDialogue [i]);
-		if (i < currDialogue.Count && Input.GetKeyUp(KeyCode.K)  ) {
-            i++;
-        }
+      //  if (gameObject.tag == "health") {
+            if (i == currDialogue.Count) {
+                 triggered = false;
+                diaManager.HideBox();
+                return;
+            }
+            diaManager.ShowDialogue(currDialogue[i]);
+            
+            if (i < currDialogue.Count && Input.GetKeyUp(KeyCode.K)) {
+                i++;
+            }
+       
+        //}
+		
     }//end of traverselist
 
 	private void NarrativeTrigger(Collider2D collision) {
@@ -83,7 +78,6 @@ public class DialogueHolder : MonoBehaviour {
 		if (narrTag && g.CompareTag ("player")) {
 			diaManager.ShowBox ();
 		}
-
 	}//end of Narrative Trigger
 
 

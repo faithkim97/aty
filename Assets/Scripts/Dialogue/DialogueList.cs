@@ -52,7 +52,6 @@ public class DialogueList : MonoBehaviour {
         if ((dialogue != null) && savedDialogues.ContainsValue(dialogue)) {
             savedDialogues.Remove(id);
         }
-
         return dialogue = null;
     }
 
