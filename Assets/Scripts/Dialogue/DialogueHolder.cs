@@ -38,12 +38,10 @@ public class DialogueHolder : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision) {
         triggered = true;
 		GameObject g = collision.gameObject;
-		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
-		//|| gameObject.CompareTag ("mom");
-		//not working because it doesn't do it when death count == 3 
-		if (narrTag && GameManager.getDeathCount() == 1 && g.CompareTag ("player")) {
+		if (gameObject.CompareTag("health") && GameManager.getDeathCount() == 1 && g.CompareTag ("player")) {
             diaManager.ShowBox ();
             traverseList();
+			gameObject.SetActive (false);
 		}
 		//NarrativeTrigger (collision);
 		if (Input.GetKeyDown(KeyCode.F) && g.CompareTag("player")) {
