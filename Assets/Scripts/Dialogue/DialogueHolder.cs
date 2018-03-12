@@ -78,5 +78,10 @@ public class DialogueHolder : MonoBehaviour {
 		}
 	}//end of Narrative Trigger
 
+	public void setTriggered(bool t) {
+		triggered = t;
+
+	}
+
 
 }//end of DialogueHolder

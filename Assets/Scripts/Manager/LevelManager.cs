@@ -5,55 +5,39 @@ using UnityEngine;
 /// Used to hardcode specific events that happen at each day/level
 /// </summary>
 public class LevelManager : MonoBehaviour {
-    private static bool exhausted = false;
 	private DialogueManager diaManager;
+	private DialogueHolder currDia = null;
 
-	private void Start() {
-		diaManager = FindObjectOfType<DialogueManager> ();
+	void Start() {
+		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
+		GameObject g = FindObject ();
+		if ( g!= null ) {
+			currDia = g.GetComponent<DialogueHolder> ();
+			currDia.setTriggered (true);
+		}
+	}//end of start
+
+	private void ManageLevels() {
+	
 	}
-    private void FixedUpdate() {
-        if (exhausted) {
-            setDifficulty();
-            //exhausted = false;
-        }
-    }
 
-    public static bool getExhausted() {
-        return exhausted;
-    }
-
-    public static void setExhausted(bool setBool) {
-        exhausted = setBool;
-    }
-
-    private void setDifficulty() {
-        int playerSpeed = PlayerControl.getPlayerSpeed();
-        if (playerSpeed < 10) {
-            PlayerControl.setPlayerSpeed(playerSpeed + 2);
-        }
-    }//end of setDifficulty
-
-    private void setLevelScenario() {
-        int tiredCount = GameManager.getDeathCount();
-        //tiredCount == 3
-        //show email from health services
-        if (tiredCount == 3) {
-			//if diaActive
-			if (diaManager.diaActive) {
-				//Show message from health services 
-				Debug.Log("email from health services UI must be added");
+	private GameObject FindObject() {
+		GameObject g = null;
+		//if death count is certain number
+		//then find object of specific tag/name of game object
+		//set the currdia to that gameobject's dialogue 
+		//set the triggered to true 
+		for (int i = 0; i < GameManager.getDeathCount(); i++) {
+			if ((i == 1)) {
+				g = GameObject.Find ("Health Service email");
+			} else if (i == 2) {
+				g = GameObject.Find ("Dean email");
+			} else if (i == 3) {
+				g = GameObject.Find ("Mom's text");
 			}
-            //DialogueList dialogueList = GameObject.Find("Health Service email").GetComponent<DialogueList>();
-            
-        }
+		}//end of for loop
 
-        //tiredCount == 4
-            //show email from Dean
-
-        //tiredCount == 5
-            //get text from Mom 
-
-		exhausted = false;
-    }
+		return g;
+	}//end of FindObject
 
 }//end of LevelManagaer
