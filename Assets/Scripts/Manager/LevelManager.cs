@@ -14,11 +14,29 @@ public class LevelManager : MonoBehaviour {
 		if ( g!= null ) {
 			currDia = g.GetComponent<DialogueHolder> ();
 			currDia.setTriggered (true);
+			ManageLevels ();
 		}
+
+		setDifficulty ();
 	}//end of start
 
+	/// <summary>
+	/// creates specific triggers in game for health services, dean, etc. 
+	/// </summary>
 	private void ManageLevels() {
-	
+		if (GameManager.getDeathCount () == 1) {
+			GameObject.Find ("test").SetActive (true);
+		}
+	}
+
+	/// <summary>
+	/// sets the difficulty level of each day
+	/// </summary>
+	private void setDifficulty() {
+		int playerSpeed = PlayerControl.getPlayerSpeed();
+		if (playerSpeed < 10) {
+			PlayerControl.setPlayerSpeed(playerSpeed + 2);
+		}
 	}
 
 	private GameObject FindObject() {
