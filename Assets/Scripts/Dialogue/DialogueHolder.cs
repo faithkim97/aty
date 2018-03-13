@@ -36,14 +36,14 @@ public class DialogueHolder : MonoBehaviour {
 	
 
     private void OnTriggerStay2D(Collider2D collision) {
-        
+
+
 		GameObject g = collision.gameObject;
-		/*if (gameObject.CompareTag("health") && GameManager.getDeathCount() == 1 && g.CompareTag ("player")) {
-            diaManager.ShowBox ();
-            traverseList();
-			gameObject.SetActive (false);
-		}*/
-		//NarrativeTrigger (collision);
+		int ex = GameManager.getDeathCount ();
+		if (g.CompareTag ("player") && (ex == 1 || ex == 2 || ex == 3)) {
+			triggered = true;
+			diaManager.ShowBox ();
+		}
 		if (Input.GetKeyDown(KeyCode.F) && g.CompareTag("player")) {
 			triggered = true;
             diaManager.ShowBox();
@@ -56,7 +56,8 @@ public class DialogueHolder : MonoBehaviour {
     public void traverseList() {
       //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
-                 triggered = false;
+                triggered = false;
+				gameObject.SetActive (false);
                 diaManager.HideBox();
                 return;
             }
@@ -69,15 +70,6 @@ public class DialogueHolder : MonoBehaviour {
         //}
 		
     }//end of traverselist
-
-	private void NarrativeTrigger(Collider2D collision) {
-		GameObject g = collision.gameObject;
-		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
-					//|| gameObject.CompareTag ("mom");
-		if (narrTag && g.CompareTag ("player")) {
-			diaManager.ShowBox ();
-		}
-	}//end of Narrative Trigger
 
 	public void setTriggered(bool t) {
 		triggered = t;

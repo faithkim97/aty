@@ -1,26 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// Used to hardcode specific events that happen at each day/level
 /// </summary>
 public class LevelManager : MonoBehaviour {
 	private DialogueManager diaManager;
 	private DialogueHolder currDia = null;
-	private GameObject g = null;
+	private GameObject narrObject = null;
+
+	//create fields for the UI images
+	public GameObject healthEmail;
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
 	}//end of start
 
 	void Update() {
-		 g = FindObject ();
-		if ( g!= null ) {
+		 narrObject = FindObject ();
+		if ( narrObject!= null ) {
 			setDifficulty ();
-			currDia = g.GetComponent<DialogueHolder> ();
-			currDia.setTriggered (true);
-			diaManager.ShowBox ();
-			//ManageLevels ();
+			currDia = narrObject.GetComponent<DialogueHolder> ();
+			ManageLevels ();
 		}
 
 	}
@@ -29,9 +31,10 @@ public class LevelManager : MonoBehaviour {
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
 	private void ManageLevels() {
-		if (GameManager.getDeathCount () == 1) {
-			Debug.Log ("manage levels");
-			GameObject.Find ("test").SetActive (true);
+//		Scene mainScene = SceneManager.GetSceneByBuildIndex (0);
+//		Scene currScene = SceneManager.GetActiveScene ();
+		if (GameManager.getDeathCount () == 1 ) {
+			healthEmail.SetActive (true);
 		}
 	}
 
