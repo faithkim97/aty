@@ -16,22 +16,15 @@ public class LevelManager : MonoBehaviour {
 	void Update() {
 		 g = FindObject ();
 		if ( g!= null ) {
-			Debug.Log("Inside g!=null: " + g.tag);
 			setDifficulty ();
 			currDia = g.GetComponent<DialogueHolder> ();
+			currDia.setTriggered (true);
+			diaManager.ShowBox ();
 			//ManageLevels ();
 		}
 
 	}
-
-	void OnTriggerStay2D( Collider2D col ) {
-		Debug.Log ("trigger stay");
-		if (col.gameObject.CompareTag ("player") && g != null) {
-			currDia.setTriggered (true);
-			diaManager.ShowBox ();
-		}
-	}
-
+		
 	/// <summary>
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
