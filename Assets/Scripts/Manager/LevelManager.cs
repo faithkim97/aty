@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour {
 	private void ManageLevels() {
 //		Scene mainScene = SceneManager.GetSceneByBuildIndex (0);
 //		Scene currScene = SceneManager.GetActiveScene ();
-		if (GameManager.getDeathCount () == 1 ) {
+		if (GameManager.getDeathCount () == 1 && healthEmail != null) {
 			healthEmail.SetActive (true);
 		}
 	}
