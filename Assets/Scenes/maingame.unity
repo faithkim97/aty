@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 164333298}
   - component: {fileID: 164333300}
   - component: {fileID: 164333299}
+  - component: {fileID: 164333301}
   m_Layer: 5
   m_Name: mom text
   m_TagString: Untagged
@@ -535,6 +536,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 164333297}
+--- !u!114 &164333301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164333297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e2d009c64da440a85abf68dfc6c171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &172986350
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +588,7 @@ GameObject:
   - component: {fileID: 180398481}
   - component: {fileID: 180398483}
   - component: {fileID: 180398482}
+  - component: {fileID: 180398484}
   m_Layer: 5
   m_Name: dean email
   m_TagString: Untagged
@@ -634,6 +647,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 180398480}
+--- !u!114 &180398484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180398480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e2d009c64da440a85abf68dfc6c171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &185250570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,6 +1912,7 @@ GameObject:
   - component: {fileID: 1041784880}
   - component: {fileID: 1041784882}
   - component: {fileID: 1041784881}
+  - component: {fileID: 1041784883}
   m_Layer: 5
   m_Name: health email
   m_TagString: Untagged
@@ -1946,6 +1971,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1041784879}
+--- !u!114 &1041784883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1041784879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e2d009c64da440a85abf68dfc6c171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1055825511
 Prefab:
   m_ObjectHideFlags: 0
