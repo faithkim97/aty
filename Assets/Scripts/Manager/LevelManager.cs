@@ -33,10 +33,13 @@ public class LevelManager : MonoBehaviour {
 	private void ManageLevels() {
 //		Scene mainScene = SceneManager.GetSceneByBuildIndex (0);
 //		Scene currScene = SceneManager.GetActiveScene ();
-		if (GameManager.getDeathCount () == 1 && healthEmail != null) {
-			healthEmail.SetActive (true);
-		}
-	}
+		//if (mainScene.name == currScene.name) {
+			if (GameManager.getDeathCount () == 1 && healthEmail != null) {
+				healthEmail.SetActive (true);
+			}
+		//}//end of outer if
+
+	}//end of manage levels
 
 	/// <summary>
 	/// sets the difficulty level of each day

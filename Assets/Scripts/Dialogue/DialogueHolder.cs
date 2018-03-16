@@ -37,18 +37,19 @@ public class DialogueHolder : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision) {
 
-
-		GameObject g = collision.gameObject;
 		int ex = GameManager.getDeathCount ();
-		if (g.CompareTag ("player") && (ex == 1 || ex == 2 || ex == 3)) {
+		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+			Debug.Log("F if");
+			triggered = true;
+			diaManager.ShowBox();
+			traverseList();
+		}
+		else if ( gameObject.CompareTag("health") && collision.gameObject.CompareTag ("player") && (ex == 1)) {
+			Debug.Log ("health");
 			triggered = true;
 			diaManager.ShowBox ();
 		}
-		if (Input.GetKeyDown(KeyCode.F) && g.CompareTag("player")) {
-			triggered = true;
-            diaManager.ShowBox();
-            traverseList();
-        }
+
     }//end of Trigger
 
 
@@ -57,7 +58,6 @@ public class DialogueHolder : MonoBehaviour {
       //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
                 triggered = false;
-				gameObject.SetActive (false);
                 diaManager.HideBox();
                 return;
             }

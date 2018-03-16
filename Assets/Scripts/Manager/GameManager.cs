@@ -146,6 +146,25 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(i);
     }
 
+	private static void ResetDialogue() {
+		GameObject NPC = GameObject.Find ("NPCs");
+		foreach (Transform child in NPC.transform) {
+			DialogueHolder dHolder = child.GetComponent<DialogueHolder> ();
+			if (dHolder != null && !dHolder.enabled) {
+				Debug.Log ("inside dHolder");
+				dHolder.enabled = true;
+			}
+		}
+	}
+
+	public static void GameOver() {
+		DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
+		dHolder.setTriggered (false);
+		Instance.LoadScene(1);
+		incDeathCount();
+		//ResetDialogue ();
+	}
+
 
  
 }//end of GameManager

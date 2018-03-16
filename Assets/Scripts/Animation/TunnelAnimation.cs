@@ -76,11 +76,11 @@ public class TunnelAnimation : MonoBehaviour {
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("bottom") ) {
-			GameManager.Instance.LoadScene(1);
-            GameManager.incDeathCount();
+			GameManager.GameOver ();
         }
         
     }//end of on trigger enter
+		
 
 
 }//end of class
