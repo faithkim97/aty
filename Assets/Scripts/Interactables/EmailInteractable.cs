@@ -9,10 +9,16 @@ using UnityEngine.UI;
 public class EmailInteractable : MonoBehaviour {	
 	// Update is called once per frame
 	void Update () {
-		//if x, then exit
+		Interact();
+	}
+
+	void Interact() {
+		Image emailImage = gameObject.GetComponent<Image> ();
 		if (Input.GetKeyDown(KeyCode.X)) {
-			Image emailImage = gameObject.GetComponent<Image> ();
 			emailImage.enabled = false;
 		} 
+		if (Input.GetKeyDown (KeyCode.E)) {
+			emailImage.enabled = true;
+		}
 	}
 }//end of EmailInteractable
