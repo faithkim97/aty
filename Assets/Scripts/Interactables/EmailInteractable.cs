@@ -6,13 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Makes UI of emails/texts interactable 
 /// </summary>
-public class EmailInteractable : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+public class EmailInteractable : MonoBehaviour {	
 	// Update is called once per frame
 	void Update () {
 		//if x, then exit
