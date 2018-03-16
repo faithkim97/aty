@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour {
 
 	//create fields for the UI images
 	public GameObject healthEmail;
+	public GameObject deanEmail;
+	public GameObject momText;
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
@@ -31,13 +33,17 @@ public class LevelManager : MonoBehaviour {
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
 	private void ManageLevels() {
-//		Scene mainScene = SceneManager.GetSceneByBuildIndex (0);
-//		Scene currScene = SceneManager.GetActiveScene ();
-		//if (mainScene.name == currScene.name) {
-			if (GameManager.getDeathCount () == 1 && healthEmail != null) {
-				healthEmail.SetActive (true);
-			}
-		//}//end of outer if
+		if (GameManager.getDeathCount () == 1 && healthEmail != null) {
+			healthEmail.SetActive (true);
+		}
+
+		else if (GameManager.getDeathCount () == 2 && deanEmail != null) {
+			deanEmail.SetActive (true);
+		}
+
+		else if (GameManager.getDeathCount () == 3 && momText != null) {
+			momText.SetActive (true);
+		}
 
 	}//end of manage levels
 

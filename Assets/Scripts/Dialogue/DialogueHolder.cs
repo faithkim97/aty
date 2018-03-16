@@ -39,13 +39,11 @@ public class DialogueHolder : MonoBehaviour {
 
 		int ex = GameManager.getDeathCount ();
 		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
-			Debug.Log("F if");
 			triggered = true;
 			diaManager.ShowBox();
 			traverseList();
 		}
 		else if ( gameObject.CompareTag("health") && collision.gameObject.CompareTag ("player") && (ex == 1)) {
-			Debug.Log ("health");
 			triggered = true;
 			diaManager.ShowBox ();
 		}
