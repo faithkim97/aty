@@ -14,6 +14,7 @@ public class DialogueHolder : MonoBehaviour {
 	//using this to index into the dialogue 
 	int i;
     bool triggered = false;
+	bool dialogueDone = false;
  
 	// Use this for initialization
 	void Start () {
@@ -52,11 +53,6 @@ public class DialogueHolder : MonoBehaviour {
 
 
 	private void EmailTriggers(Collider2D collision, int ex) {
-		if ( gameObject.CompareTag("health") && collision.gameObject.CompareTag ("player") && (ex == 1)) {
-			triggered = true;
-			diaManager.ShowBox ();
-		}
-
 		if (collision.gameObject.CompareTag ("player")) {
 			if (gameObject.CompareTag ("health") && ex == 1) {
 				triggered = true;
@@ -77,6 +73,7 @@ public class DialogueHolder : MonoBehaviour {
       //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
                 triggered = false;
+				dialogueDone = true;
                 diaManager.HideBox();
                 return;
             }
@@ -100,5 +97,11 @@ public class DialogueHolder : MonoBehaviour {
 		return triggered;
 	}
 
+	public void setDialogueDone(bool d) {
+		dialogueDone = d;
+	}
 
+	public bool getDialogueDone() {
+		return dialogueDone;
+	}
 }//end of DialogueHolder

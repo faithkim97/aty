@@ -33,17 +33,19 @@ public class LevelManager : MonoBehaviour {
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
 	private void ManageLevels() {
-		if (GameManager.getDeathCount () == 1 && healthEmail != null) {
-			healthEmail.SetActive (true);
-		}
+		if (currDia.getDialogueDone ()) {
+			if (GameManager.getDeathCount () == 1 && healthEmail != null) {
+				healthEmail.SetActive (true);	
+			}
 
-		else if (GameManager.getDeathCount () == 2 && deanEmail != null) {
-			deanEmail.SetActive (true);
-		}
+			else if (GameManager.getDeathCount () == 2 && deanEmail != null) {
+				deanEmail.SetActive (true);
+			}
 
-		else if (GameManager.getDeathCount () == 3 && momText != null) {
-			momText.SetActive (true);
-		}
+			else if (GameManager.getDeathCount () == 3 && momText != null) {
+				momText.SetActive (true);
+			}
+		}//end of outer if
 
 	}//end of manage levels
 
