@@ -1159,9 +1159,11 @@ GameObject:
   m_Component:
   - component: {fileID: 526765310}
   - component: {fileID: 526765311}
+  - component: {fileID: 526765313}
+  - component: {fileID: 526765312}
   m_Layer: 0
   m_Name: Mom's text
-  m_TagString: Untagged
+  m_TagString: mom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1223,6 +1225,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
+--- !u!114 &526765312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 526765309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f03c5592ab9e34c868ca16f6aec250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &526765313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 526765309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca7cf63fb3066748b8f02931ba8c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
 --- !u!1 &534081939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,9 +1357,11 @@ GameObject:
   m_Component:
   - component: {fileID: 590894520}
   - component: {fileID: 590894521}
+  - component: {fileID: 590894523}
+  - component: {fileID: 590894522}
   m_Layer: 0
   m_Name: Dean email
-  m_TagString: Untagged
+  m_TagString: dean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1396,6 +1423,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
+--- !u!114 &590894522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590894519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca7cf63fb3066748b8f02931ba8c82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+--- !u!114 &590894523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590894519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f03c5592ab9e34c868ca16f6aec250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &617862095
 GameObject:
   m_ObjectHideFlags: 0

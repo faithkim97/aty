@@ -43,13 +43,34 @@ public class DialogueHolder : MonoBehaviour {
 			diaManager.ShowBox();
 			traverseList();
 		}
-		else if ( gameObject.CompareTag("health") && collision.gameObject.CompareTag ("player") && (ex == 1)) {
+
+		EmailTriggers (collision, ex);
+
+	
+
+    }//end of Trigger
+
+
+	private void EmailTriggers(Collider2D collision, int ex) {
+		if ( gameObject.CompareTag("health") && collision.gameObject.CompareTag ("player") && (ex == 1)) {
 			triggered = true;
 			diaManager.ShowBox ();
 		}
 
-    }//end of Trigger
+		if (collision.gameObject.CompareTag ("player")) {
+			if (gameObject.CompareTag ("health") && ex == 1) {
+				triggered = true;
+				diaManager.ShowBox ();
+			} else if (gameObject.CompareTag ("dean") && ex == 2) {
+				triggered = true;
+				diaManager.ShowBox ();
+			} else if (gameObject.CompareTag ("mom") && ex == 3) {
+				triggered = true;
+				diaManager.ShowBox ();
+			}
 
+		}//end of if player
+	}
 
 
     public void traverseList() {
