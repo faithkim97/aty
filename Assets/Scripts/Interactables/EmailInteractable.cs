@@ -20,5 +20,5 @@ public class EmailInteractable : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.E)) {
 			emailImage.enabled = true;
 		}
-	}
+	}//end of Interact
 }//end of EmailInteractable
