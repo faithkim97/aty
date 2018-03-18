@@ -12,6 +12,8 @@ TagManager:
   - player
   - tunnelTrigger
   - health
+  - dean
+  - mom
   layers:
   - Default
   - TransparentFX

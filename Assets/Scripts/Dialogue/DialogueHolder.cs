@@ -14,6 +14,7 @@ public class DialogueHolder : MonoBehaviour {
 	//using this to index into the dialogue 
 	int i;
     bool triggered = false;
+	bool dialogueDone = false;
  
 	// Use this for initialization
 	void Start () {
@@ -36,28 +37,43 @@ public class DialogueHolder : MonoBehaviour {
 	
 
     private void OnTriggerStay2D(Collider2D collision) {
-        triggered = true;
-		GameObject g = collision.gameObject;
-		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
-		//|| gameObject.CompareTag ("mom");
-		//not working because it doesn't do it when death count == 3 
-		if (narrTag && GameManager.getDeathCount() == 1 && g.CompareTag ("player")) {
-            diaManager.ShowBox ();
-            traverseList();
+
+		int ex = GameManager.getDeathCount ();
+		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+			triggered = true;
+			diaManager.ShowBox();
+			traverseList();
 		}
-		//NarrativeTrigger (collision);
-		if (Input.GetKeyDown(KeyCode.F) && g.CompareTag("player")) {
-            diaManager.ShowBox();
-            traverseList();
-        }
+
+		EmailTriggers (collision, ex);
+
+	
+
     }//end of Trigger
 
+
+	private void EmailTriggers(Collider2D collision, int ex) {
+		if (collision.gameObject.CompareTag ("player")) {
+			if (gameObject.CompareTag ("health") && ex == 1) {
+				triggered = true;
+				diaManager.ShowBox ();
+			} else if (gameObject.CompareTag ("dean") && ex == 2) {
+				triggered = true;
+				diaManager.ShowBox ();
+			} else if (gameObject.CompareTag ("mom") && ex == 3) {
+				triggered = true;
+				diaManager.ShowBox ();
+			}
+
+		}//end of if player
+	}
 
 
     public void traverseList() {
       //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
-                 triggered = false;
+                triggered = false;
+				dialogueDone = true;
                 diaManager.HideBox();
                 return;
             }
@@ -71,14 +87,21 @@ public class DialogueHolder : MonoBehaviour {
 		
     }//end of traverselist
 
-	private void NarrativeTrigger(Collider2D collision) {
-		GameObject g = collision.gameObject;
-		bool narrTag = gameObject.CompareTag ("health"); //|| gameObject.CompareTag ("dean") 
-					//|| gameObject.CompareTag ("mom");
-		if (narrTag && g.CompareTag ("player")) {
-			diaManager.ShowBox ();
-		}
-	}//end of Narrative Trigger
+	public void setTriggered(bool t) {
+		triggered = t;
 
+	}
 
+	//return whether dialogue is triggered or not
+	public bool getTriggered() {
+		return triggered;
+	}
+
+	public void setDialogueDone(bool d) {
+		dialogueDone = d;
+	}
+
+	public bool getDialogueDone() {
+		return dialogueDone;
+	}
 }//end of DialogueHolder
