@@ -9,30 +9,37 @@ public class MovingObject : MonoBehaviour {
 
 	[SerializeField]
 	private float moveSpeed;
-	// Update is called once per frame
-	void Update () {
-		TranslateObject ();
-	}
 
-	public void TranslateObject() {
+    private bool dead = false;
+    // Update is called once per frame
+    void Start () {
+         TranslateObject();  
+    }
+
+    public void TranslateObject() {
 		StartCoroutine(MoveRight ());
-		StartCoroutine(MoveLeft ());
+		
 	}
 
 	private IEnumerator MoveRight() {
-		Debug.Log ("inside move right");
-		for (int i = 0; i < numSteps; i++) {
-			gameObject.transform.position = new Vector3 (gameObject.transform.position.x + moveSpeed, gameObject.transform.position.y, gameObject.transform.position.z);
-			yield return null;
+		//Debug.Log ("inside move right");
+		for (float i = 0.0f; i < numSteps; i *= Time.deltaTime) {
+			gameObject.transform.position = new Vector3 (gameObject.transform.position.x + moveSpeed *Time.deltaTime , gameObject.transform.position.y, gameObject.transform.position.z);
+            yield return new WaitForSeconds(0.05f);
 		}//end of for 
-	}//end of MoveRight() 
+        for (float i = 0.0f; i < numSteps; i *= Time.deltaTime) {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x - moveSpeed * Time.deltaTime,
+                gameObject.transform.position.y, gameObject.transform.position.z);
+            yield return new WaitForSeconds(0.05f);
+        }//end of for loop
+    }//end of MoveRight() 
 
 	private IEnumerator MoveLeft() {
-		Debug.Log ("inside moveLeft()");
+		///Debug.Log ("inside moveLeft()");
 		for (int i = 0; i < numSteps; i++) {
-			gameObject.transform.position = new Vector3 (gameObject.transform.position.x - moveSpeed, 
+			gameObject.transform.position = new Vector3 (gameObject.transform.position.x - moveSpeed *Time.deltaTime, 
 				gameObject.transform.position.y, gameObject.transform.position.z);
-			yield return null;
-		}//end of for loop
+            yield return new WaitForSeconds(0.05f);
+        }//end of for loop
 	}//end of MoveLeft()
 }
