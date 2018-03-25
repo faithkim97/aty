@@ -47,12 +47,20 @@ public class PlayerControl : MonoBehaviour {
             }
             else { DecreaseTunnel(); }
 			GameObject.Destroy (other.gameObject);
-		} else if (other.gameObject.CompareTag ("obstacle")) {
+		} /*else if (other.gameObject.CompareTag ("obstacle")) {
 			GameObject.Destroy (other.gameObject);
             IncreaseTunnel();
 			GameManager.decCoinCount ();
 		}// end of else if 
+        */
+    }
 
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("obstacle")) {
+            GameObject.Destroy(other.gameObject);
+            IncreaseTunnel();
+            GameManager.decCoinCount();
+        }
     }
 
   /*  void GameOver() {

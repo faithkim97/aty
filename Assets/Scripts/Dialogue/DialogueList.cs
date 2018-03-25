@@ -75,12 +75,6 @@ public class DialogueList : MonoBehaviour {
     }
 
 	public int getID() {
-
 		return id;
 	}
-
-
-
-
-
 }//end of class
