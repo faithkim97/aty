@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour {
     private int jumpPower = 1000;
     private float moveX;
     private bool facingRight = false;
+	private bool inAir = false;
 
     private void Start() {
         gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
@@ -30,12 +31,13 @@ public class PlayerControl : MonoBehaviour {
         //player movement 
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
         //jump
-        if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.Space) && !inAir) {
+			inAir = true;
             jump();
         }//end of if
     }//end of movePlayer
 
-    void jump() {
+	void jump() {
         gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
     }//end of jump
 
@@ -47,12 +49,7 @@ public class PlayerControl : MonoBehaviour {
             }
             else { DecreaseTunnel(); }
 			GameObject.Destroy (other.gameObject);
-		} /*else if (other.gameObject.CompareTag ("obstacle")) {
-			GameObject.Destroy (other.gameObject);
-            IncreaseTunnel();
-			GameManager.decCoinCount ();
-		}// end of else if 
-        */
+		} 
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -61,6 +58,10 @@ public class PlayerControl : MonoBehaviour {
             IncreaseTunnel();
             GameManager.decCoinCount();
         }
+
+		if (other.gameObject.CompareTag ("ground")) {
+			inAir = false;
+		}
     }
 
   /*  void GameOver() {
