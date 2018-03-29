@@ -33,6 +33,7 @@ public class DialogueHolder : MonoBehaviour {
             //diaManager.ShowDialogue(traverseList());
 			traverseList();
         }
+		DisableEmail ();
     }
 	
 
@@ -46,8 +47,7 @@ public class DialogueHolder : MonoBehaviour {
 		}
 
 		EmailTriggers (collision, ex);
-
-	
+		
 
     }//end of Trigger
 
@@ -64,8 +64,16 @@ public class DialogueHolder : MonoBehaviour {
 				triggered = true;
 				diaManager.ShowBox ();
 			}
-
+				
 		}//end of if player
+			
+	}
+
+	private void DisableEmail() {
+		if(Input.GetKeyDown(KeyCode.X) && (gameObject.CompareTag("health") || gameObject.CompareTag("dean") 
+			|| gameObject.CompareTag("mom"))){
+			gameObject.SetActive(false);
+		}//end of if
 	}
 
 

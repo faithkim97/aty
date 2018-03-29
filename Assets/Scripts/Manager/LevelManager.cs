@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour {
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
 	private void ManageLevels() {
-		if (currDia.getDialogueDone ()) {
+		if (currDia.getDialogueDone () && !Input.GetKeyDown(KeyCode.X)) {
 			if (GameManager.getDeathCount () == 1 && healthEmail != null) {
 				healthEmail.SetActive (true);	
 			}
