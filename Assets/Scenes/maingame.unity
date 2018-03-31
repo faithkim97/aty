@@ -1427,8 +1427,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be538f7671fbe6845aadf3acdd9a3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.4
+  numRSteps: 0.1
+  numLSteps: 3
   moveSpeed: 5
+  startLeft: 0
+  startRight: 1
 --- !u!1 &454332317
 GameObject:
   m_ObjectHideFlags: 0
@@ -3740,8 +3743,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be538f7671fbe6845aadf3acdd9a3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.4
+  numRSteps: 0
+  numLSteps: 0
   moveSpeed: 5
+  startLeft: 0
+  startRight: 0
 --- !u!1001 &1337185135
 Prefab:
   m_ObjectHideFlags: 0
