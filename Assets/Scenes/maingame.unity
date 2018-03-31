@@ -769,6 +769,7 @@ Transform:
   - {fileID: 673193384}
   - {fileID: 1778300499}
   - {fileID: 928403288}
+  - {fileID: 406358449}
   m_Father: {fileID: 812525491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1148,19 +1149,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1379414261}
+    m_TransformParent: {fileID: 212193786}
     m_Modifications:
     - target: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -679.75
+      value: -1.6426859
       objectReference: {fileID: 0}
     - target: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -406.5
+      value: -1.0910342
       objectReference: {fileID: 0}
     - target: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.925098
+      value: 0.07259941
       objectReference: {fileID: 0}
     - target: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1180,7 +1181,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 58266861624930148, guid: 65e087ce35a55b8499bbb3f1dc13e298,
         type: 2}
@@ -2675,7 +2676,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 58266861624930148, guid: 65e087ce35a55b8499bbb3f1dc13e298,
         type: 2}
@@ -3952,7 +3953,6 @@ Transform:
   m_Children:
   - {fileID: 1313445240}
   - {fileID: 1313702847}
-  - {fileID: 406358449}
   - {fileID: 858871324}
   m_Father: {fileID: 812525491}
   m_RootOrder: 2
