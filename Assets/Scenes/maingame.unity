@@ -1428,8 +1428,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be538f7671fbe6845aadf3acdd9a3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.4
+  numRSteps: 0.4
+  numLSteps: 0.4
   moveSpeed: 5
+  startLeft: 0
+  startRight: 1
 --- !u!1 &454332317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +2737,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!114 &858871327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 858871325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be538f7671fbe6845aadf3acdd9a3955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numRSteps: 0.4
+  numLSteps: 0.4
+  moveSpeed: 5
+  startLeft: 0
+  startRight: 1
 --- !u!1001 &873650495
 Prefab:
   m_ObjectHideFlags: 0
@@ -3741,8 +3760,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be538f7671fbe6845aadf3acdd9a3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.4
+  numRSteps: 0.4
+  numLSteps: 0.4
   moveSpeed: 5
+  startLeft: 0
+  startRight: 1
 --- !u!1001 &1337185135
 Prefab:
   m_ObjectHideFlags: 0

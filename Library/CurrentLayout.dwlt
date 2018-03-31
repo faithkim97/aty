@@ -209,7 +209,11 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 27
+=======
+  controlID: 10
+>>>>>>> anim
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +237,11 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 107
+=======
+  controlID: 11
+>>>>>>> anim
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -449,7 +457,11 @@ MonoBehaviour:
     width: 309
     height: 710
   m_PersistentViewDataDictionary: {fileID: 0}
+<<<<<<< HEAD
   m_ScrollPosition: {x: 0, y: 172.95508}
+=======
+  m_ScrollPosition: {x: 0, y: 301.95508}
+>>>>>>> anim
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 160
@@ -487,7 +499,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: d22a0000
     m_LastClickedID: 10962
+<<<<<<< HEAD
     m_ExpandedIDs: 9efbffff00000000042a0000c22a00003c2b0000
+=======
+    m_ExpandedIDs: 9efbffff00000000c22a00003c2b0000
+>>>>>>> anim
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: obstacle (1)
@@ -538,14 +554,24 @@ MonoBehaviour:
     height: 422
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
+<<<<<<< HEAD
   lastFramingTime: 86.13684819753087
+=======
+  lastFramingTime: 665.725869037037
+>>>>>>> anim
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 12.186256, y: 0.19330421, z: 0.18541704}
     speed: 2
     m_Value: {x: 12.186256, y: 0.19330421, z: 0.18541704}
+=======
+    m_Target: {x: 5.2312765, y: 0.031619295, z: 0.171875}
+    speed: 2
+    m_Value: {x: 5.2312765, y: 0.031619295, z: 0.171875}
+>>>>>>> anim
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -573,9 +599,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 8.607102
     speed: 2
     m_Value: 8.607102
+=======
+    m_Target: 10.282641
+    speed: 2
+    m_Value: 10.282641
+>>>>>>> anim
   m_Ortho:
     m_Target: 1
     speed: 2
