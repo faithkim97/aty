@@ -15,16 +15,21 @@ public class LevelManager : MonoBehaviour {
 	public GameObject deanEmail;
 	public GameObject momText;
 
+    private PlayerControl pControl;
+    private bool manageLvl = true;
+
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
+        GameObject player = GameObject.Find("player");
+        pControl = player.GetComponent<PlayerControl>();
 	}//end of start
 
-	void Update() {
+	void Update() { 
 		 narrObject = FindObject ();
-		if ( narrObject!= null ) {
-			setDifficulty ();
+		if ( narrObject!= null && manageLvl ) {
 			currDia = narrObject.GetComponent<DialogueHolder> ();
-			ManageLevels ();
+            manageLvl = setDifficulty(manageLvl);
+            ManageLevelEmail();
 		}
 
 	}
@@ -32,40 +37,46 @@ public class LevelManager : MonoBehaviour {
 	/// <summary>
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
-	private void ManageLevels() {
-		if (currDia.getDialogueDone () && !Input.GetKeyDown(KeyCode.X)) {
-			if (GameManager.getDeathCount () == 1 && healthEmail != null) {
-				healthEmail.SetActive (true);	
-			}
+	private void ManageLevelEmail() {
+        if (manageLvl) {
+            if (currDia.getDialogueDone() && !Input.GetKeyDown(KeyCode.X)) {
+                if (GameManager.getDeathCount() == 1 && healthEmail != null) {
+                    healthEmail.SetActive(true);
+                }
 
-			else if (GameManager.getDeathCount () == 2 && deanEmail != null) {
-				deanEmail.SetActive (true);
-			}
+                else if (GameManager.getDeathCount() == 2 && deanEmail != null) {
+                    deanEmail.SetActive(true);
+                }
 
-			else if (GameManager.getDeathCount () == 3 && momText != null) {
-				momText.SetActive (true);
-			}
+                else if (GameManager.getDeathCount() == 3 && momText != null) {
+                    momText.SetActive(true);
+                }
+            }//end of manageLvl
 		}//end of outer if
 
-	}//end of manage levels
+    }//end of manage levels
 
 	/// <summary>
 	/// sets the difficulty level of each day
 	/// </summary>
-	private void setDifficulty() {
-		int playerSpeed = PlayerControl.getPlayerSpeed();
-		if (playerSpeed < 10) {
-			PlayerControl.setPlayerSpeed(playerSpeed + 2);
-		}
+	private bool setDifficulty(bool manageLvl) {
+        if (manageLvl) {
+            float playerSpeed = PlayerControl.getPlayerSpeed();
+            int jumpPower = pControl.getJumpPower();
+            if (playerSpeed < 5.0f) {
+                PlayerControl.setPlayerSpeed(playerSpeed + 0.2f);
+            }
+
+            if (jumpPower < 5000) {
+                Debug.Log("jumpPower = " + jumpPower);
+                pControl.setJumpPower(jumpPower + 100);
+            }
+        }//end of manageLvl
+        return false;
 	}
 
 	private GameObject FindObject() {
-		GameObject g = null;
-		//if death count is certain number
-		//then find object of specific tag/name of game object
-		//set the currdia to that gameobject's dialogue 
-		//set the triggered to true 
-		//for (int i = 0; i < GameManager.getDeathCount(); i++) {
+        GameObject g = null;
 		int i = GameManager.getDeathCount();
 		if (( i == 1)) {
 				g = GameObject.Find ("Health Service email");
@@ -74,8 +85,6 @@ public class LevelManager : MonoBehaviour {
 			} else if (i == 3) {
 				g = GameObject.Find ("Mom's text");
 			}
-		//}//end of for loop
-
 		return g;
 	}//end of FindObject
 
