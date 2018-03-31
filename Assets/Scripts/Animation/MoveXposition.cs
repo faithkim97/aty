@@ -22,15 +22,17 @@ public class MoveXposition: MonoBehaviour {
         if (startLeft) {
             yield return StartCoroutine(MoveLeftRight());
         }
-        else if (startRight) {
+        if (startRight) {
             yield return StartCoroutine(MoveRightLeft());
         }
         
     }
 
     private IEnumerator MoveLeftRight() {
-        yield return StartCoroutine(MoveLeft());
-        yield return StartCoroutine(MoveRight());
+        while (true) {
+            yield return StartCoroutine(MoveLeft());
+            yield return StartCoroutine(MoveRight());
+        }
     }
 
     private IEnumerator MoveRightLeft() {
