@@ -58,10 +58,10 @@ public class DialogueHolder : MonoBehaviour {
 				triggered = true;
 				diaManager.ShowBox ();
 			} else if (gameObject.CompareTag ("dean") && ex == 2) {
-				triggered = true;
+                triggered = true;
 				diaManager.ShowBox ();
 			} else if (gameObject.CompareTag ("mom") && ex == 3) {
-				triggered = true;
+                triggered = true;
 				diaManager.ShowBox ();
 			}
 				

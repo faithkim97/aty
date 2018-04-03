@@ -64,12 +64,6 @@ public class PlayerControl : MonoBehaviour {
 		}
     }
 
-  /*  void GameOver() {
-        GameManager.incDeathCount();
-        //game over scene 
-        GameManager.Instance.LoadScene(1);
-    } */
-
     void DecreaseTunnel() {
         GameManager.decreaseTunnelHeight(GameObject.Find("Top"));
         GameManager.decreaseTunnelHeight(GameObject.Find("Bottom"));
@@ -95,8 +89,5 @@ public class PlayerControl : MonoBehaviour {
     public void setJumpPower(int newPower) {
         jumpPower = newPower;
     }
-
-
-    //add flip player code
 
 }//end of PlayerControl
