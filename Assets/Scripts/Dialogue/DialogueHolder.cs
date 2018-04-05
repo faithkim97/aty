@@ -15,9 +15,11 @@ public class DialogueHolder : MonoBehaviour {
 	int i;
     bool triggered = false;
 	bool dialogueDone = false;
+    private LevelManager levelManager;
  
 	// Use this for initialization
 	void Start () {
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
         Dictionary<int,List<string>> savedDialogues = dialogueList.LoadDialogueList();
@@ -54,6 +56,7 @@ public class DialogueHolder : MonoBehaviour {
 
 	private void EmailTriggers(Collider2D collision, int ex) {
 		if (collision.gameObject.CompareTag ("player")) {
+           
 			if (gameObject.CompareTag ("health") && ex == 1) {
 				triggered = true;
 				diaManager.ShowBox ();
@@ -80,9 +83,12 @@ public class DialogueHolder : MonoBehaviour {
     public void traverseList() {
       //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
+            Debug.Log("INSIDE TRAVERSE LIST");
                 triggered = false;
 				dialogueDone = true;
                 diaManager.HideBox();
+            levelManager.ManageLevelEmail(true);
+            Debug.Log("dialogueDone traverse: " + dialogueDone);
                 return;
             }
             diaManager.ShowDialogue(currDialogue[i]);

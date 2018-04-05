@@ -15,21 +15,20 @@ public class LevelManager : MonoBehaviour {
 	public GameObject deanEmail;
 	public GameObject momText;
 
-  //  private PlayerControl pControl;
+
     private bool manageLvl = true;
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
-        //GameObject player = GameObject.Find("player");
-       // pControl = player.GetComponent<PlayerControl>();
+    
 	}//end of start
 
 	void Update() { 
 		 narrObject = FindObject ();
-        if (narrObject != null) {
+      /*  if (narrObject != null) {
             currDia = narrObject.GetComponent<DialogueHolder>();
-            ManageLevelEmail();
-        }
+            //ManageLevelEmail();
+        } */
         if (narrObject !=null && manageLvl ) {
             manageLvl = setDifficulty(manageLvl);
 		}
@@ -40,16 +39,16 @@ public class LevelManager : MonoBehaviour {
 	/// <summary>
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
-	private void ManageLevelEmail() {
-            if (currDia.getDialogueDone() ) {
-                if (GameManager.getDeathCount() == 1 && healthEmail != null) {
+	public void ManageLevelEmail(bool dDone) {
+        Debug.Log("dDone: " + dDone);
+        if (dDone ) {
+            if (GameManager.getDeathCount() == 1 && healthEmail != null) {
+                Debug.Log("death count 3");
                     healthEmail.SetActive(true);
                 }
-
                 else if (GameManager.getDeathCount() == 2 && deanEmail != null) {
                     deanEmail.SetActive(true);
                 }
-
                 else if (GameManager.getDeathCount() == 3 && momText != null) {
                     momText.SetActive(true);
                 }
@@ -68,7 +67,7 @@ public class LevelManager : MonoBehaviour {
             }
 
             if (jumpPower < 5000) {
-                Debug.Log(jumpPower);
+               
                 PlayerControl.setJumpPower(jumpPower + 100);
             }
         }//end of manageLvl
