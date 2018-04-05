@@ -38,7 +38,7 @@ public class ScreenShake : MonoBehaviour {
 
 	void Update() {
         
-		if (shake && shakeTimer > 0) {
+		if (shake && shakeTimer > 0 ) {
             PlayerControl();
             ShakeScreen();
 		}
@@ -60,7 +60,7 @@ public class ScreenShake : MonoBehaviour {
 	
 	}//end of ShakeCamera
 
-    public void setShakeTimer(float newTimer) {
+    public  void setShakeTimer(float newTimer) {
         shakeTimer = newTimer;
     }
 

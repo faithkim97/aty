@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour {
     //this will be called in ontriggerenter of playercontrol
     public static void incDeathCount() {
         deathCount++;
+        ScreenShake.ShakeScreen(false);
         
     }
     

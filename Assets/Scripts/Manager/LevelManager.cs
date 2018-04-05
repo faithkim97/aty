@@ -15,13 +15,13 @@ public class LevelManager : MonoBehaviour {
 	public GameObject deanEmail;
 	public GameObject momText;
 
-    private PlayerControl pControl;
+  //  private PlayerControl pControl;
     private bool manageLvl = true;
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
-        GameObject player = GameObject.Find("player");
-        pControl = player.GetComponent<PlayerControl>();
+        //GameObject player = GameObject.Find("player");
+       // pControl = player.GetComponent<PlayerControl>();
 	}//end of start
 
 	void Update() { 
@@ -62,14 +62,14 @@ public class LevelManager : MonoBehaviour {
 	private bool setDifficulty(bool manageLvl) {
         if (manageLvl) {
             float playerSpeed = PlayerControl.getPlayerSpeed();
-            int jumpPower = pControl.getJumpPower();
+            int jumpPower = PlayerControl.getJumpPower();
             if (playerSpeed < 5.0f) {
                 PlayerControl.setPlayerSpeed(playerSpeed + 0.2f);
             }
 
             if (jumpPower < 5000) {
                 Debug.Log(jumpPower);
-                pControl.setJumpPower(jumpPower + 100);
+                PlayerControl.setJumpPower(jumpPower + 100);
             }
         }//end of manageLvl
         return false;
