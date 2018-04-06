@@ -101,9 +101,10 @@ public class LevelManager : MonoBehaviour {
 	}//end of FindObject
 
     private void ChangeOpacity(GameObject g, float opacity) {
-        Debug.Log("opacity: " + opacity);
+       
         Image i = g.GetComponent<Image>();
         if (i != null) {
+            Debug.Log("inside i != null");
             Color tmp = i.color;
             tmp.a = opacity;
             i.color = tmp;
