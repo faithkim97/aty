@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 /// <summary>
 /// Used to hardcode specific events that happen at each day/level
 /// </summary>
@@ -11,24 +12,38 @@ public class LevelManager : MonoBehaviour {
 	private GameObject narrObject = null;
 
 	//create fields for the UI images
-	public GameObject healthEmail;
+	
 	public GameObject deanEmail;
 	public GameObject momText;
+    public GameObject healthEmail;
+
+
 
 
     private bool manageLvl = true;
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
-    
-	}//end of start
+        if (healthEmail != null && healthEmail.GetComponent<Image>() != null) {
+            healthEmail.GetComponent<Image>().enabled = false;
+        }
+        if ( deanEmail != null && momText != null) {
+            //healthEmail.GetComponent<Image>().enabled = false;
+           
+            deanEmail.GetComponent<Image>().enabled = false;
+            momText.GetComponent<Image>().enabled = false;
+        }
+
+    }//end of start
 
 	void Update() { 
 		 narrObject = FindObject ();
-      /*  if (narrObject != null) {
-            currDia = narrObject.GetComponent<DialogueHolder>();
-            //ManageLevelEmail();
-        } */
+        /*  if (narrObject != null) {
+              currDia = narrObject.GetComponent<DialogueHolder>();
+              //ManageLevelEmail();
+          } */
+
+     
         if (narrObject !=null && manageLvl ) {
             manageLvl = setDifficulty(manageLvl);
 		}
@@ -40,18 +55,21 @@ public class LevelManager : MonoBehaviour {
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
 	public void ManageLevelEmail(bool dDone) {
-        Debug.Log("dDone: " + dDone);
+    //    Debug.Log("dDone: " + dDone);
         if (dDone ) {
-            if (GameManager.getDeathCount() == 1 && healthEmail != null) {
-                Debug.Log("death count 3");
-                    healthEmail.SetActive(true);
-                }
-                else if (GameManager.getDeathCount() == 2 && deanEmail != null) {
-                    deanEmail.SetActive(true);
-                }
+            Debug.Log(healthEmail.GetComponent<Image>());
+            if (healthEmail.GetComponent<Image>() == null) {
+                Debug.Log("healthEmail's image is indeed null");
+            }
+         if (GameManager.getDeathCount() == 1 && healthEmail != null && healthEmail.GetComponent<Image>() != null) {
+                healthEmail.GetComponent<Image>().enabled = true;
+                } 
+         if (GameManager.getDeathCount() == 2 && deanEmail != null) {
+                deanEmail.GetComponent<Image>().enabled = true;
+            }
                 else if (GameManager.getDeathCount() == 3 && momText != null) {
-                    momText.SetActive(true);
-                }
+                    momText.GetComponent<Image>().enabled = true;
+            }
             }//end of manageLvl
     }//end of manage levels
 

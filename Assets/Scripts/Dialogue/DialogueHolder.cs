@@ -83,12 +83,12 @@ public class DialogueHolder : MonoBehaviour {
     public void traverseList() {
       //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
-            Debug.Log("INSIDE TRAVERSE LIST");
                 triggered = false;
 				dialogueDone = true;
                 diaManager.HideBox();
-            levelManager.ManageLevelEmail(true);
-            Debug.Log("dialogueDone traverse: " + dialogueDone);
+              levelManager.ManageLevelEmail(true);
+            //levelManager.done = true;
+          //  Debug.Log("dialogueDone traverse: " + dialogueDone);
                 return;
             }
             diaManager.ShowDialogue(currDialogue[i]);
