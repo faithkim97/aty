@@ -24,12 +24,9 @@ public class LevelManager : MonoBehaviour {
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
-        if (healthEmail != null && healthEmail.GetComponent<Image>() != null) {
-            healthEmail.GetComponent<Image>().enabled = false;
-        }
-        if ( deanEmail != null && momText != null) {
-            //healthEmail.GetComponent<Image>().enabled = false;
-           
+        
+        if ( healthEmail != null && deanEmail != null && momText != null) {
+            ChangeOpacity(healthEmail, 0.0f);
             deanEmail.GetComponent<Image>().enabled = false;
             momText.GetComponent<Image>().enabled = false;
         }
@@ -38,39 +35,37 @@ public class LevelManager : MonoBehaviour {
 
 	void Update() { 
 		 narrObject = FindObject ();
-        /*  if (narrObject != null) {
+         if (narrObject != null) {
               currDia = narrObject.GetComponent<DialogueHolder>();
-              //ManageLevelEmail();
-          } */
+            //ManageLevelEmail();
+            if (currDia.getDialogueDone() && GameManager.getDeathCount() == 1 && healthEmail != null) {
+                Debug.Log("inside dDone healthEmail !=null");
+                ChangeOpacity(healthEmail, 1.0f);
+            }
+        } 
 
      
         if (narrObject !=null && manageLvl ) {
             manageLvl = setDifficulty(manageLvl);
 		}
-       
 
-	}
+       
+      
+
+    }//end of update
 		
 	/// <summary>
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
 	public void ManageLevelEmail(bool dDone) {
-    //    Debug.Log("dDone: " + dDone);
         if (dDone ) {
-            Debug.Log(healthEmail.GetComponent<Image>());
-            if (healthEmail.GetComponent<Image>() == null) {
-                Debug.Log("healthEmail's image is indeed null");
-            }
-         if (GameManager.getDeathCount() == 1 && healthEmail != null && healthEmail.GetComponent<Image>() != null) {
-                healthEmail.GetComponent<Image>().enabled = true;
-                } 
-         if (GameManager.getDeathCount() == 2 && deanEmail != null) {
+            if ( GameManager.getDeathCount() == 2 && deanEmail != null) {
                 deanEmail.GetComponent<Image>().enabled = true;
             }
                 else if (GameManager.getDeathCount() == 3 && momText != null) {
                     momText.GetComponent<Image>().enabled = true;
             }
-            }//end of manageLvl
+         }//end of dDone
     }//end of manage levels
 
 	/// <summary>
@@ -104,5 +99,15 @@ public class LevelManager : MonoBehaviour {
 			}
 		return g;
 	}//end of FindObject
+
+    private void ChangeOpacity(GameObject g, float opacity) {
+        Debug.Log("opacity: " + opacity);
+        Image i = g.GetComponent<Image>();
+        if (i != null) {
+            Color tmp = i.color;
+            tmp.a = opacity;
+            i.color = tmp;
+        }
+    }//end of ChangeOpacity
 
 }//end of LevelManagaer

@@ -60,7 +60,7 @@ public class DialogueHolder : MonoBehaviour {
 			if (gameObject.CompareTag ("health") && ex == 1) {
 				triggered = true;
 				diaManager.ShowBox ();
-			} else if (gameObject.CompareTag ("dean") && ex == 2) {
+			}  if (gameObject.CompareTag ("dean") && ex == 2) {
                 triggered = true;
 				diaManager.ShowBox ();
 			} else if (gameObject.CompareTag ("mom") && ex == 3) {
@@ -81,14 +81,11 @@ public class DialogueHolder : MonoBehaviour {
 
 
     public void traverseList() {
-      //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
                 triggered = false;
 				dialogueDone = true;
                 diaManager.HideBox();
-              levelManager.ManageLevelEmail(true);
-            //levelManager.done = true;
-          //  Debug.Log("dialogueDone traverse: " + dialogueDone);
+                levelManager.ManageLevelEmail(true);
                 return;
             }
             diaManager.ShowDialogue(currDialogue[i]);
@@ -96,9 +93,6 @@ public class DialogueHolder : MonoBehaviour {
             if (i < currDialogue.Count && Input.GetKeyUp(KeyCode.K)) {
                 i++;
             }
-       
-        //}
-		
     }//end of traverselist
 
 	public void setTriggered(bool t) {
