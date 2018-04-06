@@ -39,7 +39,6 @@ public class LevelManager : MonoBehaviour {
               currDia = narrObject.GetComponent<DialogueHolder>();
             //ManageLevelEmail();
             if (currDia.getDialogueDone() && GameManager.getDeathCount() == 1 && healthEmail != null) {
-                Debug.Log("inside dDone healthEmail !=null");
                 ChangeOpacity(healthEmail, 1.0f);
             }
         } 
@@ -59,10 +58,10 @@ public class LevelManager : MonoBehaviour {
 	/// </summary>
 	public void ManageLevelEmail(bool dDone) {
         if (dDone ) {
-            if ( GameManager.getDeathCount() == 2 && deanEmail != null) {
+            if ( GameManager.getDeathCount() == 4 && deanEmail != null) {
                 deanEmail.GetComponent<Image>().enabled = true;
             }
-                else if (GameManager.getDeathCount() == 3 && momText != null) {
+                else if (GameManager.getDeathCount() == 5 && momText != null) {
                     momText.GetComponent<Image>().enabled = true;
             }
          }//end of dDone
@@ -104,7 +103,7 @@ public class LevelManager : MonoBehaviour {
        
         Image i = g.GetComponent<Image>();
         if (i != null) {
-            Debug.Log("inside i != null");
+          
             Color tmp = i.color;
             tmp.a = opacity;
             i.color = tmp;

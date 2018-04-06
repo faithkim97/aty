@@ -60,10 +60,10 @@ public class DialogueHolder : MonoBehaviour {
 			if (gameObject.CompareTag ("health") && ex == 1) {
 				triggered = true;
 				diaManager.ShowBox ();
-			}  if (gameObject.CompareTag ("dean") && ex == 2) {
+			}  if (gameObject.CompareTag ("dean") && ex == 4) {
                 triggered = true;
 				diaManager.ShowBox ();
-			} else if (gameObject.CompareTag ("mom") && ex == 3) {
+			} else if (gameObject.CompareTag ("mom") && ex == 5) {
                 triggered = true;
 				diaManager.ShowBox ();
 			}
@@ -112,4 +112,6 @@ public class DialogueHolder : MonoBehaviour {
 	public bool getDialogueDone() {
 		return dialogueDone;
 	}
+
+  
 }//end of DialogueHolder
