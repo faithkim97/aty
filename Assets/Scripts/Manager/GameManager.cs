@@ -162,8 +162,10 @@ public class GameManager : MonoBehaviour {
 		dHolder.setTriggered (false);
 		Instance.LoadScene(1);
 		incDeathCount();
-		//ResetDialogue ();
-	}
+        //ResetDialogue ();
+       // ScreenShake.ResetShake();
+        
+    }
 
 
  

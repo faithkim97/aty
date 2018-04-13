@@ -15,9 +15,8 @@ public class ScreenShake : MonoBehaviour {
 
 	public GameObject player;
 
-	[SerializeField] 
-	private float shakeTimer;
-    private float originalTimer;
+	private static float shakeTimer = 5.0f;
+    private static float originalTimer;
 	[SerializeField] 
 	private float shakeAmount;
 
@@ -44,7 +43,6 @@ public class ScreenShake : MonoBehaviour {
 
         if (shake && shakeTimer <= 0) {
             shake = false;
-            shakeTimer = originalTimer;
             StabilizeCameraPosition();
         }
 	
@@ -92,5 +90,11 @@ public class ScreenShake : MonoBehaviour {
     public static bool getShake() {
         return shake;
     }
+
+    public static void ResetShake() {
+        shakeTimer = originalTimer;
+    }
+
+
 
 }//end of class

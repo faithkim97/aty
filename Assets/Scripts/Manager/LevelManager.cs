@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour {
 	public GameObject momText;
     public GameObject healthEmail;
 
+    public GameObject pills;
+
 
 
 
@@ -24,7 +26,9 @@ public class LevelManager : MonoBehaviour {
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
-        
+        if (GameManager.getDeathCount() >= 1 ) {
+            SetPillsActive();
+        }
         if ( healthEmail != null && deanEmail != null && momText != null) {
             ChangeOpacity(healthEmail, 0.0f);
             deanEmail.GetComponent<Image>().enabled = false;
@@ -109,5 +113,9 @@ public class LevelManager : MonoBehaviour {
             i.color = tmp;
         }
     }//end of ChangeOpacity
+
+    private void SetPillsActive() {
+        if (pills != null) { pills.SetActive(true); }
+    }
 
 }//end of LevelManagaer
