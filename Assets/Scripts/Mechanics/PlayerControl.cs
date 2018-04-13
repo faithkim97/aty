@@ -56,7 +56,6 @@ public class PlayerControl : MonoBehaviour {
         if (other.gameObject.CompareTag("obstacle")) {
             GameObject.Destroy(other.gameObject);
             IncreaseTunnel();
-            GameManager.decCoinCount();
         }
 
 		if (other.gameObject.CompareTag ("ground")) {
