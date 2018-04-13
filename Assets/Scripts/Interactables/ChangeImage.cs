@@ -18,7 +18,7 @@ public class ChangeImage : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		//if triggered, then change the bombs to other image 
-		if (col.gameObject.CompareTag("player")) {
+		if (GameManager.getDeathCount() >= 3 && col.gameObject.CompareTag("player")) {
 			StartCoroutine(FadeSprite());
 		}//end of if
 
