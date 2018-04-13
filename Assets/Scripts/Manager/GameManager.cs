@@ -152,11 +152,19 @@ public class GameManager : MonoBehaviour {
 	public static void GameOver() {
 		DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
 		dHolder.setTriggered (false);
-		Instance.LoadScene(1);
-		incDeathCount();
-        //ResetDialogue ();
-       // ScreenShake.ResetShake();
-        
+        incDeathCount();
+        coinCount = 0;
+        // volume = ResetMusic();
+        // if (volume <= 0) { Instance.LoadScene(1); }
+        Instance.LoadScene(1);
+    }//end of GameOver
+
+    private static float ResetMusic() {
+        SoundManager sManager = GameObject.FindObjectOfType<SoundManager>();
+       // sManager.FadeOutAudio();
+        float volume = sManager.GetComponent<AudioSource>().volume;
+        Debug.Log("Reset Music: " + volume);
+        return volume;
     }
 
 
