@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 96339f273125b5e459190b0c1b0320a0
 timeCreated: 1522940841
+=======
+guid: 94fc56e3629da1f4582af49035562d18
+timeCreated: 1522909167
+>>>>>>> gameCourse
 licenseType: Free
 MonoImporter:
   externalObjects: {}

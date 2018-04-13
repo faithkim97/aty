@@ -28,7 +28,6 @@ public class ScreenShake : MonoBehaviour {
     void FixedUpdate(){
         
         if (shake) {
-            
             float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
             float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
 
@@ -38,13 +37,14 @@ public class ScreenShake : MonoBehaviour {
 
 	void Update() {
         
-		if (shake && shakeTimer > 0) {
+		if (shake && shakeTimer > 0 ) {
             PlayerControl();
             ShakeScreen();
 		}
 
         if (shake && shakeTimer <= 0) {
             shake = false;
+            shakeTimer = originalTimer;
             StabilizeCameraPosition();
         }
 	
@@ -60,7 +60,7 @@ public class ScreenShake : MonoBehaviour {
 	
 	}//end of ShakeCamera
 
-    public void setShakeTimer(float newTimer) {
+    public  void setShakeTimer(float newTimer) {
         shakeTimer = newTimer;
     }
 
@@ -72,7 +72,7 @@ public class ScreenShake : MonoBehaviour {
         bool keyPressed = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)
                                || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow) 
                               || Input.GetKey(KeyCode.LeftArrow);
-        if (keyPressed) {
+        if (shake && keyPressed) {
             shakeTimer = originalTimer;
             GameManager.increaseTunnelHeight(GameObject.Find("Top"));
             GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
@@ -87,6 +87,10 @@ public class ScreenShake : MonoBehaviour {
 
     public static void ShakeScreen(bool shakeScreen) {
         shake = shakeScreen;
+    }
+
+    public static bool getShake() {
+        return shake;
     }
 
 }//end of class

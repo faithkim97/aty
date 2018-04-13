@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 /// <summary>
 /// Used to hardcode specific events that happen at each day/level
 /// </summary>
@@ -11,49 +12,59 @@ public class LevelManager : MonoBehaviour {
 	private GameObject narrObject = null;
 
 	//create fields for the UI images
-	public GameObject healthEmail;
+	
 	public GameObject deanEmail;
 	public GameObject momText;
+    public GameObject healthEmail;
 
-    private PlayerControl pControl;
+
+
+
     private bool manageLvl = true;
 
 	void Start() {
 		diaManager = GameObject.FindObjectOfType<DialogueManager> ();
-        GameObject player = GameObject.Find("player");
-        pControl = player.GetComponent<PlayerControl>();
-	}//end of start
+        
+        if ( healthEmail != null && deanEmail != null && momText != null) {
+            ChangeOpacity(healthEmail, 0.0f);
+            deanEmail.GetComponent<Image>().enabled = false;
+            momText.GetComponent<Image>().enabled = false;
+        }
+
+    }//end of start
 
 	void Update() { 
 		 narrObject = FindObject ();
-		if ( narrObject!= null && manageLvl ) {
-			currDia = narrObject.GetComponent<DialogueHolder> ();
+         if (narrObject != null) {
+              currDia = narrObject.GetComponent<DialogueHolder>();
+            //ManageLevelEmail();
+            if (currDia.getDialogueDone() && GameManager.getDeathCount() == 1 && healthEmail != null) {
+                ChangeOpacity(healthEmail, 1.0f);
+            }
+        } 
+
+     
+        if (narrObject !=null && manageLvl ) {
             manageLvl = setDifficulty(manageLvl);
-            ManageLevelEmail();
 		}
 
-	}
+       
+      
+
+    }//end of update
 		
 	/// <summary>
 	/// creates specific triggers in game for health services, dean, etc. 
 	/// </summary>
-	private void ManageLevelEmail() {
-        if (manageLvl) {
-            if (currDia.getDialogueDone() && !Input.GetKeyDown(KeyCode.X)) {
-                if (GameManager.getDeathCount() == 1 && healthEmail != null) {
-                    healthEmail.SetActive(true);
-                }
-
-                else if (GameManager.getDeathCount() == 2 && deanEmail != null) {
-                    deanEmail.SetActive(true);
-                }
-
-                else if (GameManager.getDeathCount() == 3 && momText != null) {
-                    momText.SetActive(true);
-                }
-            }//end of manageLvl
-		}//end of outer if
-
+	public void ManageLevelEmail(bool dDone) {
+        if (dDone ) {
+            if ( GameManager.getDeathCount() == 4 && deanEmail != null) {
+                deanEmail.GetComponent<Image>().enabled = true;
+            }
+                else if (GameManager.getDeathCount() == 5 && momText != null) {
+                    momText.GetComponent<Image>().enabled = true;
+            }
+         }//end of dDone
     }//end of manage levels
 
 	/// <summary>
@@ -62,14 +73,14 @@ public class LevelManager : MonoBehaviour {
 	private bool setDifficulty(bool manageLvl) {
         if (manageLvl) {
             float playerSpeed = PlayerControl.getPlayerSpeed();
-            int jumpPower = pControl.getJumpPower();
+            int jumpPower = PlayerControl.getJumpPower();
             if (playerSpeed < 5.0f) {
                 PlayerControl.setPlayerSpeed(playerSpeed + 0.2f);
             }
 
             if (jumpPower < 5000) {
-                Debug.Log("jumpPower = " + jumpPower);
-                pControl.setJumpPower(jumpPower + 100);
+               
+                PlayerControl.setJumpPower(jumpPower + 100);
             }
         }//end of manageLvl
         return false;
@@ -87,5 +98,16 @@ public class LevelManager : MonoBehaviour {
 			}
 		return g;
 	}//end of FindObject
+
+    private void ChangeOpacity(GameObject g, float opacity) {
+       
+        Image i = g.GetComponent<Image>();
+        if (i != null) {
+          
+            Color tmp = i.color;
+            tmp.a = opacity;
+            i.color = tmp;
+        }
+    }//end of ChangeOpacity
 
 }//end of LevelManagaer

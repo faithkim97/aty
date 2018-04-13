@@ -15,9 +15,11 @@ public class DialogueHolder : MonoBehaviour {
 	int i;
     bool triggered = false;
 	bool dialogueDone = false;
+    private LevelManager levelManager;
  
 	// Use this for initialization
 	void Start () {
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
         DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
         Dictionary<int,List<string>> savedDialogues = dialogueList.LoadDialogueList();
@@ -54,14 +56,15 @@ public class DialogueHolder : MonoBehaviour {
 
 	private void EmailTriggers(Collider2D collision, int ex) {
 		if (collision.gameObject.CompareTag ("player")) {
+           
 			if (gameObject.CompareTag ("health") && ex == 1) {
 				triggered = true;
 				diaManager.ShowBox ();
-			} else if (gameObject.CompareTag ("dean") && ex == 2) {
-				triggered = true;
+			}  if (gameObject.CompareTag ("dean") && ex == 4) {
+                triggered = true;
 				diaManager.ShowBox ();
-			} else if (gameObject.CompareTag ("mom") && ex == 3) {
-				triggered = true;
+			} else if (gameObject.CompareTag ("mom") && ex == 5) {
+                triggered = true;
 				diaManager.ShowBox ();
 			}
 				
@@ -78,11 +81,11 @@ public class DialogueHolder : MonoBehaviour {
 
 
     public void traverseList() {
-      //  if (gameObject.tag == "health") {
             if (i == currDialogue.Count) {
                 triggered = false;
 				dialogueDone = true;
                 diaManager.HideBox();
+                levelManager.ManageLevelEmail(true);
                 return;
             }
             diaManager.ShowDialogue(currDialogue[i]);
@@ -90,9 +93,6 @@ public class DialogueHolder : MonoBehaviour {
             if (i < currDialogue.Count && Input.GetKeyUp(KeyCode.K)) {
                 i++;
             }
-       
-        //}
-		
     }//end of traverselist
 
 	public void setTriggered(bool t) {
@@ -112,4 +112,6 @@ public class DialogueHolder : MonoBehaviour {
 	public bool getDialogueDone() {
 		return dialogueDone;
 	}
+
+  
 }//end of DialogueHolder

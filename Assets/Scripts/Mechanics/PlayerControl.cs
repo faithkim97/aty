@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private static float playerSpeed = 1.0f;
-    [SerializeField]
-    private int jumpPower = 1000;
+  //  [SerializeField]
+    private static int jumpPower = 2000;
     private float moveX;
     private bool facingRight = false;
 	private bool inAir = false;
@@ -64,12 +64,6 @@ public class PlayerControl : MonoBehaviour {
 		}
     }
 
-  /*  void GameOver() {
-        GameManager.incDeathCount();
-        //game over scene 
-        GameManager.Instance.LoadScene(1);
-    } */
-
     void DecreaseTunnel() {
         GameManager.decreaseTunnelHeight(GameObject.Find("Top"));
         GameManager.decreaseTunnelHeight(GameObject.Find("Bottom"));
@@ -88,15 +82,12 @@ public class PlayerControl : MonoBehaviour {
         playerSpeed = newSpeed;
     }
 
-    public int getJumpPower() {
+    public static int getJumpPower() {
         return jumpPower;
     }
 
-    public void setJumpPower(int newPower) {
+    public static void setJumpPower(int newPower) {
         jumpPower = newPower;
     }
-
-
-    //add flip player code
 
 }//end of PlayerControl
