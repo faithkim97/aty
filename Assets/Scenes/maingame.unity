@@ -2692,6 +2692,7 @@ MonoBehaviour:
   deanEmail: {fileID: 180398480}
   momText: {fileID: 164333297}
   healthEmail: {fileID: 1351815913}
+  pills: {fileID: 0}
 --- !u!1 &526765309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,6 +3546,7 @@ MonoBehaviour:
   deanEmail: {fileID: 180398480}
   momText: {fileID: 164333297}
   healthEmail: {fileID: 1750730755}
+  pills: {fileID: 172986350}
 --- !u!1 &778114763
 GameObject:
   m_ObjectHideFlags: 0
