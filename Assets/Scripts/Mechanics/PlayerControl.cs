@@ -14,7 +14,8 @@ public class PlayerControl : MonoBehaviour {
     private float moveX;
     private bool facingRight = false;
 	private bool inAir = false;
-
+    public AudioClip pillSound;
+   
     private void Start() {
         gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
     }
@@ -44,6 +45,8 @@ public class PlayerControl : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("coin")) {
 			GameManager.incCoinCount ();
+            gameObject.GetComponent<AudioSource>().clip = pillSound;
+            gameObject.GetComponent<AudioSource>().Play();
             if (GameManager.getCoinCount() >= 3) {
                 IncreaseTunnel();
             }
