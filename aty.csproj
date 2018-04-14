@@ -313,8 +313,12 @@
     <Compile Include="Assets\SerializableDictionary\Example\SerializableDictionaryExample.cs" />
     <Compile Include="Assets\SerializableDictionary\Example\UserSerializableDictionaries.cs" />
     <Compile Include="Assets\SerializableDictionary\SerializableDictionary.cs" />
+    <Compile Include="Assets\TypeOut\Scripts\GUIScript.cs" />
+    <Compile Include="Assets\TypeOut\Scripts\TypeOutEditor.cs" />
+    <Compile Include="Assets\TypeOut\Scripts\TypeOutScript.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Pixel Font - Tripfive\_README.txt" />
     <None Include="Assets\Sprite Pack\Tap and Fly\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

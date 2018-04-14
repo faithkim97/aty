@@ -145,8 +145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -6.915}
+  m_SizeDelta: {x: 0, y: 13.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106916484
 MonoBehaviour:
@@ -168,7 +168,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ba458c1184541476091009c1abe64a66, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Start Over
+  m_Text: 'Keep Pushing Through
 
 '
 --- !u!222 &106916485
@@ -223,8 +223,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -56.82347}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 13.46, y: -57.75}
+  m_SizeDelta: {x: 186.93, y: 31.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &151870929
 MonoBehaviour:
@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 167818705}
   - component: {fileID: 167818707}
   - component: {fileID: 167818706}
+  - component: {fileID: 167818708}
   m_Layer: 5
   m_Name: Game Over
   m_TagString: Untagged
@@ -343,8 +344,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 37.4, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 177, y: 72}
+  m_SizeDelta: {x: 852, y: 165.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &167818706
 MonoBehaviour:
@@ -366,25 +367,48 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: ba458c1184541476091009c1abe64a66, type: 3}
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: 'You over exhausted yourself. Things can be a bit overwhelming right?
+
+
+    Take care of yourself. It''s going to be okay.'
 --- !u!222 &167818707
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 167818704}
+--- !u!114 &167818708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 167818704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cc5b2b163a345769b9c7b3cf379aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  On: 1
+  reset: 0
+  FinalText: "You overexhausted yourself. \nThings can be a bit overwhelming right?\n\n
+    \n Take care of yourself. It's going to be okay.\n"
+  TotalTypeTime: 0.5
+  TypeRate: 0.01
+  RandomCharactor: 
+  RandomCharacterChangeRate: 0.1
+  i: 0
 --- !u!1 &184820036
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +420,7 @@ GameObject:
   - component: {fileID: 184820038}
   - component: {fileID: 184820037}
   m_Layer: 5
-  m_Name: DeathCount
+  m_Name: day count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +446,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: ba458c1184541476091009c1abe64a66, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -434,7 +458,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Death Count
+  m_Text: 'Days
 
 '
 --- !u!222 &184820038
@@ -458,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 37.7, y: -31.6}
+  m_AnchoredPosition: {x: 61.8, y: -26.82}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &488494106
@@ -671,8 +695,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000002861}
-  m_SizeDelta: {x: 756, y: 284}
+  m_AnchoredPosition: {x: 24.5, y: -6.5}
+  m_SizeDelta: {x: 1167.4, y: 591.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1715218340
 MonoBehaviour:

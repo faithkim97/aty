@@ -292,6 +292,7 @@
     <Compile Include="Assets\SerializableDictionary\Example\Editor\UserSerializableDictionaryPropertyDrawers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Pixel Font - Tripfive\_README.txt" />
     <None Include="Assets\Sprite Pack\Tap and Fly\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
