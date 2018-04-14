@@ -65,7 +65,8 @@ public class GameManager : MonoBehaviour {
     //this will be called in ontriggerenter of playercontrol
     public static void incDeathCount() {
         deathCount++;
-        ScreenShake.ShakeScreen(false);
+        ScreenShake ss = GameObject.FindObjectOfType<ScreenShake>();
+        if (ss != null) { ss.ShakeScreen(false); }
     }
     
     ///<summary>
@@ -149,8 +150,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public static void GameOver() {
-		//DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
-		//dHolder.setTriggered (false);
+        //DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
+        //dHolder.setTriggered (false);
+       
         incDeathCount();
         coinCount = 0;
         float volume = ResetMusic();
