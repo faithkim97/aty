@@ -14,7 +14,9 @@ public class PlayerControl : MonoBehaviour {
     private float moveX;
     private bool facingRight = false;
 	private bool inAir = false;
-
+    public AudioClip pillSound;
+    public AudioClip bombSound;
+   
     private void Start() {
         gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
     }
@@ -44,6 +46,10 @@ public class PlayerControl : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("coin")) {
 			GameManager.incCoinCount ();
+            AudioSource sound = gameObject.GetComponent<AudioSource>();
+            sound.clip = pillSound;
+            sound.volume = 1.0f;
+            sound.Play();
             if (GameManager.getCoinCount() >= 3) {
                 IncreaseTunnel();
             }
@@ -54,6 +60,10 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("obstacle")) {
+            AudioSource sound = gameObject.GetComponent<AudioSource>();
+            sound.clip = bombSound;
+            sound.volume = 0.09f;
+           sound.Play();
             GameObject.Destroy(other.gameObject);
             IncreaseTunnel();
         }

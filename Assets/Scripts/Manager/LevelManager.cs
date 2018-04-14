@@ -44,8 +44,11 @@ public class LevelManager : MonoBehaviour {
             //ManageLevelEmail();
             if (currDia.getDialogueDone() && GameManager.getDeathCount() == 1 && healthEmail != null) {
                 ChangeOpacity(healthEmail, 1.0f);
-            }
-        } 
+                if (healthEmail.transform.childCount >= 1) {
+                    healthEmail.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = true;
+                }
+            }//end of outer if
+        } //end of if narrObject
 
      
         if (narrObject !=null && manageLvl ) {
