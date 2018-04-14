@@ -16,6 +16,9 @@ public class EmailInteractable : MonoBehaviour {
 		Image emailImage = gameObject.GetComponent<Image> ();
 		if (Input.GetKeyDown(KeyCode.X)) {
 			emailImage.enabled = false;
+            if (gameObject.transform.childCount >= 1) {
+                gameObject.transform.GetChild(0).GetComponent<Text>().enabled = false;
+            }
 		} 
 
 	}//end of Interact

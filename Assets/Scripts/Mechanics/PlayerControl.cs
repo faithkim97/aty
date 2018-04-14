@@ -46,8 +46,10 @@ public class PlayerControl : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("coin")) {
 			GameManager.incCoinCount ();
-            gameObject.GetComponent<AudioSource>().clip = pillSound;
-            gameObject.GetComponent<AudioSource>().Play();
+            AudioSource sound = gameObject.GetComponent<AudioSource>();
+            sound.clip = pillSound;
+            sound.volume = 1.0f;
+            sound.Play();
             if (GameManager.getCoinCount() >= 3) {
                 IncreaseTunnel();
             }
@@ -58,8 +60,10 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("obstacle")) {
-            gameObject.GetComponent<AudioSource>().clip = bombSound;
-            gameObject.GetComponent<AudioSource>().Play();
+            AudioSource sound = gameObject.GetComponent<AudioSource>();
+            sound.clip = bombSound;
+            sound.volume = 0.09f;
+           sound.Play();
             GameObject.Destroy(other.gameObject);
             IncreaseTunnel();
         }
