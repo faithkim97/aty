@@ -52,7 +52,10 @@ public class PlayerControl : MonoBehaviour {
             sound.Play();
             if (GameManager.getCoinCount() >= 3) {
                 IncreaseTunnel();
-            }
+                if (GameManager.getCoinCount() >= 5) {
+                    ScreenShake.ShakeScreen(true);
+                }
+            }//end of >=3
             else { DecreaseTunnel(); }
 			GameObject.Destroy (other.gameObject);
 		} 
