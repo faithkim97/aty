@@ -14,7 +14,7 @@ public class PillTimer : MonoBehaviour {
         if (GameManager.getCoinCount() <=2 && GameManager.getCoinCount() > 0) {
             pillTimerTwoDosage -= Time.deltaTime;
         }
-        else if (GameManager.getCoinCount() == 3) {
+        else if (GameManager.getCoinCount() >= 3) {
             pillTimerThreeDosage -= Time.deltaTime;
         }
 

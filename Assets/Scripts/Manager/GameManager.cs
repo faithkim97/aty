@@ -65,7 +65,8 @@ public class GameManager : MonoBehaviour {
     //this will be called in ontriggerenter of playercontrol
     public static void incDeathCount() {
         deathCount++;
-        ScreenShake.ShakeScreen(false);
+        ScreenShake ss = GameObject.FindObjectOfType<ScreenShake>();
+        if (ss != null) { ss.ShakeScreen(false); }
     }
     
     ///<summary>
@@ -118,7 +119,6 @@ public class GameManager : MonoBehaviour {
     /// <returns></returns>
     public static float increaseTunnelHeight(GameObject tunnel) {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
-        //float height = tunnelRect.sizeDelta.y;
         float height = tunnelRect.sizeDelta.y + 30;
         TunnelAnimation.Instance.StartIncreaseTunnel(height, tunnel);
         return height;
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         float height = tunnelRect.sizeDelta.y;
         if (coinCount > 0) {
-            height = (tunnelRect.sizeDelta.y - (coinCount + 10f));
+            height = (tunnelRect.sizeDelta.y - 30.0f);
         }
         TunnelAnimation.Instance.StartDecreaseTunnel(height, tunnel);
         return 0.0f;
@@ -150,12 +150,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public static void GameOver() {
-		DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
-		dHolder.setTriggered (false);
+        //DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
+        //dHolder.setTriggered (false);
+       
         incDeathCount();
         coinCount = 0;
         float volume = ResetMusic();
-        Debug.Log("voluem: " + volume);
           if (volume <= 0.2) { Instance.LoadScene(1); }
     }//end of GameOver
 

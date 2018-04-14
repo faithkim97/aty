@@ -7,7 +7,6 @@ public class NonInteractDialogue : MonoBehaviour {
     public Text text;
     [SerializeField]
     private string dialogue;
-
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("player")) {
               ActivateDialogue();
@@ -25,7 +24,7 @@ public class NonInteractDialogue : MonoBehaviour {
     }
 
     private void DeactivateDialogue() {
-        text.text = "";
+        text.enabled = false;
     }
 
 }//end of NonInteractDialogue

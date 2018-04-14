@@ -23,6 +23,12 @@ public class PlayerControl : MonoBehaviour {
 
     private void Update() {
         movePlayer();
+        if (GameManager.getCoinCount() >= 5) {
+            Debug.Log("shake it bitch");
+            ScreenShake ss = GameObject.FindObjectOfType<ScreenShake>();
+            ss.ShakeScreen(true);
+            //if (ss != null) { ss.ShakeScreen(true); }
+        }
     }
 
     void movePlayer() {
@@ -52,7 +58,7 @@ public class PlayerControl : MonoBehaviour {
             sound.Play();
             if (GameManager.getCoinCount() >= 3) {
                 IncreaseTunnel();
-            }
+            }//end of >=3
             else { DecreaseTunnel(); }
 			GameObject.Destroy (other.gameObject);
 		} 

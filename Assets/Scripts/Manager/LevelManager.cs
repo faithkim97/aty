@@ -67,10 +67,16 @@ public class LevelManager : MonoBehaviour {
         if (dDone ) {
             if ( GameManager.getDeathCount() == 4 && deanEmail != null) {
                 deanEmail.GetComponent<Image>().enabled = true;
+                if (deanEmail.transform.childCount >= 1) {
+                    deanEmail.transform.GetChild(0).GetComponent<Text>().enabled = true;
+                }
             }
-                else if (GameManager.getDeathCount() == 5 && momText != null) {
+            /*    else if (GameManager.getDeathCount() == 5 && momText != null) {
                     momText.GetComponent<Image>().enabled = true;
-            }
+                     if (momText.transform.childCount >= 1) {
+                        momText.transform.GetChild(0).GetComponent<Text>().enabled = true;
+                     }//end of child
+            } */
          }//end of dDone
     }//end of manage levels
 
@@ -82,12 +88,12 @@ public class LevelManager : MonoBehaviour {
             float playerSpeed = PlayerControl.getPlayerSpeed();
             int jumpPower = PlayerControl.getJumpPower();
             if (playerSpeed < 5.0f) {
-                PlayerControl.setPlayerSpeed(playerSpeed + 0.2f);
+                PlayerControl.setPlayerSpeed(playerSpeed + 0.1f);
             }
 
             if (jumpPower < 5000) {
                
-                PlayerControl.setJumpPower(jumpPower + 100);
+                PlayerControl.setJumpPower(jumpPower + 50);
             }
         }//end of manageLvl
         return false;

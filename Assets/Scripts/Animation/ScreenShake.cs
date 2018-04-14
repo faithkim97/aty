@@ -20,7 +20,7 @@ public class ScreenShake : MonoBehaviour {
 	[SerializeField] 
 	private float shakeAmount;
 
-    private static bool shake = false;
+    private bool shake = false;
     private void Start() {
         originalTimer = shakeTimer;
     }
@@ -44,6 +44,8 @@ public class ScreenShake : MonoBehaviour {
         if (shake && shakeTimer <= 0) {
             shake = false;
             StabilizeCameraPosition();
+            shakeTimer = originalTimer;
+           
         }
 	
 	}
@@ -66,6 +68,10 @@ public class ScreenShake : MonoBehaviour {
         shakeAmount = newshakeAmount;
     }
 
+    public float getShakeTimer() {
+        return shakeTimer;
+    }
+
     private void PlayerControl() {
         bool keyPressed = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)
                                || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow) 
@@ -83,11 +89,11 @@ public class ScreenShake : MonoBehaviour {
         shakeTimer -= Time.deltaTime;
     }
 
-    public static void ShakeScreen(bool shakeScreen) {
+    public void ShakeScreen(bool shakeScreen) {
         shake = shakeScreen;
     }
 
-    public static bool getShake() {
+    public bool getShake() {
         return shake;
     }
 
