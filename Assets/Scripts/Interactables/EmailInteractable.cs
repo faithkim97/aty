@@ -6,9 +6,9 @@ using UnityEngine.UI;
 /// <summary>
 /// Makes UI of emails/texts interactable 
 /// </summary>
-public class EmailInteractable : MonoBehaviour {	
-	// Update is called once per frame
-	void Update () {
+public class EmailInteractable : MonoBehaviour {
+    // Update is called once per frame
+    void Update () {
 		Interact();
 	}
 
@@ -20,6 +20,7 @@ public class EmailInteractable : MonoBehaviour {
                 gameObject.transform.GetChild(0).GetComponent<Text>().enabled = false;
             }
 		} 
-
 	}//end of Interact
+
+  
 }//end of EmailInteractable

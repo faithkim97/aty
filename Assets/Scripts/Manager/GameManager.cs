@@ -150,12 +150,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public static void GameOver() {
-		DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
-		dHolder.setTriggered (false);
+		//DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
+		//dHolder.setTriggered (false);
         incDeathCount();
         coinCount = 0;
         float volume = ResetMusic();
-        Debug.Log("voluem: " + volume);
           if (volume <= 0.2) { Instance.LoadScene(1); }
     }//end of GameOver
 

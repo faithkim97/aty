@@ -32,11 +32,5 @@ public class SoundManager : MonoBehaviour {
             sound.volume -= 0.01f;
             yield return null;
         }
-      /*  for (float i = sound.volume;  i >= 0.0f; i -= 0.01f) {
-            sound.volume = sound.volume 
-            //sound.volume = volume;
-            Debug.Log("sound.volume in fadeout: " + sound.volume);
-            yield return new WaitForSeconds(0.5f);
-        }*/
     }
 }//end of AudioManager
