@@ -155,9 +155,8 @@ public class GameManager : MonoBehaviour {
         incDeathCount();
         coinCount = 0;
         float volume = ResetMusic();
-       
-         if (volume <= 0.9) { Instance.LoadScene(1); }
-       
+        Debug.Log("voluem: " + volume);
+          if (volume <= 0.2) { Instance.LoadScene(1); }
     }//end of GameOver
 
     private static float ResetMusic() {

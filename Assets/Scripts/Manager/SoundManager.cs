@@ -29,8 +29,7 @@ public class SoundManager : MonoBehaviour {
 
     private IEnumerator FadeOut() {
         while (sound.volume > 0.0f) {
-            sound.volume -= 0.1f;
-            Debug.Log("sound.volume: " + sound.volume);
+            sound.volume -= 0.01f;
             yield return null;
         }
       /*  for (float i = sound.volume;  i >= 0.0f; i -= 0.01f) {

@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour {
     private bool facingRight = false;
 	private bool inAir = false;
     public AudioClip pillSound;
+    public AudioClip bombSound;
    
     private void Start() {
         gameObject.GetComponent<Rigidbody2D>().freezeRotation = true;
@@ -57,6 +58,8 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("obstacle")) {
+            gameObject.GetComponent<AudioSource>().clip = bombSound;
+            gameObject.GetComponent<AudioSource>().Play();
             GameObject.Destroy(other.gameObject);
             IncreaseTunnel();
         }

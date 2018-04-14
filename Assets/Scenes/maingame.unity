@@ -815,6 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pillSound: {fileID: 8300000, guid: 2380caa96eeb2ef49b268c1bbc031bda, type: 3}
+  bombSound: {fileID: 8300000, guid: 9d72ad587f497d84ebec62bcc48bcbe0, type: 3}
 --- !u!61 &158143074
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8281,15 +8282,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d15123bb130f89d4b9b66513f6d75c9c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1af3fc0b46bc2a844895d324fb174b63, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.129
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 150
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
