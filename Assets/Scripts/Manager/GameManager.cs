@@ -154,18 +154,23 @@ public class GameManager : MonoBehaviour {
 		dHolder.setTriggered (false);
         incDeathCount();
         coinCount = 0;
-        // volume = ResetMusic();
-        // if (volume <= 0) { Instance.LoadScene(1); }
-        Instance.LoadScene(1);
+        float volume = ResetMusic();
+       
+         if (volume <= 0.9) { Instance.LoadScene(1); }
+       
     }//end of GameOver
 
     private static float ResetMusic() {
         SoundManager sManager = GameObject.FindObjectOfType<SoundManager>();
-       // sManager.FadeOutAudio();
-        float volume = sManager.GetComponent<AudioSource>().volume;
-        Debug.Log("Reset Music: " + volume);
-        return volume;
+        if (sManager != null) {
+            sManager.FadeOutAudio();
+            float volume = sManager.GetComponent<AudioSource>().volume;
+            return volume;
+        }
+        return 0.0f;
     }
+
+ 
 
 
  
