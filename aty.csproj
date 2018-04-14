@@ -299,6 +299,7 @@
     <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\Manager\PillTimer.cs" />
     <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\Timer.cs" />
