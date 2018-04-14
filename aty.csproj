@@ -282,6 +282,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Animation\MoveXposition.cs" />
     <Compile Include="Assets\Scripts\Animation\MoveYpos.cs" />
     <Compile Include="Assets\Scripts\Animation\PanicAttackTrigger.cs" />
@@ -299,6 +300,8 @@
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Manager\PillTimer.cs" />
+    <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\UI\Timer.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UICounter.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />

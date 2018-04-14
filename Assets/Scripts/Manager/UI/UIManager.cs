@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class UIManager : MonoBehaviour {
 	public void SetCoinText(Text coinText) {
-		coinText.text = "Coins: " + GameManager.getCoinCount ();
+		coinText.text = "Dosage: " + GameManager.getCoinCount ();
 	}
 
 	public void SetDeathText(Text deathText) {
