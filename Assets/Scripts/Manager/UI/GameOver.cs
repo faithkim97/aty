@@ -21,6 +21,7 @@ public class GameOver : MonoBehaviour {
         gameOverMessage.Add("It's okay if you can't get \n through the entire day. \n Your efforts are what counts.");
         gameOverMessage.Add("You overexhausted yourself. Things can be a bit overwhelming right ? Take care of yourself.It's going to be okay.");
         gameOverMessage.Add("Remember taking medications is a treatment, but not a cure. \n Watch out for how much to take.");
+        gameOverMessage.Add("Take deep breaths. Sometimes taking time to sit down\n  and calm yourself down is the best way to go.");
     }
     public void RandomizeMessage() {
        System.Random rnd = new System.Random();
