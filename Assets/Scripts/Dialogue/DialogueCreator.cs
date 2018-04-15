@@ -58,12 +58,12 @@ public class DialogueCreator : EditorWindow {
         }
 
         if (GUILayout.Button("Load Dialogue")) {
-			
-				//DialogueManager diaManager = GameObject.FindObjectOfType<DialogueManager>();
-				currDialogue = currObject.GetComponent<DialogueList>();
-                Dictionary<int,List<string>> loadedDict = currDialogue.LoadDialogueList();
-                List<string> loadedDialogue = loadedDict[currDialogue.getID()];
 
+            //DialogueManager diaManager = GameObject.FindObjectOfType<DialogueManager>();
+            currDialogue = currObject.GetComponent<DialogueList>();
+            Dictionary<int, List<string>> loadedDict = currDialogue.LoadDialogueList();
+            List<string> loadedDialogue = loadedDict[currDialogue.getID()];
+            if (loadedDialogue == null || loadedDialogue.Count <= 0) { Debug.LogError("Cannot load dialogue. Either null or 0"); }
             //print dialogue
             for (int i = 0; i < loadedDialogue.Count; i++) {
                 Debug.Log(loadedDialogue[i]);
@@ -80,6 +80,7 @@ public class DialogueCreator : EditorWindow {
         dialogues[id] = GUILayout.TextArea(dialogues[id], 200);
 
         if (GUILayout.Button("Add Dialogue")) {
+           
             currDialogue.setDialogue(dialogues[id]);
         }
 

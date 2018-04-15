@@ -182,8 +182,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Dear Student,\r\n\r\nThis is a notification to follow up with your appointment
     last Tuesday regarding your prescription. \r\nAs we have discussed, your dose
-    has increased to 100mg, so it is vital you maintain your new regiment. If you
-    notice or experience any side effects, please let us know immediately. Our emergency
+    has increased to 100mg, so it is vital you maintain your new regimen. If you notice
+    or experience any side effects, please let us know immediately. Our emergency
     line is open 24/7, so please don\u2019t hesitate to reach out to us. \r\n\r\nBe
     sure to schedule another appointment with Dr. Anglo.\r\n\r\nBest,\r\nHealth Services\r\n"
 --- !u!222 &1637387
@@ -9502,7 +9502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1930540765
 Transform:
   m_ObjectHideFlags: 0

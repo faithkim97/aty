@@ -24,7 +24,7 @@ public class DialogueList : MonoBehaviour {
 	private static Dictionary<int, List<string>> savedDialogues = new Dictionary<int, List<string>>();
 
     public void SaveDialogueList() {
-        if (!savedDialogues.ContainsKey(id) && dialogue != null) {
+        if (!savedDialogues.ContainsKey(id)) {
             //Debug.Log("inside saved tree does not contain key");
             savedDialogues.Add(id, dialogue);
       }
@@ -33,6 +33,12 @@ public class DialogueList : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/savedDialogues.gd");
         bf.Serialize(file, savedDialogues);
         file.Close();
+
+        //print list 
+        List<string> savedList = savedDialogues[id];
+        for (int i = 0; i < savedList.Count; i++) {
+            Debug.Log("saved: " + savedList[i]);
+        }
     }
 
     public Dictionary<int,List<string>> LoadDialogueList() {
@@ -49,10 +55,12 @@ public class DialogueList : MonoBehaviour {
     
     //clears dialogue list from hashtable 
     public List<string> ClearDialogue() {
-        if ((dialogue != null) && savedDialogues.ContainsValue(dialogue)) {
+        if (savedDialogues.ContainsKey(id)) {
             savedDialogues.Remove(id);
         }
-        return dialogue = null;
+
+        if (!savedDialogues.ContainsKey(id)) { return null; }
+        return savedDialogues[id];
     }
 
     public void setDialogue(string dia) {
@@ -60,6 +68,8 @@ public class DialogueList : MonoBehaviour {
             dialogue = new List<string>();
         }
         dialogue.Add(dia);
+        Debug.Log("Added dialogue: " + dia + " count: " + dialogue.Count);
+
     }
 
     public string getDialogue(int id) {
