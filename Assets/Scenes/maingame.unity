@@ -3267,10 +3267,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 516784410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94fc56e3629da1f4582af49035562d18, type: 3}
+  m_Script: {fileID: 11500000, guid: 96339f273125b5e459190b0c1b0320a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.3
+  numSteps: 0.4
   moveSpeed: 5
 --- !u!50 &516784412
 Rigidbody2D:
@@ -5343,10 +5343,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 973795902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94fc56e3629da1f4582af49035562d18, type: 3}
+  m_Script: {fileID: 11500000, guid: 96339f273125b5e459190b0c1b0320a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.3
+  numSteps: 0.4
   moveSpeed: 5
 --- !u!50 &973795905
 Rigidbody2D:
@@ -7389,8 +7389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fc56e3629da1f4582af49035562d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.4
-  moveSpeed: 3
 --- !u!1 &1481295899
 GameObject:
   m_ObjectHideFlags: 0
@@ -8173,10 +8171,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1626814663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94fc56e3629da1f4582af49035562d18, type: 3}
+  m_Script: {fileID: 11500000, guid: 96339f273125b5e459190b0c1b0320a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.3
+  numSteps: 0.4
   moveSpeed: 5
 --- !u!50 &1626814665
 Rigidbody2D:
@@ -9504,7 +9502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1930540765
 Transform:
   m_ObjectHideFlags: 0
@@ -9976,10 +9974,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2072181943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94fc56e3629da1f4582af49035562d18, type: 3}
+  m_Script: {fileID: 11500000, guid: 96339f273125b5e459190b0c1b0320a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSteps: 0.3
+  numSteps: 0.4
   moveSpeed: 5
 --- !u!50 &2072181945
 Rigidbody2D:
