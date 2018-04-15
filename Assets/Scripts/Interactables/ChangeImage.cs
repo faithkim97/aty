@@ -9,22 +9,29 @@ using UnityEngine.UI;
 public class ChangeImage : MonoBehaviour {
 	public Sprite changeTo; 
 	private SpriteRenderer sr;
-	bool triggered = false;
+    private CircleCollider2D cCollider;
+    GameObject parent;
+    public Vector2 newOffset;
+    public float newRadius;
+    public Vector2 scale;
 
-	void Start() {
-		GameObject parent = transform.parent.gameObject;
+
+    void Start() {
+		parent = transform.parent.gameObject;
 		sr = parent.GetComponent<SpriteRenderer> ();
-	}
+        cCollider = parent.GetComponent<CircleCollider2D>();
+        //scale = parent.transform.localScale;
+    }
 
-	void OnTriggerEnter2D(Collider2D col) {
+    void OnTriggerEnter2D(Collider2D col) {
 		//if triggered, then change the bombs to other image 
-		if (GameManager.getDeathCount() >= 3 && col.gameObject.CompareTag("player")) {
-			StartCoroutine(FadeSprite());
+		if (GameManager.getDeathCount() >= 0 && col.gameObject.CompareTag("player")) {
+            StartCoroutine(FadeSprite());
 		}//end of if
 
 	}
 
-	private IEnumerator FadeSprite() {
+    private IEnumerator FadeSprite() {
 		//sr.sprite = changeTo;
 		Color tmp = sr.color;
 		//fade out
@@ -34,7 +41,12 @@ public class ChangeImage : MonoBehaviour {
             yield return null;
 		}
 		sr.sprite = changeTo;
-		tmp.a = 0.0f;
+        cCollider.offset = newOffset;
+        cCollider.radius = newRadius;
+        parent.transform.localScale = scale;
+        //cCollider.offset = parent.transform.localPosition;
+        //parent.transform.localPosition = cCollider.offset;
+        tmp.a = 0.0f;
 		//fade in 
 		for (float i = tmp.a; i <= 1.0f; i += 0.05f) {
 			sr.color = tmp;

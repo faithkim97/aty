@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
     private AudioSource sound;
-    private GameManager gManager;
-
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         sound = gameObject.GetComponent<AudioSource>();
@@ -17,11 +15,7 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    // Use this for initialization
-    void Start () {
-        
-        gManager = GameObject.FindObjectOfType<GameManager>();
-	}
+  
 
     public void FadeOutAudio() {
         StartCoroutine(FadeOut());

@@ -32,10 +32,7 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void movePlayer() {
-        //controls
-        //hardcode in arrows so that w a s d DOESN'T WORK 
         moveX = Input.GetAxis("Horizontal");
-        //player direction 
         //player movement 
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
         //jump
