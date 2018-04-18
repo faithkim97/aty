@@ -16,13 +16,15 @@ public class DormTrigger : MonoBehaviour {
         sm = GameObject.FindObjectOfType<SoundManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (sm != null) {
+        if (collision.gameObject.CompareTag("player") && sm != null) {
+            Debug.Log("inside trigger");
             sm.FadeOutAudio();
             FadeOutScene();
         }
     }//end of trigger
 
     private void Update() {
+        sm = GameObject.FindObjectOfType<SoundManager>();
         if (fade.color.a >= 1.0f) {
             SceneManager.LoadScene(3);
         }
