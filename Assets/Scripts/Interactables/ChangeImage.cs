@@ -14,6 +14,7 @@ public class ChangeImage : MonoBehaviour {
     public Vector2 newOffset;
     public float newRadius;
     public Vector2 scale;
+    public Vector2 transformPos;
 
 
     void Start() {
@@ -21,11 +22,12 @@ public class ChangeImage : MonoBehaviour {
 		sr = parent.GetComponent<SpriteRenderer> ();
         cCollider = parent.GetComponent<CircleCollider2D>();
         //scale = parent.transform.localScale;
+       
     }
 
     void OnTriggerEnter2D(Collider2D col) {
 		//if triggered, then change the bombs to other image 
-		if (GameManager.getDeathCount() >= 3 && col.gameObject.CompareTag("player")) {
+		if (GameManager.getDeathCount() >= 0 && col.gameObject.CompareTag("player")) {
             StartCoroutine(FadeSprite());
 		}//end of if
 
@@ -44,6 +46,7 @@ public class ChangeImage : MonoBehaviour {
         cCollider.offset = newOffset;
         cCollider.radius = newRadius;
         parent.transform.localScale = scale;
+        transform.position = transformPos;
         //cCollider.offset = parent.transform.localPosition;
         //parent.transform.localPosition = cCollider.offset;
         tmp.a = 0.0f;
