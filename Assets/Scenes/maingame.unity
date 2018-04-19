@@ -9586,7 +9586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4cd8bca7c0f4435daede94ad31dca7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTo: {fileID: 21300000, guid: 3f769deea662d2146a46e78297fb0105, type: 3}
+  changeTo: {fileID: 21300000, guid: 238a78e06c49e8649ae24c2aff88b93b, type: 3}
   newOffset: {x: -1, y: 0.11}
   newRadius: 0.98
   scale: {x: 0.5, y: 0.45}
@@ -10792,7 +10792,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bc84f20456af24c4fb4a444076026299,
+      objectReference: {fileID: 21300000, guid: 238a78e06c49e8649ae24c2aff88b93b,
         type: 3}
     - target: {fileID: 4960495667319562, guid: 65e087ce35a55b8499bbb3f1dc13e298, type: 2}
       propertyPath: m_LocalScale.x
@@ -11406,10 +11406,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4cd8bca7c0f4435daede94ad31dca7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTo: {fileID: 21300000, guid: 3f769deea662d2146a46e78297fb0105, type: 3}
+  changeTo: {fileID: 21300000, guid: cb36cd5d67a024a4db37ab9787e8ec6b, type: 3}
   newOffset: {x: -1.09, y: 0.11}
-  newRadius: 0.7967728
-  scale: {x: 0.62, y: 0.57}
+  newRadius: 2.5
+  scale: {x: 0.28, y: 0.23}
 --- !u!61 &1888648006
 BoxCollider2D:
   m_ObjectHideFlags: 0
