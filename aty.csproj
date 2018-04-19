@@ -304,6 +304,7 @@
     <Compile Include="Assets\Scripts\Manager\PillTimer.cs" />
     <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\GameOver.cs" />
+    <Compile Include="Assets\Scripts\Manager\UI\LibraryTrigger.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\Timer.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UICounter.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
