@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AudioManager.cs" />
+    <Compile Include="Assets\CameraResolution.cs" />
     <Compile Include="Assets\Scripts\Animation\MoveXposition.cs" />
     <Compile Include="Assets\Scripts\Animation\MoveYpos.cs" />
     <Compile Include="Assets\Scripts\Animation\PanicAttackTrigger.cs" />
