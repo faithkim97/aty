@@ -21,7 +21,7 @@ public class DialogueList : MonoBehaviour {
     /// </summary>
     [SerializeField]
     [HideInInspector]
-	private static Dictionary<int, List<string>> savedDialogues = new Dictionary<int, List<string>>();
+	private Dictionary<int, List<string>> savedDialogues = new Dictionary<int, List<string>>();
 
     public void SaveDialogueList() {
         if (!savedDialogues.ContainsKey(id)) {
