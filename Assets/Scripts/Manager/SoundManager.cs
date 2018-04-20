@@ -5,8 +5,9 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
     private AudioSource sound;
     private void Awake() {
-       DontDestroyOnLoad(gameObject);
+      DontDestroyOnLoad(gameObject);
         sound = gameObject.GetComponent<AudioSource>();
+       
       
     }//end of Awake
 
@@ -33,9 +34,9 @@ public class SoundManager : MonoBehaviour {
     private IEnumerator FadeOut() {
         
         while (sound.volume > 0.0f) {
-            sound.volume -= 0.01f;
-            Debug.Log(sound.volume);
+            sound.volume -= 0.05f;
             yield return null;
         }
+
     }
 }//end of AudioManager

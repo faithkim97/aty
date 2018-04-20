@@ -15,14 +15,14 @@ public class ScreenShake : MonoBehaviour {
 
 	public GameObject player;
 
-	private static float shakeTimer = 5.0f;
-    private static float originalTimer;
+	private float shakeTimer = 5.0f;
+    public float originalTimer;
 	[SerializeField] 
 	private float shakeAmount;
 
     private bool shake = false;
     private void Start() {
-        originalTimer = shakeTimer;
+        //originalTimer = shakeTimer;
     }
     void FixedUpdate(){
         
@@ -97,7 +97,7 @@ public class ScreenShake : MonoBehaviour {
         return shake;
     }
 
-    public static void ResetShake() {
+    public void ResetShake() {
         shakeTimer = originalTimer;
     }
 
