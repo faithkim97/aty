@@ -45,7 +45,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 342}
   m_MaxSize: {x: 12008, y: 8042}
   vertical: 0
-  controlID: 9
+  controlID: 53
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 342}
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 1
-  controlID: 10
+  controlID: 54
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 11
+  controlID: 55
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -339,7 +339,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 53}
     m_SelectedIDs: f6270000
     m_LastClickedID: 10230
-    m_ExpandedIDs: 00000000cc270000f4270000502800009e280000482900008a2900009a290000f029000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000cc270000f4270000502800009e280000482900008a2900009a290000f0290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -449,7 +449,7 @@ MonoBehaviour:
     width: 309
     height: 710
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_ScrollPosition: {x: 0, y: 0}
+  m_ScrollPosition: {x: 0, y: 153.95508}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 160
@@ -484,24 +484,24 @@ MonoBehaviour:
     height: 361
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 30f4feff92f4feffaaf5feffb2f5feffd0f5feffd6f5fefffe0effffac1affffb0beffff0cbfffff24c0ffff2cc0ffff4ac0ffff50c0ffff14dbffff72dbffff8edcffff9adcffffbcdcffffc6dcffffc8e5ffff22e6ffff3ae7ffff42e7ffff60e7ffff66e7ffff9efbfffff4ffffff00000000ca2b00003e2c0000382f0000586100002a6500005c7b0000e07d00006af30000f0020100b6170100
+    scrollPos: {x: 0, y: 248}
+    m_SelectedIDs: 4e2e0000
+    m_LastClickedID: 11854
+    m_ExpandedIDs: 9efbffff00000000dc2a0000ca2b00003e2c0000382e0000382f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: static world items
-      m_OriginalName: static world items
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 31326
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -543,9 +543,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -12.736482, y: -0.07516378, z: -0.008259312}
+    m_Target: {x: 545.7426, y: 434.3135, z: -9.19703}
     speed: 2
-    m_Value: {x: -12.736482, y: -0.07516378, z: -0.008259312}
+    m_Value: {x: 545.7426, y: 434.3135, z: -9.19703}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -573,9 +573,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 19.001827
+    m_Target: 1016.41364
     speed: 2
-    m_Value: 19.001827
+    m_Value: 1016.41364
   m_Ortho:
     m_Target: 1
     speed: 2
