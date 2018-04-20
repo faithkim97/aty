@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour {
 
             if (jumpPower < 5000) {
                
-                PlayerControl.setJumpPower(jumpPower + 80);
+                PlayerControl.setJumpPower(jumpPower + 65);
             }
         }//end of manageLvl
         return false;

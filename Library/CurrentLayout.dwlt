@@ -290,25 +290,25 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b83c0000
-    m_LastClickedID: 15544
-    m_ExpandedIDs: c8f5ffff68f6ffff7ef7ffff86f7ffffa4f7ffffaef7ffff9efbffff00000000e837000076390000c43b0000883c0000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 9624ffff3225ffff4826ffff5026ffff6e26ffff7826ffff7435ffff1036ffff2637ffff2e37ffff4c37ffff5637ffffda87ffff6a88ffff8089ffff8889ffffa689ffffb089ffff5acdfffff6cdffff0ccfffff14cfffff32cfffff3ccfffffbaf5ffff56f6ffff6cf7ffff74f7ffff92f7ffff9cf7ffff9efbffff0000000038550000e6550000ba590000ae76000072780000fc7800004e9d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Library
+      m_OriginalName: Library
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 30948
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 7}
     m_SearchString: 
   m_ExpandedScenes:
   - maingame
@@ -403,18 +403,18 @@ MonoBehaviour:
     m_ExpandedIDs: 00000000c8270000f02700004c2800009a280000442900008629000096290000ec29000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Animation
-      m_OriginalName: Animation
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 10226
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 4
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -588,14 +588,14 @@ MonoBehaviour:
     height: 354
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 0
+  lastFramingTime: 1238.8267995971946
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -7.5027723, y: -83.25127, z: -5.370605}
+    m_Target: {x: 227.46423, y: 2.367948, z: -2.1943648}
     speed: 2
-    m_Value: {x: -7.5027723, y: -83.25127, z: -5.370605}
+    m_Value: {x: 227.46423, y: 2.367948, z: -2.1943648}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -623,9 +623,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 537.60754
+    m_Target: 489.15646
     speed: 2
-    m_Value: 537.60754
+    m_Value: 489.15646
   m_Ortho:
     m_Target: 1
     speed: 2

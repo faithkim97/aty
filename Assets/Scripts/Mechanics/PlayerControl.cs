@@ -23,10 +23,9 @@ public class PlayerControl : MonoBehaviour {
 
     private void Update() {
         movePlayer();
-        if (GameManager.getCoinCount() >= 5) {
+        if (GameManager.getCoinCount() >= 4) {
             ScreenShake ss = GameObject.FindObjectOfType<ScreenShake>();
             ss.ShakeScreen(true);
-            //if (ss != null) { ss.ShakeScreen(true); }
         }
     }
 
