@@ -30,7 +30,8 @@ public class DormTrigger : MonoBehaviour {
         }
     }
 
-    void FadeOutScene() {
+    public void FadeOutScene() {
+        sm.FadeOutAudio();
         StartCoroutine(StartFade());
     }
 
