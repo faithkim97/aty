@@ -15,8 +15,17 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-  
 
+    public void FadeInAudio() {
+        StartCoroutine(FadeIn());
+    }
+
+    private IEnumerator FadeIn() {
+        while (sound.volume < 0.129f) {
+            sound.volume += 0.01f;
+            yield return null;
+        }
+    }
     public void FadeOutAudio() {
         StartCoroutine(FadeOut());
     }

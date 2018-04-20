@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour {
     /// <returns></returns>
     public static float increaseTunnelHeight(GameObject tunnel) {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
-        float height = tunnelRect.sizeDelta.y +30;
+        float height = tunnelRect.sizeDelta.y +80;
         TunnelAnimation.Instance.StartIncreaseTunnel(height, tunnel);
         return height;
     }
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         float height = tunnelRect.sizeDelta.y;
         if (coinCount > 0) {
-            height = (tunnelRect.sizeDelta.y - 30.0f);
+            height = (tunnelRect.sizeDelta.y - 60.0f);
         }
         TunnelAnimation.Instance.StartDecreaseTunnel(height, tunnel);
         return 0.0f;
