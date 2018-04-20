@@ -133,6 +133,7 @@ ba9ee7ef3320851ced4c59bffdc64165 Assembly-CSharp.dll:.MoveYpos
 5b9310aa869d3a31ba98ca25aecd6ac0 Assembly-CSharp.dll:.PillTimer
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CameraResolution
 9b1f2227de7041b5e4d18ec3157d0ac9 Assembly-CSharp.dll:.SerializableDictionaryExample
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.GameOver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LoadSceneOnClick
@@ -174,4 +175,3 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 fc3da262fd1f967e52d4b014f8d649be Assembly-CSharp.dll:.DormTrigger
 81d3fa35f3270744d8c271fbb7597c65 Assembly-CSharp.dll:.Timer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SoundManager
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CameraResolution
