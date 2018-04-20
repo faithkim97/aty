@@ -85,6 +85,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 aa95aa69a60eb0f8edb87e3624492b32 Assembly-CSharp.dll:.NonInteractDialogue
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TunnelAnimation
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Credits
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 dbc29a6f2739d277c10da432d73adb6d UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -172,3 +173,4 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 fc3da262fd1f967e52d4b014f8d649be Assembly-CSharp.dll:.DormTrigger
 81d3fa35f3270744d8c271fbb7597c65 Assembly-CSharp.dll:.Timer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SoundManager
+7bd8768b90b905d5b5541fe42addb342 Assembly-CSharp.dll:.Menu

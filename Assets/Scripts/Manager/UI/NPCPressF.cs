@@ -15,8 +15,6 @@ public class NPCPressF : MonoBehaviour {
         if (collision.gameObject.CompareTag("player")) {
             pressF.enabled = true;
         }
-
-       
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
