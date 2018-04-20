@@ -292,6 +292,7 @@
     <Compile Include="Assets\Scripts\Dialogue\DialogueHolder.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueList.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueScript.cs" />
     <Compile Include="Assets\Scripts\Dialogue\NonInteractDialogue.cs" />
     <Compile Include="Assets\Scripts\Dialogue\SerializedDialogue.cs" />
     <Compile Include="Assets\Scripts\Interactables\ChangeImage.cs" />

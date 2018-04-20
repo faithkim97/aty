@@ -16,19 +16,18 @@ public class DialogueHolder : MonoBehaviour {
     bool triggered = false;
 	bool dialogueDone = false;
     private LevelManager levelManager;
- 
-	// Use this for initialization
-	void Start () {
+    DialogueScript diaScript;
+
+    // Use this for initialization
+    void Start () {
         levelManager = GameObject.FindObjectOfType<LevelManager>();
         diaManager = GameObject.FindObjectOfType<DialogueManager>();
-        DialogueList dialogueList = gameObject.GetComponent<DialogueList>();
-        Dictionary<int,List<string>> savedDialogues = dialogueList.LoadDialogueList();
-		if (!savedDialogues.ContainsKey (dialogueList.getID())) {
-			Debug.LogError ("The key in dictionary does not exist");
-		} else { 
-			currDialogue = savedDialogues[dialogueList.getID()];
-		} 
+        diaScript = gameObject.GetComponent<DialogueScript>();
+        if (diaScript != null) {
+            currDialogue = diaScript.getDialogues()[gameObject.tag];
+        }
 	}//end of start
+
 
    private void Update() {
 		if (triggered) {
