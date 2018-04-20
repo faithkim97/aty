@@ -34,7 +34,6 @@ public class TunnelAnimation : MonoBehaviour {
     /// <param name="height">height of the tunnel it must be</param>
     /// <param name="tunnel"> gameobject tunnel that is being passed</param>
     public void StartIncreaseTunnel( float height, GameObject tunnel ) {
-        
         tunnelHeight = height;
         StartCoroutine(AnimateIncreaseTunnel( tunnel));
     }
@@ -61,14 +60,10 @@ public class TunnelAnimation : MonoBehaviour {
     }
 
     private IEnumerator AnimateIncreaseTunnel( GameObject tunnel) {
-
         BoxCollider2D tunnelTrigger = tunnel.GetComponent<BoxCollider2D>();
-        //used to change size of the tunnel
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         float startHeight = tunnelRect.sizeDelta.y;
         for (float currHeight = startHeight; currHeight < tunnelHeight; currHeight += .5f) {
-            Debug.Log(tunnel.gameObject.tag + " startHeight: " + startHeight + " tunnelHeight: " + tunnelHeight);
-            //Debug.Log(tunnel.gameObject.tag + " height: " + tunnelRect.sizeDelta.y);
             tunnelRect.sizeDelta = new Vector2(tunnelRect.sizeDelta.x, currHeight);
             tunnelTrigger.size = new Vector2(tunnelRect.sizeDelta.x, currHeight);
             yield return null;

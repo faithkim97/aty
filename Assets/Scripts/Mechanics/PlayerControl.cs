@@ -81,9 +81,9 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void IncreaseTunnel() {
-        GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
         GameManager.increaseTunnelHeight(GameObject.Find("Top"));
-        
+        GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
+
     }
 
     public static float getPlayerSpeed() {
