@@ -56,7 +56,6 @@ public class DialogueHolder : MonoBehaviour {
 
 	private void EmailTriggers(Collider2D collision, int ex) {
 		if (collision.gameObject.CompareTag ("player")) {
-           
 			if (gameObject.CompareTag ("health") && ex == 1) {
 				triggered = true;
 				diaManager.ShowBox ();
@@ -67,18 +66,14 @@ public class DialogueHolder : MonoBehaviour {
                 triggered = true;
 				diaManager.ShowBox ();
 			}
-				
 		}//end of if player
-			
 	}
 
 	private void DisableEmail() {
-		if(Input.GetKeyDown(KeyCode.X) && (gameObject.CompareTag("health") || gameObject.CompareTag("dean") 
-			|| gameObject.CompareTag("mom"))){
+		if(Input.GetKeyDown(KeyCode.X) && (gameObject.CompareTag("health") || gameObject.CompareTag("dean"))){
 			gameObject.SetActive(false);
 		}//end of if
 	}
-
 
     public void traverseList() {
             if (i == currDialogue.Count) {
@@ -97,7 +92,6 @@ public class DialogueHolder : MonoBehaviour {
 
 	public void setTriggered(bool t) {
 		triggered = t;
-
 	}
 
 	//return whether dialogue is triggered or not

@@ -15,9 +15,6 @@ public class DialogueManager : MonoBehaviour {
     private void Update() {
         //if currently in dialogue mode and player presses space
         //deactivate dialogue mode
-        if (diaActive && Input.GetKeyDown(KeyCode.X)) {
-            HideBox();
-        }
     }
 
     public void ShowBox() {

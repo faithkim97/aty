@@ -118,8 +118,10 @@ public class GameManager : MonoBehaviour {
     /// <param name="tunnel"> tunnel game object found in unity scene </param>
     /// <returns></returns>
     public static float increaseTunnelHeight(GameObject tunnel) {
+        
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
-        float height = tunnelRect.sizeDelta.y + 30;
+        float height = tunnelRect.sizeDelta.y +30;
+        Debug.Log(tunnel.tag + " " + height);
         TunnelAnimation.Instance.StartIncreaseTunnel(height, tunnel);
         return height;
     }
@@ -128,7 +130,7 @@ public class GameManager : MonoBehaviour {
         RectTransform tunnelRect = tunnel.GetComponent<RectTransform>();
         float height = tunnelRect.sizeDelta.y;
         if (coinCount > 0) {
-            height = (tunnelRect.sizeDelta.y - 30.0f);
+            height = (tunnelRect.sizeDelta.y - 10.0f);
         }
         TunnelAnimation.Instance.StartDecreaseTunnel(height, tunnel);
         return 0.0f;
@@ -152,11 +154,10 @@ public class GameManager : MonoBehaviour {
 	public static void GameOver() {
         //DialogueHolder dHolder = FindObjectOfType<DialogueHolder> ();
         //dHolder.setTriggered (false);
-       
         incDeathCount();
         coinCount = 0;
         float volume = ResetMusic();
-          if (volume <= 0.2) { Instance.LoadScene(1); }
+          if (volume <= 0.2) { Instance.LoadScene(2); }
     }//end of GameOver
 
     private static float ResetMusic() {

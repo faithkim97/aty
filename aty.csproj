@@ -288,7 +288,6 @@
     <Compile Include="Assets\Scripts\Animation\PanicAttackTrigger.cs" />
     <Compile Include="Assets\Scripts\Animation\ScreenShake.cs" />
     <Compile Include="Assets\Scripts\Animation\TunnelAnimation.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueCreator.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueHolder.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueList.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueManager.cs" />
@@ -300,7 +299,6 @@
     <Compile Include="Assets\Scripts\Manager\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\Manager\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\Manager\PillTimer.cs" />
     <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\GameOver.cs" />
@@ -310,15 +308,12 @@
     <Compile Include="Assets\Scripts\Manager\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\Manager\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mechanics\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\Misc\Credits.cs" />
-    <Compile Include="Assets\Scripts\Misc\DialogueEditor.cs" />
     <Compile Include="Assets\Scripts\Misc\DialogueTree.cs" />
+    <Compile Include="Assets\Scripts\Misc\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\Misc\SerializedTree.cs" />
     <Compile Include="Assets\SerializableDictionary\Example\SerializableDictionaryExample.cs" />
     <Compile Include="Assets\SerializableDictionary\Example\UserSerializableDictionaries.cs" />
     <Compile Include="Assets\SerializableDictionary\SerializableDictionary.cs" />
-    <Compile Include="Assets\TypeOut\Scripts\GUIScript.cs" />
-    <Compile Include="Assets\TypeOut\Scripts\TypeOutEditor.cs" />
     <Compile Include="Assets\TypeOut\Scripts\TypeOutScript.cs" />
   </ItemGroup>
   <ItemGroup>

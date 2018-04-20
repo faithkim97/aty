@@ -24,7 +24,6 @@ public class PlayerControl : MonoBehaviour {
     private void Update() {
         movePlayer();
         if (GameManager.getCoinCount() >= 5) {
-            Debug.Log("shake it bitch");
             ScreenShake ss = GameObject.FindObjectOfType<ScreenShake>();
             ss.ShakeScreen(true);
             //if (ss != null) { ss.ShakeScreen(true); }
@@ -82,8 +81,9 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void IncreaseTunnel() {
-        GameManager.increaseTunnelHeight(GameObject.Find("Top"));
         GameManager.increaseTunnelHeight(GameObject.Find("Bottom"));
+        GameManager.increaseTunnelHeight(GameObject.Find("Top"));
+        
     }
 
     public static float getPlayerSpeed() {

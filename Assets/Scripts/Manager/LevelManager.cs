@@ -88,12 +88,12 @@ public class LevelManager : MonoBehaviour {
             float playerSpeed = PlayerControl.getPlayerSpeed();
             int jumpPower = PlayerControl.getJumpPower();
             if (playerSpeed < 5.0f) {
-                PlayerControl.setPlayerSpeed(playerSpeed + 0.1f);
+                PlayerControl.setPlayerSpeed(playerSpeed + 0.2f);
             }
 
             if (jumpPower < 5000) {
                
-                PlayerControl.setJumpPower(jumpPower + 50);
+                PlayerControl.setJumpPower(jumpPower + 100);
             }
         }//end of manageLvl
         return false;
