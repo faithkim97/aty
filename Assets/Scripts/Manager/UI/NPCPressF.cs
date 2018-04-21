@@ -8,6 +8,7 @@ public class NPCPressF : MonoBehaviour {
     public Text pressF;
     private DialogueManager dMan;
     private SoundManager soundManager;
+    private bool triggered = false;
     private void Start() {
         dMan = GameObject.FindObjectOfType<DialogueManager>();
         soundManager = GameObject.FindObjectOfType<SoundManager>();
@@ -15,8 +16,13 @@ public class NPCPressF : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("player")) {
             pressF.enabled = true;
+            if (gameObject.CompareTag("bri")) {
+                soundManager.setSoundClip(changeMusic);
+                soundManager.setVolume(1.0f);
+                soundManager.getSound().Play();
+            }
         }
-    }
+    }//end of trigger enter
 
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("player")) {
@@ -24,14 +30,6 @@ public class NPCPressF : MonoBehaviour {
                 soundManager.FadeOutAudio();
                 pressF.enabled = false;
             }
-
-            if (gameObject.CompareTag("bri")) {
-                soundManager.setVolume(0.0f);
-                soundManager.setSoundClip(changeMusic);
-                soundManager.setVolume(1.0f);
-                soundManager.getSound().Play();
-            }
-
             else if (!dMan.diaActive) {
                 soundManager.FadeInAudio();
             }
