@@ -22,14 +22,16 @@ public class SoundManager : MonoBehaviour {
     public void setVolume(float vol) {
         sound.volume = vol;
     }
-    private void Update() {
+  private void Update() {
         if (FindObjectsOfType(GetType()).Length > 1 && sound.volume <= 0.0f) {
             Destroy(gameObject);
         }
     }
 
     public void FadeInAudio() {
-        StartCoroutine(FadeIn());
+        if (sound != null) {
+            StartCoroutine(FadeIn());
+        }
     }
 
     private IEnumerator FadeIn() {

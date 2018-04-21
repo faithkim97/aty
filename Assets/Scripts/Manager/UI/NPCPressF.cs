@@ -11,10 +11,10 @@ public class NPCPressF : MonoBehaviour {
     private bool triggered = false;
     private void Start() {
         dMan = GameObject.FindObjectOfType<DialogueManager>();
-        soundManager = GameObject.FindObjectOfType<SoundManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("player")) {
+            Debug.Log("inside bri");
             pressF.enabled = true;
             if (gameObject.CompareTag("bri")) {
                 soundManager.setSoundClip(changeMusic);
@@ -24,14 +24,18 @@ public class NPCPressF : MonoBehaviour {
         }
     }//end of trigger enter
 
+    private void Update() {
+        soundManager = GameObject.FindObjectOfType<SoundManager>();
+    }
+
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("player")) {
             if (dMan.diaActive) {
                 pressF.enabled = false;
             }
             if (dMan.diaActive && gameObject.CompareTag("hope")) {
-                soundManager.FadeOutAudio();
-                
+                Debug.Log("inside hope");
+                 soundManager.FadeOutAudio();
             }
             else if (!dMan.diaActive) {
                 soundManager.FadeInAudio();
