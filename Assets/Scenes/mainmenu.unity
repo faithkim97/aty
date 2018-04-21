@@ -4233,11 +4233,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'K: Interact with other characters; continue with dialogue
+  m_Text: 'H: Pull up menu during game
 
-    X: Exit out of dialogue
+    Arrows: Move Chi
 
-    Q: Pull up menu'
+    Space: Jump'
 --- !u!222 &2047259771
 CanvasRenderer:
   m_ObjectHideFlags: 0
