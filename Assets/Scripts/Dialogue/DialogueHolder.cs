@@ -36,18 +36,26 @@ public class DialogueHolder : MonoBehaviour {
         }
 		DisableEmail ();
     }
-	
 
+  /*  private void OnTriggerEnter2D(Collider2D collision) {
+        
+        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+            Debug.Log("inside F");
+            triggered = true;
+            diaManager.ShowBox();
+            traverseList();
+        }
+    }
+    */
     private void OnTriggerStay2D(Collider2D collision) {
 
 		int ex = GameManager.getDeathCount ();
-		if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
-			triggered = true;
-			diaManager.ShowBox();
-			traverseList();
-		}
-
-		EmailTriggers (collision, ex);
+        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+            triggered = true;
+            diaManager.ShowBox();
+            traverseList();
+        }
+        EmailTriggers (collision, ex);
 		
 
     }//end of Trigger
