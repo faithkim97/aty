@@ -17,7 +17,7 @@ public class DialogueHolder : MonoBehaviour {
 	bool dialogueDone = false;
     private LevelManager levelManager;
     DialogueScript diaScript;
-
+    private bool collided = false;
     // Use this for initialization
     void Start () {
         levelManager = GameObject.FindObjectOfType<LevelManager>();
@@ -30,6 +30,10 @@ public class DialogueHolder : MonoBehaviour {
 
 
    private void Update() {
+        if (collided && Input.GetKeyDown(KeyCode.F)) {
+            triggered = true;
+            diaManager.ShowBox();
+        }
 		if (triggered) {
             //diaManager.ShowDialogue(traverseList());
 			traverseList();
@@ -48,13 +52,15 @@ public class DialogueHolder : MonoBehaviour {
     }
     */
     private void OnTriggerStay2D(Collider2D collision) {
-
+        if (collision.gameObject.CompareTag("player")) {
+            collided = true;
+        }
 		int ex = GameManager.getDeathCount ();
-        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
+       /* if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("player")) {
             triggered = true;
             diaManager.ShowBox();
             traverseList();
-        }
+        }*/
         EmailTriggers (collision, ex);
 		
 
@@ -84,6 +90,7 @@ public class DialogueHolder : MonoBehaviour {
 
     public void traverseList() {
             if (i == currDialogue.Count) {
+                collided = false;
                 triggered = false;
 				dialogueDone = true;
                 diaManager.HideBox();

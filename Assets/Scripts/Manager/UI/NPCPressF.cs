@@ -13,8 +13,8 @@ public class NPCPressF : MonoBehaviour {
         dMan = GameObject.FindObjectOfType<DialogueManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision) {
+
         if (collision.gameObject.CompareTag("player")) {
-            Debug.Log("inside bri");
             pressF.enabled = true;
             if (gameObject.CompareTag("bri")) {
                 soundManager.setSoundClip(changeMusic);
@@ -34,7 +34,6 @@ public class NPCPressF : MonoBehaviour {
                 pressF.enabled = false;
             }
             if (dMan.diaActive && gameObject.CompareTag("hope")) {
-                Debug.Log("inside hope");
                  soundManager.FadeOutAudio();
             }
             else if (!dMan.diaActive) {
