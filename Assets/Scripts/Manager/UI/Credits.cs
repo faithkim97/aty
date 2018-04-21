@@ -27,8 +27,9 @@ public class Credits : MonoBehaviour {
         creditList.Add("Take care of yourself.");
         creditList.Add("Thank you for playing");
         creditList.Add("Brought to you by: Paradox Production");
-        creditList.Add("Opening and Credit Music: Threnody by Soularfair");
+        creditList.Add("Menu music: Threnody by Soularfair");
         creditList.Add("Main music: Battle Theme by Komiku");
+        creditList.Add("Credits music: Into the Light by The Owl");
         creditList.Add("Raven Gomez - Writer");
         creditList.Add("Jasmine Olivarez - Writer & Artist");
         creditList.Add("Arabia Simeon - Lead Technical Artist");

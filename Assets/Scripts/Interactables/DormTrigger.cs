@@ -17,8 +17,7 @@ public class DormTrigger : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("player") && sm != null) {
-            Debug.Log("inside trigger");
-            sm.FadeOutAudio();
+            //sm.FadeOutAudio();
             FadeOutScene();
         }
     }//end of trigger

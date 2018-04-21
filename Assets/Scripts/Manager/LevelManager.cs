@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour {
 	//create fields for the UI images
 	
 	public GameObject deanEmail;
-	public GameObject momText;
     public GameObject healthEmail;
 
     public GameObject pills;
@@ -29,10 +28,10 @@ public class LevelManager : MonoBehaviour {
         if (GameManager.getDeathCount() >= 1 ) {
             SetPillsActive();
         }
-        if ( healthEmail != null && deanEmail != null && momText != null) {
+        if ( healthEmail != null && deanEmail != null ) {
             ChangeOpacity(healthEmail, 0.0f);
             deanEmail.GetComponent<Image>().enabled = false;
-            momText.GetComponent<Image>().enabled = false;
+            
         }
 
     }//end of start
@@ -94,9 +93,7 @@ public class LevelManager : MonoBehaviour {
 				g = GameObject.Find ("Health Service email");
 			} else if (i == 2) {
 				g = GameObject.Find ("Dean email");
-			} else if (i == 3) {
-				g = GameObject.Find ("Mom's text");
-			}
+			} 
 		return g;
 	}//end of FindObject
 
