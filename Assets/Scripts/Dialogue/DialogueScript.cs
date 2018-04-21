@@ -87,7 +87,7 @@ public class DialogueScript : MonoBehaviour {
         c.Add("Chi: Bri...Mom didn't tell me you're--");
         c.Add("Bri: Pregnant?");
         c.Add("Bri: I know seeing me like this may be a shock, and I also know your judgemental ass is looking down on me,");
-        c.Add("Bir: but I promise having this baby won't change my dreams of becoming an actress.");
+        c.Add("Bri: but I promise having this baby won't change my dreams of becoming an actress.");
         c.Add("Chi: Seriously Bri? After everything Mom and Dad have done for us?");
         c.Add("Chi: They worked so hard to make sure that we didn't become a fucking label, a stereotype!");
         c.Add("Chi: You're basically a walking statistic.");
@@ -96,7 +96,7 @@ public class DialogueScript : MonoBehaviour {
         c.Add("Bri: I wish Mom could see that things aren't as hard as it was in the old days.");
         c.Add("Bri: There's things like daycare, and I have plenty of friends who can babysit! You included when you graduate!");
         c.Add("Bri: And once the baby can walk, I can enroll in the daycare program at Sonia Sotomayor Community College.");
-        c.Add("Chi: And what about the baby's dad? Mom won't stop texting me about all the rent and blls already.");
+        c.Add("Chi: And what about the baby's dad? Mom won't stop texting me about all the rent and bills already.");
         c.Add("Chi: You know I have a lot on my plate, Bri.");
         c.Add("Chi: After all the begging I did to convince Mom and Dad to send me to Ivy College, I can't afford to let them down now.");
         c.Add("Chi: I had to leave our family behind to pursue this education, Bri. And you know how hard it was on them AND you.");

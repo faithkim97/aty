@@ -27,8 +27,11 @@ public class NPCPressF : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("player")) {
             if (dMan.diaActive) {
-                soundManager.FadeOutAudio();
                 pressF.enabled = false;
+            }
+            if (dMan.diaActive && gameObject.CompareTag("hope")) {
+                soundManager.FadeOutAudio();
+                
             }
             else if (!dMan.diaActive) {
                 soundManager.FadeInAudio();

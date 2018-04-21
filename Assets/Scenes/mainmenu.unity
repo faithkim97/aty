@@ -4233,11 +4233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'H: Pull up menu during game
-
-    Arrows: Move Chi
-
-    Space: Jump'
+  m_Text: 
 --- !u!222 &2047259771
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4257,8 +4253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   On: 1
   reset: 0
-  FinalText: "K: Interact with other characters; continue with dialogue \n X: Exit
-    out of dialogue \n Q: Pull up menu\n"
+  FinalText: 'H: Pull up menu during game Arrows: Move Chi Space: Jump'
   TotalTypeTime: 0.5
   TypeRate: 0
   RandomCharactor: 
