@@ -12,10 +12,6 @@ public class DialogueManager : MonoBehaviour {
         diaBox.SetActive(false);
     }
 
-    private void Update() {
-        //if currently in dialogue mode and player presses space
-        //deactivate dialogue mode
-    }
 
     public void ShowBox() {
         diaActive = true;
