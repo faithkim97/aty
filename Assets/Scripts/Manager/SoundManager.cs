@@ -5,12 +5,23 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
     private AudioSource sound;
     private void Awake() {
-      DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         sound = gameObject.GetComponent<AudioSource>();
-       
-      
+
+
     }//end of Awake
 
+    public AudioSource getSound() {
+        return sound;
+    }
+
+    public void setSoundClip(AudioClip newClip) {
+        sound.clip = newClip;
+    }
+
+    public void setVolume(float vol) {
+        sound.volume = vol;
+    }
     private void Update() {
         if (FindObjectsOfType(GetType()).Length > 1 && sound.volume <= 0.0f) {
             Destroy(gameObject);

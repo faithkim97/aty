@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NPCPressF : MonoBehaviour {
+    public AudioClip changeMusic;
     public Text pressF;
     private DialogueManager dMan;
     private SoundManager soundManager;
@@ -24,8 +25,14 @@ public class NPCPressF : MonoBehaviour {
                 pressF.enabled = false;
             }
 
+            if (gameObject.CompareTag("bri")) {
+                soundManager.setVolume(0.0f);
+                soundManager.setSoundClip(changeMusic);
+                soundManager.setVolume(1.0f);
+                soundManager.getSound().Play();
+            }
+
             else if (!dMan.diaActive) {
-                Debug.Log("dia is not active");
                 soundManager.FadeInAudio();
             }
         }//end of if player
