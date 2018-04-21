@@ -29,10 +29,21 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
+    void FlipPlayer() {
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        if (Input.GetKey(KeyCode.LeftArrow)) {
+            sr.flipX = true;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow)) {
+            sr.flipX = false;
+        }
+    }
+
     void movePlayer() {
         moveX = Input.GetAxis("Horizontal");
         //player movement 
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+        FlipPlayer();
         //jump
 		if (Input.GetKeyDown(KeyCode.Space) && !inAir) {
 			inAir = true;
