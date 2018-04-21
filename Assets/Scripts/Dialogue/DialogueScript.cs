@@ -36,6 +36,8 @@ public class DialogueScript : MonoBehaviour {
 
     private void setMomText() {
         List<string> currDia = new List<string>();
+        currDia.Add("You received a text message.");
+        currDia.Add("It's from your mother.");
         currDia.Add("Mom: Chi, have you heard from Brianna?");
         currDia.Add("Mom: Your sister has really outdone herself this time! She hasn’t come home and won’t return any of my messages.");
         currDia.Add("Mom: Your father just about lost it when she gave us the news. What will people say about her now?");
