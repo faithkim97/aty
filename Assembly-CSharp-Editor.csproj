@@ -51,8 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Dialogue\Editor\DialogueCreator.cs" />
+     <Compile Include="Assets\Scripts\Dialogue\Editor\DialogueEditor.cs" />
      <Compile Include="Assets\SerializableDictionary\Editor\SerializableDictionaryPropertyDrawer.cs" />
      <Compile Include="Assets\SerializableDictionary\Example\Editor\UserSerializableDictionaryPropertyDrawers.cs" />
+     <Compile Include="Assets\TypeOut\Scripts\Editor\GUIScript.cs" />
+     <Compile Include="Assets\TypeOut\Scripts\Editor\TypeOutEditor.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
